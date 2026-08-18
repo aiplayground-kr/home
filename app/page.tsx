@@ -62,6 +62,39 @@ const seasonOnePosts = [
   },
 ];
 
+const organizationTeams = [
+  {
+    number: "01",
+    name: "PLAY",
+    lead: "문종훈",
+    subLead: "TBU",
+    question: "누가 함께할 것인가?",
+    purpose: "사람을 모으고 연결합니다.",
+    signal: "나는 사람을 좋아해",
+    roles: ["Crew 온보딩", "멤버 소통과 참여 독려", "참가자·네트워킹 관리", "장소와 현장 운영 지원"],
+  },
+  {
+    number: "02",
+    name: "SHARE",
+    lead: "윤미영",
+    subLead: "허석 · 박현정",
+    question: "무엇을 함께 나눌 것인가?",
+    purpose: "콘텐츠를 만들고 나눕니다.",
+    signal: "나는 콘텐츠를 좋아해",
+    roles: ["LinkedIn·Event 콘텐츠 기획", "Alliance·홍보·스폰서 협력", "학습 콘텐츠와 영상 정리", "작은 놀이터 주제·리더 발굴"],
+  },
+  {
+    number: "03",
+    name: "BUILD",
+    lead: "전대호",
+    subLead: "진미나",
+    question: "어떻게 만들 것인가?",
+    purpose: "경험을 만들고 누적합니다.",
+    signal: "나는 행사 만들기를 좋아해",
+    roles: ["계절별 Meetup 실행", "Venue와 운영 지원", "행사 기록", "경험 아카이빙"],
+  },
+];
+
 function Logo() {
   return <img className="brand-logo" src="/ai-playground-logo.png" alt="" />;
 }
@@ -81,6 +114,7 @@ export default function Home() {
         <nav aria-label="주요 메뉴">
           <a href="#about">소개</a>
           <a href="#host">모임장</a>
+          <a href="#organization">조직도</a>
           <a href="#seasons">시즌</a>
           <a href="#small-playground">작은 놀이터</a>
           <a href="#how-we-play">함께 노는 법</a>
@@ -161,6 +195,65 @@ export default function Home() {
               LinkedIn 프로필 보기 <Arrow />
             </a>
             <a className="text-link" href={interviewUrl} target="_blank" rel="noreferrer">모임장 인터뷰 읽기</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="organization" id="organization">
+        <div className="organization-heading" data-reveal>
+          <div>
+            <p className="eyebrow">HOW WE ORGANIZE</p>
+            <h2>좋아하는 방식으로<br /><em>함께 움직입니다.</em></h2>
+          </div>
+          <div className="organization-note">
+            <span>SEASON 2 · OPERATING MAP</span>
+            <p>모든 Crew가 한 팀에 참여해 사람, 콘텐츠, 경험을 함께 키웁니다. 운영 구조는 활동과 프로젝트에 맞춰 계속 업데이트됩니다.</p>
+          </div>
+        </div>
+
+        <div className="organization-map">
+          <article className="steering-card" data-tilt data-reveal>
+            <div>
+              <span>COMMUNITY LEADER / STEERING</span>
+              <h3>김성미 · Tiny Lee · 이종혁 <small>+ α</small></h3>
+              <p>북극성 설정 · 방향 · 최종 의사결정</p>
+            </div>
+            <div className="steering-question">
+              <span>WHY?</span>
+              <strong>우리는 왜 존재하는가?</strong>
+            </div>
+          </article>
+
+          <div className="org-connector" aria-hidden="true"><i /><i /><i /></div>
+
+          <div className="org-team-grid">
+            {organizationTeams.map((team) => (
+              <article className={`org-team org-team-${team.number}`} data-reveal key={team.name}>
+                <div className="org-team-head">
+                  <span>TEAM {team.number}</span>
+                  <strong>{team.name}</strong>
+                </div>
+                <div className="org-team-body">
+                  <p className="org-team-lead">LEAD <strong>{team.lead}</strong><br />SUB-LEAD <strong>{team.subLead}</strong></p>
+                  <h3>{team.purpose}</h3>
+                  <div className="org-question"><span>{team.number === "01" ? "WHO?" : team.number === "02" ? "WHAT?" : "HOW?"}</span>{team.question}</div>
+                  <blockquote>“{team.signal}”</blockquote>
+                  <details>
+                    <summary>주요 역할 펼치기 <span aria-hidden="true">＋</span></summary>
+                    <ul>{team.roles.map((role) => <li key={role}>{role}</li>)}</ul>
+                  </details>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="small-project-bridge" data-reveal>
+            <span>PROJECT LAYER</span>
+            <div>
+              <strong>작은 놀이터</strong>
+              <p>프로젝트마다 리더를 세우고, 팀 구분 없이 삼삼오오 협력합니다.</p>
+            </div>
+            <a href="#small-playground">진행 중인 작은 놀이터 보기 <Arrow /></a>
           </div>
         </div>
       </section>
