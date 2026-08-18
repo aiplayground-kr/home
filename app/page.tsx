@@ -177,7 +177,7 @@ export default function Home() {
       <section className="host-profile" id="host">
         <div className="host-portrait" data-reveal>
           <div className="host-photo-frame" data-tilt>
-            <img src="/host-sung-mi-kim.jpeg" alt="AI놀이터 모임장 김성미" loading="lazy" />
+            <img src="/host-sung-mi-kim-current.jpg" alt="경복궁을 배경으로 노트북을 든 AI놀이터 모임장 김성미" loading="lazy" />
             <span className="host-photo-label">COMMUNITY LEADER</span>
           </div>
           <div className="host-doodle" aria-hidden="true">PLAY<br />TOGETHER</div>
