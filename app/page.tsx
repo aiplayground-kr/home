@@ -13,6 +13,54 @@ const playSteps = [
   ["03", "만들어보기", "배운 것을 나의 일과 일상에 연결해 작지만 쓸모 있는 결과를 만듭니다."],
 ];
 
+const seasonOnePosts = [
+  {
+    number: "01",
+    date: "2024.11.30",
+    season: "SPECIAL",
+    title: "Microsoft Ignite After Party with MVP",
+    summary: "Ignite의 핵심 발표를 함께 읽고, 피아노 앱 합주부터 Power Apps·Dynamics 365·RAG·SLM·Semantic Kernel까지 하루 동안 직접 듣고 나눈 첫 기록입니다.",
+    image: "/season1/01-ignite-after-party.png",
+    alt: "2024 Microsoft Ignite After Party 발표자와 행사 안내",
+    tags: ["Ignite", "MVP", "Hands-on"],
+    detail: "이소영님의 ‘함께 성장하는 커뮤니티의 힘’으로 문을 열고, 이재석·허석 MVP의 피아노 앱 핸즈온과 김현혜·신수원·박조은·송민석·김진석·윤혜식·김성미 발표가 이어졌습니다.",
+  },
+  {
+    number: "02",
+    date: "2025.06.22",
+    season: "SUMMER",
+    title: "AI 동료와 함께 살아갈 준비",
+    summary: "사례로 쉽게 이해하는 AI와 노코드로 구현하는 AI, 두 갈래 트랙으로 AI 에이전트와 일하는 방식을 탐색한 여름 밋업입니다.",
+    image: "/season1/02-summer-meetup.png",
+    alt: "2025 AI놀이터 여름 밋업 프로그램과 발표자",
+    tags: ["AI Agent", "No-code", "Case Study"],
+    detail: "LG전자 CHATDA, AI 투자 에이전트, 프런티어 기업 생존 전략, AI·빅데이터 리서치, Copilot과 리더십, AI 프로젝트 관리 프레임워크 등 현업 사례를 한 자리에서 나눴습니다.",
+  },
+  {
+    number: "03",
+    date: "2025.09.27",
+    season: "FALL",
+    title: "What’s Your Dream?",
+    summary: "세상의 문제를 발견하고 푸는 스타트업에게 배우며, 각자의 꿈을 AI와 함께 어떻게 현실로 만들지 질문한 가을 밋업입니다.",
+    image: "/season1/03-fall-meetup.png",
+    alt: "2025 AI놀이터 가을 밋업 What’s Your Dream 행사 안내",
+    tags: ["Startup", "Agentic AI", "Vibe Coding"],
+    detail: "Microsoft의 Agentic AI와 데이터 혁신, VC가 바라본 스타트업, Bio·Event·Beauty·Service 현장의 사례와 바이브코딩 이야기가 이어졌습니다. 사이먼 스큅의 영상 메시지와 도서 기부도 함께했습니다.",
+    extraImage: "/season1/03-fall-gifts.png",
+  },
+  {
+    number: "04",
+    date: "2026.01.18",
+    season: "WINTER",
+    title: "슬기로운 AI 생활",
+    summary: "워크와 라이프에서 AI를 현명하게 쓰는 법, 그리고 Excel부터 다양한 데이터 플랫폼까지 실무 활용 팁을 모은 시즌 1의 겨울 피날레입니다.",
+    image: "/season1/04-winter-meetup.png",
+    alt: "2026 AI놀이터 겨울 밋업 프로그램과 발표자",
+    tags: ["Copilot", "Data", "Excel"],
+    detail: "AI 시대의 성장, Microsoft가 인정한 MVP들의 실전 노하우, 데이터 기반 업무와 Agentic AI까지 역할별·직무별로 바로 적용할 수 있는 팁을 촘촘하게 공유했습니다.",
+  },
+];
+
 function Logo() {
   return <img className="brand-logo" src="/ai-playground-logo.png" alt="" />;
 }
@@ -121,11 +169,53 @@ export default function Home() {
             </div>
             <div>
               <p className="season-kicker">AI놀이터 · SEASON 1</p>
-              <h3>시즌1의 이야기를<br />기다리고 있어요.</h3>
-              <p>사진과 프로그램, 참여자들의 기록을 전달해주시면 이 자리에 풍성하게 채워 넣겠습니다.</p>
+              <h3>네 번의 만남,<br />하나의 플레이리스트</h3>
+              <p>Ignite에서 시작해 AI 동료, 꿈과 스타트업, 슬기로운 AI 생활까지. 시즌 1의 현장을 게시판에서 다시 만나보세요.</p>
             </div>
-            <span className="coming-soon">CONTENT COMING SOON</span>
+            <a href="#season1-archive">시즌1 게시판 열기 <Arrow /></a>
           </article>
+        </div>
+      </section>
+
+      <section className="season-archive" id="season1-archive">
+        <div className="archive-heading" data-reveal>
+          <div>
+            <p className="eyebrow">SEASON 1 · FIELD NOTES</p>
+            <h2>그날의 질문과<br /><em>현장을 펼쳐보세요.</em></h2>
+          </div>
+          <div className="archive-intro">
+            <strong>2024.11 — 2026.01</strong>
+            <p>공지에서 끝나지 않은 네 번의 만남. 카드 위에 마우스를 올리고, 게시물을 열어 프로그램과 현장 이야기를 확인해보세요.</p>
+          </div>
+        </div>
+
+        <div className="archive-board">
+          {seasonOnePosts.map((post, index) => (
+            <article className={`archive-post archive-post-${index + 1}`} data-reveal key={post.number}>
+              <div className="post-image-wrap" data-tilt>
+                <img src={post.image} alt={post.alt} loading="lazy" />
+                <span className="post-sticker">{post.season}</span>
+              </div>
+              <div className="post-copy">
+                <div className="post-meta">
+                  <span>NO. {post.number}</span>
+                  <time>{post.date}</time>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.summary}</p>
+                <div className="post-tags">
+                  {post.tags.map((tag) => <span key={tag}>#{tag}</span>)}
+                </div>
+                <details className="post-details">
+                  <summary>기록 더 펼치기 <span aria-hidden="true">＋</span></summary>
+                  <div>
+                    <p>{post.detail}</p>
+                    {post.extraImage && <img src={post.extraImage} alt="가을 밋업에서 준비한 도서와 선물" loading="lazy" />}
+                  </div>
+                </details>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

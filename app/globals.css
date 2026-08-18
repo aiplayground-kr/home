@@ -106,6 +106,39 @@ nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 .season-card a { width: fit-content; display: inline-flex; align-items: center; gap: 16px; font-size: 14px; font-weight: 800; border-bottom: 1px solid currentColor; padding-bottom: 6px; position: relative; z-index: 2; }
 .coming-soon { width: fit-content; padding: 8px 11px; border: 1px dashed currentColor; font: 800 10px/1 Arial, sans-serif; letter-spacing: .12em; }
 
+.season-archive { padding: 130px clamp(24px, 7vw, 110px); background: #f7cde2; overflow: hidden; }
+.archive-heading { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(48px, 9vw, 140px); align-items: end; margin-bottom: 72px; }
+.archive-heading h2 { margin: 0; font-size: clamp(46px, 5.8vw, 88px); line-height: 1.02; letter-spacing: -.07em; }
+.archive-heading h2 em { color: var(--purple); font-style: normal; }
+.archive-intro { border-top: 2px solid var(--ink); padding-top: 20px; }
+.archive-intro strong { font: 900 13px/1 Arial, sans-serif; letter-spacing: .1em; }
+.archive-intro p { margin: 18px 0 0; font-size: 17px; line-height: 1.7; color: #55514f; }
+.archive-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 76px clamp(24px, 5vw, 72px); }
+.archive-post { min-width: 0; }
+.archive-post:nth-child(even) { margin-top: 110px; }
+.post-image-wrap { aspect-ratio: 16 / 9; position: relative; background: var(--cream); border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); overflow: hidden; transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .2s ease-out, box-shadow .2s ease; }
+.post-image-wrap:hover { box-shadow: 16px 16px 0 var(--ink); }
+.post-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.post-image-wrap:hover img { transform: scale(1.035); }
+.post-sticker { position: absolute; right: 18px; top: 18px; padding: 9px 12px; background: var(--lime); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font: 900 10px/1 Arial, sans-serif; letter-spacing: .12em; transform: rotate(3deg); }
+.archive-post:nth-child(2) .post-sticker { background: var(--orange); color: white; transform: rotate(-4deg); }
+.archive-post:nth-child(3) .post-sticker { background: var(--purple); color: white; transform: rotate(4deg); }
+.post-copy { padding: 32px 4px 0; }
+.post-meta { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(23,25,21,.35); font: 800 11px/1 Arial, sans-serif; letter-spacing: .11em; }
+.post-copy h3 { margin: 24px 0 16px; font-size: clamp(30px, 3vw, 46px); line-height: 1.08; letter-spacing: -.055em; }
+.post-copy > p { margin: 0; font-size: 16px; line-height: 1.75; color: #4f4c4a; }
+.post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0; }
+.post-tags span { padding: 7px 10px; border: 1px solid var(--ink); border-radius: 999px; font-size: 11px; font-weight: 800; background: rgba(255,255,255,.34); }
+.post-details { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.post-details summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 17px 0; font-size: 13px; font-weight: 850; }
+.post-details summary::-webkit-details-marker { display: none; }
+.post-details summary span { font-size: 22px; transition: transform .25s ease; }
+.post-details[open] summary span { transform: rotate(45deg); }
+.post-details > div { padding: 0 0 22px; animation: detail-open .35s ease both; }
+.post-details p { margin: 0; line-height: 1.75; color: #4f4c4a; }
+.post-details img { display: block; width: 100%; margin-top: 18px; border: 1px solid var(--ink); }
+@keyframes detail-open { from { opacity: 0; transform: translateY(-8px); } }
+
 .small-playground { min-height: 820px; padding: 120px clamp(24px, 7vw, 110px); background: var(--lime); display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(50px, 8vw, 130px); align-items: center; overflow: hidden; position: relative; }
 .small-playground::before { content: "小"; position: absolute; left: -2vw; bottom: -9vw; font-size: clamp(220px, 35vw, 560px); font-weight: 900; line-height: .8; opacity: .07; transform: rotate(-8deg); pointer-events: none; }
 .small-copy { position: relative; z-index: 2; }
@@ -161,6 +194,7 @@ footer { padding: 34px clamp(24px, 5vw, 76px); border-top: 1px solid var(--ink);
   .hero { grid-template-columns: 1fr; padding-top: 56px; gap: 30px; }
   .hero-art { min-height: 470px; max-width: 600px; width: 100%; margin: 0 auto; }
   .intro-grid, .season-grid { grid-template-columns: 1fr; }
+  .archive-heading { grid-template-columns: 1fr; }
   .small-playground { grid-template-columns: 1fr; }
   .small-season-list { max-width: 760px; }
   .intro-grid { gap: 48px; }
@@ -188,6 +222,9 @@ footer { padding: 34px clamp(24px, 5vw, 76px); border-top: 1px solid var(--ink);
   .hero-card strong { font-size: 25px; }
   .round-label { width: 92px; height: 92px; font-size: 13px; left: 0; }
   .intro, .seasons, .playbook, .join { padding: 90px 22px; }
+  .season-archive { padding: 90px 22px; }
+  .archive-board { grid-template-columns: 1fr; gap: 64px; }
+  .archive-post:nth-child(even) { margin-top: 0; }
   .small-playground { padding: 90px 22px; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 24px; margin-bottom: 45px; }
   .season-card { padding: 28px; min-height: 500px; }
