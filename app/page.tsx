@@ -10,14 +10,7 @@ const playSteps = [
 ];
 
 function Logo() {
-  return (
-    <span className="logo-symbol" aria-hidden="true">
-      <i className="logo-block logo-purple" />
-      <i className="logo-block logo-lime" />
-      <i className="logo-dot" />
-      <b>AI</b>
-    </span>
-  );
+  return <img className="brand-logo" src="/ai-playground-logo.png" alt="" />;
 }
 
 function Arrow() {
@@ -31,7 +24,6 @@ export default function Home() {
       <header className="site-header">
         <a className="brand" href="#top" aria-label="AI놀이터 홈">
           <Logo />
-          <span>AI놀이터</span>
         </a>
         <nav aria-label="주요 메뉴">
           <a href="#about">소개</a>
@@ -186,7 +178,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><Logo /><span>AI놀이터</span></a>
+        <a className="brand footer-brand" href="#top" aria-label="AI놀이터 홈"><Logo /></a>
         <p>PLAY. LEARN. SHARE. REPEAT.</p>
         <span>Season 2 is now playing.</span>
       </footer>
