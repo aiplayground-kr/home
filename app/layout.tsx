@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "직접 만지고, 질문하고, 함께 만들며 AI와 친해지는 커뮤니티. AI놀이터 시즌2가 진행 중입니다.",
   openGraph: {
     title: "AI놀이터 | 놀다 보면 알게 되는 AI",
-    description: "AI놀이터 시즌2가 진행 중입니다.",
-    images: [{ url: "/og.png", width: 1734, height: 907, alt: "AI놀이터 작은 놀이터 시즌 시리즈" }],
+    description: "사람이 방향을 만들고, AI가 실행을 가속합니다. 모임장 김성미와 함께하는 AI 커뮤니티.",
+    images: [{ url: "/og-host.png", width: 1734, height: 907, alt: "AI놀이터 커뮤니티 리더 김성미 소개" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI놀이터 | 놀다 보면 알게 되는 AI",
-    description: "AI놀이터 시즌2가 진행 중입니다.",
-    images: ["/og.png"],
+    description: "사람이 방향을 만들고, AI가 실행을 가속합니다.",
+    images: ["/og-host.png"],
   },
   icons: {
     icon: [

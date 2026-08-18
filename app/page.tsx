@@ -6,6 +6,7 @@ const smallPlaygroundPostUrl =
   "https://kr.linkedin.com/posts/sollar99_%EB%90%9C%EB%8B%A4-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8-%ED%99%9C%EC%9A%A9%EB%B2%95-%EB%B3%80%EC%9E%AC%EC%9D%BC-%EB%8B%98%EC%9D%98-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EC%97%B4%EC%A0%95%EA%B0%95%EC%97%B0-%EA%B7%B8%EB%A6%AC%EA%B3%A0-activity-7480060156257423360-q_W_";
 const interviewUrl =
   "https://microsoft.github.io/mwkorea/monthlycopilot/MonthlyCopilotInterviewKimSM/";
+const hostLinkedInUrl = "https://www.linkedin.com/in/sungmikim77/";
 
 const playSteps = [
   ["01", "만져보기", "새로운 AI 도구를 직접 열고, 궁금한 만큼 자유롭게 실험합니다."],
@@ -79,6 +80,7 @@ export default function Home() {
         </a>
         <nav aria-label="주요 메뉴">
           <a href="#about">소개</a>
+          <a href="#host">모임장</a>
           <a href="#seasons">시즌</a>
           <a href="#small-playground">작은 놀이터</a>
           <a href="#how-we-play">함께 노는 법</a>
@@ -135,6 +137,30 @@ export default function Home() {
           <div className="intro-copy" data-reveal>
             <p>누군가는 처음이라서, 누군가는 더 깊이 알고 싶어서 이곳에 옵니다. 시작점은 달라도 괜찮습니다.</p>
             <p>서로의 질문이 다음 사람의 힌트가 되고, 작은 시도가 모두의 배움이 되는 곳. AI놀이터는 함께 성장하는 열린 실험실입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="host-profile" id="host">
+        <div className="host-portrait" data-reveal>
+          <div className="host-photo-frame" data-tilt>
+            <img src="/host-sung-mi-kim.jpeg" alt="AI놀이터 모임장 김성미" loading="lazy" />
+            <span className="host-photo-label">COMMUNITY LEADER</span>
+          </div>
+          <div className="host-doodle" aria-hidden="true">PLAY<br />TOGETHER</div>
+        </div>
+        <div className="host-copy" data-reveal>
+          <p className="eyebrow">MEET THE HOST</p>
+          <p className="host-role">AI놀이터 모임장 · MICROSOFT</p>
+          <h2>김성미<br /><em>SUNG MI KIM</em></h2>
+          <blockquote>“이타적인 배움은<br />가장 이기적인 성장을 돕는다.”</blockquote>
+          <p>Microsoft에서 오랜 시간 세일즈와 고객 성공의 현장을 경험하며, 기술과 사람 사이의 연결을 만들어왔습니다. AI놀이터에서는 누구나 자신의 질문으로 시작해 함께 실험하고 성장할 수 있도록 커뮤니티의 방향을 이끌고 있습니다.</p>
+          <p className="host-philosophy"><strong>What · Why · Who</strong>는 사람이 정하고, <strong>How</strong>는 AI가 가속합니다. 도구보다 먼저 나만의 북극성을 찾는 것—AI놀이터가 함께 묻고 싶은 질문입니다.</p>
+          <div className="host-actions">
+            <a className="button button-primary" data-magnetic href={hostLinkedInUrl} target="_blank" rel="noreferrer">
+              LinkedIn 프로필 보기 <Arrow />
+            </a>
+            <a className="text-link" href={interviewUrl} target="_blank" rel="noreferrer">모임장 인터뷰 읽기</a>
           </div>
         </div>
       </section>
