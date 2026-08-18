@@ -106,30 +106,29 @@ nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 .season-card a { width: fit-content; display: inline-flex; align-items: center; gap: 16px; font-size: 14px; font-weight: 800; border-bottom: 1px solid currentColor; padding-bottom: 6px; position: relative; z-index: 2; }
 .coming-soon { width: fit-content; padding: 8px 11px; border: 1px dashed currentColor; font: 800 10px/1 Arial, sans-serif; letter-spacing: .12em; }
 
-.small-playground { min-height: 760px; padding: 120px clamp(24px, 7vw, 110px); background: var(--lime); display: grid; grid-template-columns: .12fr .88fr 1fr; gap: clamp(26px, 5vw, 80px); align-items: center; overflow: hidden; position: relative; }
-.small-number { align-self: start; font-size: clamp(64px, 8vw, 130px); font-weight: 900; line-height: .8; opacity: .18; transform: rotate(-8deg); }
+.small-playground { min-height: 820px; padding: 120px clamp(24px, 7vw, 110px); background: var(--lime); display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(50px, 8vw, 130px); align-items: center; overflow: hidden; position: relative; }
+.small-playground::before { content: "小"; position: absolute; left: -2vw; bottom: -9vw; font-size: clamp(220px, 35vw, 560px); font-weight: 900; line-height: .8; opacity: .07; transform: rotate(-8deg); pointer-events: none; }
 .small-copy { position: relative; z-index: 2; }
-.small-copy h2 { margin: 0; font-size: clamp(56px, 7vw, 108px); line-height: .92; letter-spacing: -.075em; }
-.small-lead { max-width: 520px; margin: 30px 0 42px; font-size: 20px; line-height: 1.7; }
-.small-copy details { max-width: 560px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-.small-copy summary { padding: 20px 0; display: flex; justify-content: space-between; gap: 24px; font-weight: 850; cursor: pointer; list-style: none; }
-.small-copy summary::-webkit-details-marker { display: none; }
-.small-copy summary span { font-size: 24px; transition: transform .25s ease; }
-.small-copy details[open] summary span { transform: rotate(45deg); }
-.details-content { padding: 2px 0 24px; animation: detailIn .35s ease both; }
-.details-content p { margin: 0 0 16px; line-height: 1.7; }
-.details-content span { font: 800 10px/1 Arial, sans-serif; letter-spacing: .12em; }
-@keyframes detailIn { from { opacity: 0; transform: translateY(-8px); } }
-.small-cards { height: 480px; position: relative; transform: translate(var(--px, 0), var(--py, 0)); transition: transform .18s ease-out; }
-.small-card { width: 260px; height: 210px; padding: 24px; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); position: absolute; display: flex; flex-direction: column; justify-content: space-between; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
-.small-card span { font: 800 10px/1 Arial, sans-serif; letter-spacing: .12em; }
-.small-card strong { font-size: 36px; line-height: 1.08; letter-spacing: -.055em; }
-.small-card-one { top: 5px; left: 2%; background: var(--cream); transform: rotate(-8deg); }
-.small-card-two { top: 120px; right: 2%; background: var(--purple); color: white; transform: rotate(7deg); }
-.small-card-three { bottom: 0; left: 16%; background: var(--orange); color: white; transform: rotate(-2deg); }
-.small-card-one:hover { transform: rotate(-12deg) translateY(-10px); }
-.small-card-two:hover { transform: rotate(11deg) translateY(-10px); }
-.small-card-three:hover { transform: rotate(2deg) translateY(-10px); }
+.small-copy .eyebrow { margin-top: 30px; }
+.small-copy h2 { margin: 0; font-size: clamp(52px, 6.3vw, 96px); line-height: .98; letter-spacing: -.075em; }
+.small-copy h2 em { color: var(--purple); font-style: normal; }
+.small-lead { max-width: 590px; margin: 30px 0 34px; font-size: 18px; line-height: 1.75; }
+.small-status { width: fit-content; display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; background: var(--ink); color: var(--cream); border-radius: 999px; font: 800 10px/1 Arial, sans-serif; letter-spacing: .11em; }
+.small-status i, .small-season-live i { width: 8px; height: 8px; border-radius: 50%; background: #52db53; box-shadow: 0 0 0 4px rgba(82,219,83,.18); animation: pulse 2s infinite; }
+.small-source-link { width: fit-content; display: inline-flex; align-items: center; gap: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--ink); font-size: 14px; font-weight: 850; }
+.small-season-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; position: relative; z-index: 2; }
+.small-season { min-height: 530px; padding: clamp(25px, 2.5vw, 38px); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); display: flex; flex-direction: column; justify-content: space-between; transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .2s ease-out, box-shadow .2s ease; }
+.small-season:hover { box-shadow: 13px 13px 0 var(--ink); }
+.small-season-first { background: var(--cream); }
+.small-season-next { background: var(--purple); color: white; }
+.small-season-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.small-season-no { font: 900 clamp(46px, 4vw, 68px)/.8 Arial, sans-serif; letter-spacing: -.07em; }
+.small-season-state, .small-season-live { padding: 8px 10px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-weight: 800; white-space: nowrap; }
+.small-season-live { display: inline-flex; align-items: center; gap: 8px; }
+.small-season-meta { margin: 0 0 15px; font: 800 10px/1.2 Arial, sans-serif; letter-spacing: .1em; }
+.small-season h3 { margin: 0 0 20px; font-size: clamp(29px, 2.6vw, 42px); line-height: 1.12; letter-spacing: -.055em; }
+.small-season p:not(.small-season-meta) { margin: 0; line-height: 1.7; opacity: .8; }
+.small-season > a { width: fit-content; display: inline-flex; align-items: center; gap: 13px; padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 850; }
 
 .playbook { background: var(--ink); color: var(--cream); }
 .section-heading.light > p { color: #abaea6; }
@@ -163,8 +162,7 @@ footer { padding: 34px clamp(24px, 5vw, 76px); border-top: 1px solid var(--ink);
   .hero-art { min-height: 470px; max-width: 600px; width: 100%; margin: 0 auto; }
   .intro-grid, .season-grid { grid-template-columns: 1fr; }
   .small-playground { grid-template-columns: 1fr; }
-  .small-number { display: none; }
-  .small-cards { max-width: 600px; width: 100%; margin: 0 auto; }
+  .small-season-list { max-width: 760px; }
   .intro-grid { gap: 48px; }
   .season-current, .season-past { min-height: 520px; }
   .steps { grid-template-columns: 1fr; }
@@ -195,9 +193,8 @@ footer { padding: 34px clamp(24px, 5vw, 76px); border-top: 1px solid var(--ink);
   .season-card { padding: 28px; min-height: 500px; }
   .season-number { font-size: 75px; }
   .join-stamp { display: none; }
-  .small-cards { height: 430px; transform: scale(.88) translate(var(--px, 0), var(--py, 0)); transform-origin: center top; margin-bottom: -50px; }
-  .small-card { width: 220px; height: 180px; }
-  .small-card strong { font-size: 30px; }
+  .small-season-list { grid-template-columns: 1fr; }
+  .small-season { min-height: 470px; }
   footer { align-items: flex-start; flex-direction: column; gap: 24px; }
 }
 

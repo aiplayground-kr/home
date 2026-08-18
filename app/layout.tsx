@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI놀이터 | 놀다 보면 알게 되는 AI",
     description: "AI놀이터 시즌2가 진행 중입니다.",
-    images: [{ url: "/og.png", width: 1734, height: 908, alt: "AI놀이터 시즌2" }],
+    images: [{ url: "/og.png", width: 1734, height: 907, alt: "AI놀이터 작은 놀이터 시즌 시리즈" }],
   },
   twitter: {
     card: "summary_large_image",

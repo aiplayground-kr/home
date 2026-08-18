@@ -2,6 +2,10 @@ import { ScrollInteractions } from "./scroll-interactions";
 
 const linkedInUrl =
   "https://www.linkedin.com/groups/14571141/?highlightedUpdateUrn=urn%3Ali%3AgroupPost%3A14571141-7486229108755136512&q=highlightedFeedForGroups";
+const smallPlaygroundPostUrl =
+  "https://kr.linkedin.com/posts/sollar99_%EB%90%9C%EB%8B%A4-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8-%ED%99%9C%EC%9A%A9%EB%B2%95-%EB%B3%80%EC%9E%AC%EC%9D%BC-%EB%8B%98%EC%9D%98-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EC%97%B4%EC%A0%95%EA%B0%95%EC%97%B0-%EA%B7%B8%EB%A6%AC%EA%B3%A0-activity-7480060156257423360-q_W_";
+const interviewUrl =
+  "https://microsoft.github.io/mwkorea/monthlycopilot/MonthlyCopilotInterviewKimSM/";
 
 const playSteps = [
   ["01", "만져보기", "새로운 AI 도구를 직접 열고, 궁금한 만큼 자유롭게 실험합니다."],
@@ -126,23 +130,40 @@ export default function Home() {
       </section>
 
       <section className="small-playground" id="small-playground">
-        <div className="small-number" aria-hidden="true">小</div>
         <div className="small-copy" data-reveal>
+          <div className="small-status"><i /> SERIES · ONGOING</div>
           <p className="eyebrow">SMALL PLAYGROUND</p>
-          <h2>작은 놀이터</h2>
-          <p className="small-lead">더 작게 모여, 더 가까이 나누는 AI놀이터 속 작은 만남입니다.</p>
-          <details>
-            <summary>작은 놀이터 이야기 펼쳐보기 <span aria-hidden="true">＋</span></summary>
-            <div className="details-content">
-              <p>주제와 일정, 함께한 사람들의 이야기는 내용을 전달해주시는 대로 이곳에 차근차근 추가할 예정입니다.</p>
-              <span>DETAILS COMING SOON</span>
-            </div>
-          </details>
+          <h2>작은 놀이터도,<br /><em>시즌제로 계속됩니다.</em></h2>
+          <p className="small-lead">AI놀이터의 큰 만남 사이, 삼삼오오 모여 한 가지 주제를 더 깊게 실습하고 이야기합니다. 먼저 해본 사람이 나누고, 놀다 보면 어느새 나도 할 수 있게 되는 자리입니다.</p>
+          <a className="small-source-link" href={interviewUrl} target="_blank" rel="noreferrer">
+            작은 놀이터 소개 인터뷰 <Arrow />
+          </a>
         </div>
-        <div className="small-cards" data-parallax data-reveal>
-          <div className="small-card small-card-one"><span>SMALL</span><strong>작게<br />시작해요.</strong></div>
-          <div className="small-card small-card-two"><span>DEEP</span><strong>깊게<br />나눠요.</strong></div>
-          <div className="small-card small-card-three"><span>TOGETHER</span><strong>함께<br />발견해요.</strong></div>
+        <div className="small-season-list" data-reveal>
+          <article className="small-season small-season-first" data-tilt>
+            <div className="small-season-top">
+              <span className="small-season-no">#01</span>
+              <span className="small-season-state">첫 번째 기록</span>
+            </div>
+            <div>
+              <p className="small-season-meta">2026.07.05 · MICROSOFT 13F</p>
+              <h3>LinkedIn으로<br />소셜 브랜딩하기</h3>
+              <p>『된다! 링크드인 활용법』 변재일 저자와 함께 기록, 축적, 연결이 어떻게 나와 조직의 브랜드가 되는지 직접 배우고 나눴습니다.</p>
+            </div>
+            <a href={smallPlaygroundPostUrl} target="_blank" rel="noreferrer">현장 포스팅 보기 <Arrow /></a>
+          </article>
+          <article className="small-season small-season-next" data-tilt>
+            <div className="small-season-top">
+              <span className="small-season-no">NEXT</span>
+              <span className="small-season-live"><i /> 계속 진행 중</span>
+            </div>
+            <div>
+              <p className="small-season-meta">NEW TOPIC · NEW PLAYERS</p>
+              <h3>다음 작은 놀이터는<br />또 다른 주제로.</h3>
+              <p>평소 시작을 망설였던 주제, 새롭게 발견한 재미있는 도구와 경험을 소규모 워크숍으로 이어갑니다.</p>
+            </div>
+            <a href={linkedInUrl} target="_blank" rel="noreferrer">다음 소식 확인하기 <Arrow /></a>
+          </article>
         </div>
       </section>
 
