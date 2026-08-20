@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: DetailPageProps): Promise<Met
   return {
     title: program ? `${program.number} ${program.title} | 작은 놀이터` : "작은 놀이터",
     description: program?.description,
-    openGraph: program ? { title: `${program.number} ${program.title}`, description: program.description, images: [] } : undefined,
-    twitter: program ? { title: `${program.number} ${program.title}`, description: program.description, images: [] } : undefined,
+    openGraph: program ? { title: `${program.number} ${program.title}`, description: program.description, images: program.image ? [program.image] : [] } : undefined,
+    twitter: program ? { title: `${program.number} ${program.title}`, description: program.description, images: program.image ? [program.image] : [] } : undefined,
   };
 }
 
@@ -51,7 +51,7 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
           <h1>{program.title}</h1>
           <p className="detail-description">{program.description}</p>
         </div>
-        <div className={`program-cover cover-${((Number(program.slug) - 1) % 4) + 1}`}><span>AI PLAYGROUND</span><b>{program.number}</b><small>SMALL PLAYGROUND</small><h2>{program.shortTitle}</h2><time>{program.date}</time></div>
+        {program.image ? <figure className="detail-poster"><img src={program.image} alt={`${program.number} ${program.title} 행사 포스터`} /><figcaption>OFFICIAL POSTER</figcaption></figure> : <div className={`program-cover cover-${((Number(program.slug) - 1) % 4) + 1}`}><span>AI PLAYGROUND</span><b>{program.number}</b><small>SMALL PLAYGROUND</small><h2>{program.shortTitle}</h2><time>{program.date}</time></div>}
       </section>
 
       <section className="detail-content">

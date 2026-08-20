@@ -14,6 +14,7 @@ export type SmallPlaygroundProgram = {
   duration: string;
   topics: string[];
   note: string;
+  image?: string;
   externalUrl?: string;
 };
 
@@ -34,6 +35,7 @@ export const smallPlaygroundPrograms: SmallPlaygroundProgram[] = [
     duration: "2시간 30분",
     topics: ["프로필의 첫인상 정리", "나만의 기록 주제 찾기", "관계와 콘텐츠를 꾸준히 연결하는 법"],
     note: "『된다! 링크드인 활용법』 변재일 저자와 함께 진행했습니다.",
+    image: "/small-playground/01-linkedin-branding.jpg",
     externalUrl: "https://kr.linkedin.com/posts/sollar99_%EB%90%9C%EB%8B%A4-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8-%ED%99%9C%EC%9A%A9%EB%B2%95-%EB%B3%80%EC%9E%AC%EC%9D%BC-%EB%8B%98%EC%9D%98-%EB%A7%81%ED%81%AC%EB%93%9C%EC%9D%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EC%97%B4%EC%A0%95%EA%B0%95%EC%97%B0-%EA%B7%B8%EB%A6%AC%EA%B3%A0-activity-7480060156257423360-q_W_",
   },
   {
@@ -52,6 +54,8 @@ export const smallPlaygroundPrograms: SmallPlaygroundProgram[] = [
     duration: "1–2시간",
     topics: ["Copilot으로 가사 초안 만들기", "Suno AI로 장르와 분위기 설계", "나만의 음악 결과물 완성"],
     note: "진입 장벽을 낮춘 실습형 프로그램으로 기획되었습니다.",
+    image: "/small-playground/02-ai-music.jpg",
+    externalUrl: "https://www.linkedin.com/groups/14571141/?q=highlightedFeedForGroups&highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7486230590480871425",
   },
   {
     slug: "3",
@@ -69,6 +73,7 @@ export const smallPlaygroundPrograms: SmallPlaygroundProgram[] = [
     duration: "2시간",
     topics: ["홈페이지 목적과 구성 정하기", "Copilot과 페이지 문구 만들기", "직접 열어보고 수정하는 반복 과정"],
     note: "세부 준비물과 참여 안내는 커뮤니티 공지를 통해 업데이트됩니다.",
+    image: "/small-playground/03-copilot-homepage.jpg",
   },
   {
     slug: "4",
