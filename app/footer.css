@@ -1,0 +1,81 @@
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  border-top-color: #e2cfaf;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 191, 0, .16), transparent 28%),
+    linear-gradient(135deg, #fff8e9 0%, #f1e4cf 100%);
+  color: #173f5a;
+}
+
+.site-footer::after {
+  position: absolute;
+  right: -56px;
+  bottom: -92px;
+  width: 230px;
+  height: 230px;
+  border: 42px solid rgba(23, 63, 90, .05);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.site-footer .footer-brand-stack {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.site-footer .footer-brand-stack > img {
+  width: 210px;
+}
+
+.microsoft-korea {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  border: 1px solid rgba(23, 63, 90, .13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 6px 18px rgba(66, 48, 21, .06);
+}
+
+.microsoft-korea strong {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+.microsoft-symbol {
+  display: grid;
+  grid-template-columns: repeat(2, 6px);
+  grid-template-rows: repeat(2, 6px);
+  gap: 1px;
+}
+
+.microsoft-symbol i:nth-child(1) { background: #f25022; }
+.microsoft-symbol i:nth-child(2) { background: #7fba00; }
+.microsoft-symbol i:nth-child(3) { background: #00a4ef; }
+.microsoft-symbol i:nth-child(4) { background: #ffb900; }
+
+.site-footer .footer-links,
+.site-footer > p {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer .footer-links a {
+  font-weight: 700;
+}
+
+.site-footer > p {
+  color: #526779;
+}
+
+@media (max-width: 950px) {
+  .site-footer .footer-brand-stack { gap: 14px; }
+  .site-footer .footer-links { margin-top: 8px; }
+}

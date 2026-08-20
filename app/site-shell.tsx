@@ -5,7 +5,17 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><img src="/ai-playground-logo.png" alt="AI Playground" /><div><a href="/seasons">시즌</a><a href="/small-playground">작은 놀이터</a><a href="/organization">함께 만드는 사람들</a></div><p>PLAY · LEARN · SHARE<br />© AI Playground Community</p></footer>;
+  return <footer className="site-footer">
+    <div className="footer-brand-stack">
+      <img src="/ai-playground-logo.png" alt="AI Playground" />
+      <span className="microsoft-korea" aria-label="Microsoft Korea">
+        <span className="microsoft-symbol" aria-hidden="true"><i /><i /><i /><i /></span>
+        <strong>Microsoft Korea</strong>
+      </span>
+    </div>
+    <div className="footer-links"><a href="/seasons">시즌</a><a href="/small-playground">작은 놀이터</a><a href="/organization">함께 만드는 사람들</a></div>
+    <p>PLAY · LEARN · SHARE<br />© AI Playground Community</p>
+  </footer>;
 }
 
 export function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
