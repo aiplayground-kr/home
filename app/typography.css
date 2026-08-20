@@ -1,0 +1,61 @@
+/* Compact type scale: keep the editorial hierarchy without letting headings dominate the viewport. */
+.page-intro {
+  padding-top: 88px;
+  padding-bottom: 58px;
+}
+
+.page-intro h1 {
+  max-width: 920px;
+  font-size: clamp(42px, 5vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+
+.page-intro > p:last-child {
+  margin-top: 24px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.section-pad { padding-top: 96px; padding-bottom: 96px; }
+.section-pad.compact { padding-top: 48px; }
+
+.manifesto h2,
+.section-head h2,
+.small-copy h2,
+.join h2,
+.host-copy h2 {
+  font-size: clamp(38px, 4.2vw, 64px);
+}
+
+.hub-card {
+  min-height: 560px;
+  padding: 38px;
+}
+
+.hub-card > b { font-size: clamp(64px, 7vw, 78px); }
+.hub-card h2 { font-size: clamp(38px, 4vw, 48px); }
+.hub-card > p { font-size: 16px; }
+
+.separate-banner h2 { font-size: clamp(26px, 2.6vw, 38px); }
+.event-list h2 { font-size: clamp(36px, 4vw, 58px); }
+.archive-copy h2 { font-size: clamp(32px, 3.5vw, 50px); }
+.quote-card blockquote { font-size: clamp(32px, 3.4vw, 50px); }
+
+.detail-number { font-size: clamp(68px, 7vw, 108px); }
+.detail-title-block h1 { font-size: clamp(38px, 4.4vw, 64px); }
+.detail-main-copy h2 { font-size: clamp(34px, 3.8vw, 54px); }
+
+@media (max-width: 620px) {
+  .page-intro { padding-top: 64px; padding-bottom: 48px; }
+  .page-intro h1 { font-size: 40px; line-height: 1.08; }
+  .page-intro > p:last-child { font-size: 16px; }
+  .section-pad { padding-top: 68px; padding-bottom: 68px; }
+  .section-pad.compact { padding-top: 34px; }
+  .hub-card { min-height: 500px; padding: 28px; }
+  .hub-card > b { font-size: 62px; }
+  .hub-card h2 { font-size: 36px; }
+  .detail-number { font-size: 66px; }
+  .detail-title-block h1 { font-size: 38px; }
+  .detail-main-copy h2 { font-size: 36px; }
+}

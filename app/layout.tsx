@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./posters.css";
+import "./typography.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-noriter-season2.youni.chatgpt.site"),
