@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getSmallPlaygroundProgram, smallPlaygroundPrograms } from "../data";
+import { communityUrl } from "../../content";
+import { SiteFooter, SiteHeader } from "../../site-shell";
 
 type DetailPageProps = { params: Promise<{ slug: string }> };
 
@@ -13,6 +15,8 @@ export async function generateMetadata({ params }: DetailPageProps): Promise<Met
   return {
     title: program ? `${program.number} ${program.title} | 작은 놀이터` : "작은 놀이터",
     description: program?.description,
+    openGraph: program ? { title: `${program.number} ${program.title}`, description: program.description, images: [] } : undefined,
+    twitter: program ? { title: `${program.number} ${program.title}`, description: program.description, images: [] } : undefined,
   };
 }
 
@@ -22,10 +26,10 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
 
   if (!program) {
     return (
-      <main className="small-detail-page">
+      <main className="small-detail-page"><SiteHeader />
         <section className="small-not-found">
           <p>찾으시는 작은 놀이터가 없습니다.</p>
-          <a href="/#small-playground">목록으로 돌아가기 →</a>
+          <a href="/small-playground">목록으로 돌아가기</a>
         </section>
       </main>
     );
@@ -37,10 +41,7 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
 
   return (
     <main className={`small-detail-page small-detail-${program.slug}`}>
-      <header className="detail-header">
-        <a href="/" aria-label="AI놀이터 홈"><img src="/ai-playground-logo.png" alt="" /></a>
-        <a className="detail-back" href="/#small-playground">작은 놀이터 목록 <span>↙</span></a>
-      </header>
+      <SiteHeader />
 
       <section className="detail-hero">
         <div className="detail-number">{program.number}</div>
@@ -50,10 +51,7 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
           <h1>{program.title}</h1>
           <p className="detail-description">{program.description}</p>
         </div>
-        <div className="detail-ticket" aria-hidden="true">
-          <span>{program.date}</span>
-          <strong>PLAY<br />LEARN<br />SHARE</strong>
-        </div>
+        <div className={`program-cover cover-${((Number(program.slug) - 1) % 4) + 1}`}><span>AI PLAYGROUND</span><b>{program.number}</b><small>SMALL PLAYGROUND</small><h2>{program.shortTitle}</h2><time>{program.date}</time></div>
       </section>
 
       <section className="detail-content">
@@ -84,18 +82,19 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
 
         <div className="detail-actions">
           {program.externalUrl ? (
-            <a className="button button-primary" href={program.externalUrl} target="_blank" rel="noreferrer">현장 포스팅 보기 <span>↗</span></a>
+            <a className="button primary" href={program.externalUrl} target="_blank" rel="noreferrer">현장 포스팅 보기</a>
           ) : (
-            <a className="button button-primary" href="https://www.linkedin.com/groups/14571141/" target="_blank" rel="noreferrer">최신 공지 확인하기 <span>↗</span></a>
+            <a className="button primary" href={communityUrl} target="_blank" rel="noreferrer">최신 공지 확인하기</a>
           )}
-          <a className="text-link" href="/#small-playground">전체 시리즈로 돌아가기</a>
+          <a className="button ghost" href="/small-playground">전체 시리즈로 돌아가기</a>
         </div>
       </section>
 
       <nav className="detail-pagination" aria-label="작은 놀이터 이전 다음 프로그램">
-        {previous ? <a href={`/small-playground/${previous.slug}`}><span>← PREV</span><strong>{previous.number} {previous.shortTitle}</strong></a> : <span />}
-        {next ? <a href={`/small-playground/${next.slug}`}><span>NEXT →</span><strong>{next.number} {next.shortTitle}</strong></a> : <span />}
+        {previous ? <a href={`/small-playground/${previous.slug}`}><span>PREVIOUS</span><strong>{previous.number} {previous.shortTitle}</strong></a> : <span />}
+        {next ? <a href={`/small-playground/${next.slug}`}><span>NEXT</span><strong>{next.number} {next.shortTitle}</strong></a> : <span />}
       </nav>
+      <SiteFooter />
     </main>
   );
 }

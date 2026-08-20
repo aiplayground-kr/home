@@ -3,18 +3,18 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-noriter-season2.youni.chatgpt.site"),
-  title: "AI놀이터 | 놀다 보면 알게 되는 AI",
-  description: "직접 만지고, 질문하고, 함께 만들며 AI와 친해지는 커뮤니티. AI놀이터 시즌2가 진행 중입니다.",
+  title: { default: "AI놀이터 | 놀다 보면 알게 되는 AI", template: "%s | AI놀이터" },
+  description: "시즌별 공식 행사와 작은 놀이터에서 직접 만지고, 질문하고, 함께 만드는 AI 커뮤니티.",
   openGraph: {
     title: "AI놀이터 | 놀다 보면 알게 되는 AI",
-    description: "#01부터 이어지는 작은 놀이터. 각 프로그램의 일정과 내용을 자세히 확인하세요.",
-    images: [{ url: "/og-small-series.png", width: 1734, height: 907, alt: "AI놀이터 작은 놀이터 1번부터 5번까지의 프로그램" }],
+    description: "시즌 1의 기록, 시즌 2의 BUILD·Snowflake, 별도로 이어지는 작은 놀이터를 만나보세요.",
+    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "AI놀이터 — 놀다 보면 알게 되는 AI" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI놀이터 | 놀다 보면 알게 되는 AI",
-    description: "#01부터 이어지는 작은 놀이터 프로그램을 자세히 확인하세요.",
-    images: ["/og-small-series.png"],
+    description: "시즌별 공식 행사와 작은 놀이터가 이어지는 AI 커뮤니티.",
+    images: ["/og.png"],
   },
   icons: {
     icon: [
