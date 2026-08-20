@@ -3,6 +3,7 @@ import "./globals.css";
 import "./posters.css";
 import "./typography.css";
 import "./season-one.css";
+import "./season-two.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-noriter-season2.youni.chatgpt.site"),

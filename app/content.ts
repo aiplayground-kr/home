@@ -11,7 +11,7 @@ export const seasonOneEvents = [
 
 export const seasonTwoEvents = [
   { slug: "build", state: "ARCHIVE", eyebrow: "OFFICIAL EVENT · BUILD", title: "아이디어를 실제 결과로 만드는 빌드 행사", description: "AI와 함께 문제를 정의하고, 팀으로 빠르게 만들고, 결과를 공유한 시즌 2의 첫 공식 행사입니다.", accent: "blue" },
-  { slug: "snowflake", state: "NOW", eyebrow: "OFFICIAL EVENT · SNOWFLAKE", title: "Snowflake와 함께 데이터에서 가능성을 발견합니다", description: "데이터와 AI가 만나는 최신 현장을 배우고 직접 연결해보는 시즌 2의 다음 공식 행사입니다.", accent: "cyan" },
+  { slug: "snowflake", state: "UPCOMING", eyebrow: "OFFICIAL EVENT · SNOWFLAKE", title: "Snowflake와 함께 데이터에서 가능성을 발견합니다", description: "데이터와 AI가 만나는 최신 현장을 배우고 직접 연결해보는 시즌 2의 다음 공식 행사입니다.", accent: "cyan", date: "2026-08-27", dateLabel: "2026년 8월 27일 목요일" },
 ];
 
 export const teams = [

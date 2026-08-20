@@ -3,6 +3,27 @@ import { PageIntro, SiteFooter, SiteHeader } from "../../site-shell";
 
 export default function SeasonTwoPage() { return <main><SiteHeader />
   <PageIntro eyebrow="SEASON 2 · NOW PLAYING" title="배우는 데서 멈추지 않고, 함께 만듭니다" description="시즌 2의 공식 행사는 BUILD로 시작해 Snowflake와 함께하는 데이터·AI 경험으로 이어집니다." />
-  <section className="event-list section-pad compact">{seasonTwoEvents.map((e, i) => <article className={e.accent} id={e.slug} key={e.slug}><div><span>OFFICIAL EVENT · 0{i+1}</span><b>{e.state}</b></div><p>{e.eyebrow}</p><h2>{e.title}</h2><p>{e.description}</p><div className="event-facts"><span>시즌 2 공식 행사</span><span>{e.state === "NOW" ? "현재 진행·소식 업데이트" : "행사 기록 아카이브"}</span></div></article>)}</section>
+  <section className="event-list section-pad compact">{seasonTwoEvents.map((e, i) => <article className={`${e.accent} ${e.slug === "snowflake" ? "snowflake-feature" : ""}`} id={e.slug} key={e.slug}>
+    <div className="event-card-top"><span>OFFICIAL EVENT · 0{i+1}</span><b>{e.state}</b></div>
+    <div className="event-copy"><p>{e.eyebrow}</p><h2>{e.title}</h2><p>{e.description}</p></div>
+    {e.slug === "snowflake" && <div className="snow-console-wrap">
+      <div className="date-cartridge" aria-hidden="true"><span>PLAY DATE</span><i /></div>
+      <div className="snow-console" role="img" aria-label="Snowflake 행사일 2026년 8월 27일 목요일을 표시한 게임기 모양 캘린더">
+        <div className="console-left" aria-hidden="true"><span className="console-speaker" /><div className="dpad"><i /><i /></div></div>
+        <div className="console-screen">
+          <div className="screen-status"><span>SNOWFLAKE</span><span className="screen-live">NEXT PLAY</span></div>
+          <div className="calendar-display"><span className="calendar-month">AUG</span><strong>27</strong><span className="calendar-day">THURSDAY</span></div>
+          <time dateTime="2026-08-27">2026.08.27 · 목요일</time>
+        </div>
+        <div className="console-right" aria-hidden="true"><div className="ab-buttons"><i /><i /><i /><i /></div><span className="power-light" /></div>
+      </div>
+      <div className="calendar-actions">
+        <span>{e.dateLabel}</span>
+        <a href="https://timetreeapp.com/calendars/events/new?date=2026-08-27&all_day=true" target="_blank" rel="noreferrer">TimeTree에 담기 ↗</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI%EB%86%80%EC%9D%B4%ED%84%B0%20Season%202%20%C3%97%20Snowflake&dates=20260827%2F20260828&details=AI%EB%86%80%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%A6%8C%202%20Snowflake%20%EA%B3%B5%EC%8B%9D%20%ED%96%89%EC%82%AC" target="_blank" rel="noreferrer">Google 캘린더 ↗</a>
+      </div>
+    </div>}
+    <div className="event-facts"><span>시즌 2 공식 행사</span><span>{e.state === "UPCOMING" ? "8월 27일 · 다음 플레이" : "행사 기록 아카이브"}</span></div>
+  </article>)}</section>
   <aside className="separate-banner"><div><span>ANOTHER PLAYGROUND</span><h2>조금 더 작고 깊은 실습은 작은 놀이터에서</h2></div><a className="button primary" href="/small-playground">작은 놀이터 보기</a></aside><SiteFooter />
 </main> }
