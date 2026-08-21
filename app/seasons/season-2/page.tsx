@@ -24,6 +24,7 @@ export default function SeasonTwoPage() { return <main><SiteHeader />
       </div>
     </div>}
     <div className="event-facts"><span>시즌 2 공식 행사</span><span>{e.state === "UPCOMING" ? "8월 27일 · 다음 플레이" : "행사 기록 아카이브"}</span></div>
+    <a className="season-two-detail-link" href={`/seasons/season-2/${e.slug}`}>행사 상세와 갤러리 보기 →</a>
   </article>)}</section>
   <aside className="separate-banner"><div><span>ANOTHER PLAYGROUND</span><h2>조금 더 작고 깊은 실습은 작은 놀이터에서</h2></div><a className="button primary" href="/small-playground">작은 놀이터 보기</a></aside><SiteFooter />
 </main> }

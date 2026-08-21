@@ -275,6 +275,19 @@
   transform: translateY(-2px);
 }
 
+.season-two-detail-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  width: max-content;
+  margin-top: 18px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, .55);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
 @keyframes console-float {
   0%, 100% { transform: rotate(-1deg) translateY(0); }
   50% { transform: rotate(.7deg) translateY(-6px); }

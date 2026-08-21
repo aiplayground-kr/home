@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getSmallPlaygroundProgram, smallPlaygroundPrograms } from "../data";
 import { communityUrl } from "../../content";
 import { SiteFooter, SiteHeader } from "../../site-shell";
+import { EventGallery } from "../../event-gallery";
 
 type DetailPageProps = { params: Promise<{ slug: string }> };
 
@@ -79,6 +80,12 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
             <blockquote>{program.note}</blockquote>
           </aside>
         </div>
+
+        <EventGallery
+          title={`${program.number} ${program.shortTitle}`}
+          items={program.image ? [{ src: program.image, alt: `${program.title} 공식 포스터`, caption: "작은 놀이터 공식 포스터", label: "POSTER" }] : []}
+          emptyMessage="포스터와 현장 사진이 공개되면 이 상세 페이지에 순서대로 추가됩니다."
+        />
 
         <div className="detail-actions">
           {program.externalUrl ? (
