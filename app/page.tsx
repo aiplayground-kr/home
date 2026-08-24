@@ -28,10 +28,10 @@ export default function Home() {
             <div className="hero-console-body">
               <div className="hero-console-left" aria-hidden="true"><span /><span /></div>
               <div className="hero-console-screen">
-                <div className="hero-screen-meta"><strong>NOW PLAYING</strong><time dateTime="2026-08-26">2026.08.26</time></div>
+                <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime="2026-09-01">2026.09.01</time></div>
                 <a href="/small-playground/3" className="hero-screen-event">
-                  <img src="/small-playground/03-copilot-homepage.jpg" alt="작은 놀이터 #03 Copilot 홈페이지 만들기 포스터" />
-                  <div><span>SMALL #03</span><strong>Copilot으로<br />홈페이지 만들기</strong><small>게임 시작하기 →</small></div>
+                  <img src="/small-playground/03-github-copilot-dev-days.png" alt="작은 놀이터 #03 GitHub Copilot Dev Days 포스터" />
+                  <div><span>SMALL #03</span><strong>GitHub Copilot<br />Dev Days</strong><small>게임 시작하기 →</small></div>
                 </a>
               </div>
               <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
       <div className="hero-now-strip" aria-label="다가오는 AI놀이터 일정">
         <span className="now-strip-label"><i /> NOW PLAYING</span>
-        <a href="/small-playground/3"><time>08.26 WED</time><strong>작은 놀이터 #03</strong><span>Copilot 홈페이지 만들기</span></a>
+        <a href="/small-playground/3"><time dateTime="2026-09-01">09.01 TUE</time><strong>작은 놀이터 #03</strong><span>GitHub Copilot Dev Days</span></a>
         <a href="/seasons/season-2/snowflake"><time dateTime="2026-08-27">2026.08.27 THU</time><strong>Season 2</strong><span>Snowflake × AI Playground</span></a>
         <a href="/small-playground/4"><time>09.12 SAT</time><strong>작은 놀이터 #04</strong><span>나만의 에이전트 만들기</span></a>
       </div>

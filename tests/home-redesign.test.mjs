@@ -18,7 +18,7 @@ test("home hero presents the AI Playground identity and current plays", async ()
   assert.equal(response.status, 200);
   assert.match(html, /class="hero-play-console/);
   assert.match(html, /NOW PLAYING/);
-  assert.match(html, /2026\.08\.26/);
+  assert.match(html, /2026\.09\.01/);
   assert.match(html, /2026\.08\.27/);
 });
 
@@ -26,7 +26,7 @@ test("home small playground section is poster-led and links to event details", a
   const response = await renderHome();
   const html = await response.text();
   assert.match(html, /class="small-program-poster/);
-  assert.match(html, /small-playground\/03-copilot-homepage\.jpg/);
+  assert.match(html, /small-playground\/03-github-copilot-dev-days\.png/);
   assert.match(html, /href="\/small-playground\/3"/);
   assert.match(html, /나만의 에이전트 만들기/);
 });
