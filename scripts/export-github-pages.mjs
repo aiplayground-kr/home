@@ -25,6 +25,8 @@ const routes = [
   "/small-playground/3",
   "/small-playground/4",
   "/small-playground/5",
+  "/small-playground/6",
+  "/small-playground/7",
 ];
 
 if (path.dirname(output) !== root || path.basename(output) !== "docs") {

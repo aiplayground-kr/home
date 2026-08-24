@@ -28,5 +28,5 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /class="small-program-poster/);
   assert.match(html, /small-playground\/03-github-copilot-dev-days\.png/);
   assert.match(html, /href="\/small-playground\/3"/);
-  assert.match(html, /나만의 에이전트 만들기/);
+  assert.match(html, /만들면서 배우는 GitHub/);
 });
