@@ -7,13 +7,19 @@ type Props = { params: Promise<{ slug: string }> };
 
 const buildSessions = [
   { time: "13:00–13:20", title: "환영합니다", ref: "WELCOME", company: "Microsoft", speaker: "송주현 리더", description: "BUILD / localhost:SEOUL의 문을 여는 환영 인사" },
-  { time: "13:20–14:00", title: "1인 기업가가 되기 위한 마지막 관문, Claw and Agent Harness", ref: "BRK243", company: "Microsoft MVP", speaker: "김훈동", description: "Foundry의 Claw Agent와 다중 에이전트 시스템" },
-  { time: "14:00–14:40", title: "Copilot Cowork로 업무 자동화 뚝딱 해치우기", ref: "SPECIAL", company: "Microsoft MVP", speaker: "전대호", description: "왕초보도 시작할 수 있는 Copilot Cowork 업무 자동화" },
-  { time: "14:40–15:20", title: "개발자가 주목해야 할 Build 2026 요약", ref: "BRK206", company: "Microsoft MVP", speaker: "이보라", description: "Visual Studio와 GitHub Copilot의 디버깅·프로파일링·테스트 에이전트" },
-  { time: "15:20–16:00", title: "비개발자가 GitHub Copilot으로 팀 전용 AI 비서를 만든 이야기", ref: "LTG402", company: "GM Technical Korea", speaker: "이영빈", description: "아이디어를 AI 네이티브 런타임의 프로덕션 준비 에이전트로 연결한 경험" },
+  { time: "13:20–14:00", title: "1인 기업가가 되기 위한 마지막 관문, Claw and Agent Harness", ref: "BRK243", company: "Microsoft MVP", speaker: "김훈동", description: "Foundry의 Claw Agent와 다중 에이전트 시스템", linkedin: "https://www.linkedin.com/in/hoondong-kim/" },
+  { time: "14:00–14:40", title: "Copilot Cowork로 업무 자동화 뚝딱 해치우기", ref: "SPECIAL", company: "Microsoft MVP", speaker: "전대호", description: "왕초보도 시작할 수 있는 Copilot Cowork 업무 자동화", linkedin: "https://www.linkedin.com/in/canrobot/" },
+  { time: "14:40–15:20", title: "개발자가 주목해야 할 Build 2026 요약", ref: "BRK206", company: "Microsoft MVP", speaker: "이보라", description: "Visual Studio와 GitHub Copilot의 디버깅·프로파일링·테스트 에이전트", linkedin: "https://www.linkedin.com/in/learner-bora/" },
+  { time: "15:20–16:00", title: "비개발자가 GitHub Copilot으로 팀 전용 AI 비서를 만든 이야기", ref: "LTG402", company: "GM Technical Korea", speaker: "이영빈", description: "아이디어를 AI 네이티브 런타임의 프로덕션 준비 에이전트로 연결한 경험", linkedin: "https://www.linkedin.com/in/youngbinlee/" },
   { time: "16:00–16:20", title: "Bio Break", ref: "BREAK", company: "", speaker: "", description: "휴식과 네트워킹" },
-  { time: "16:20–16:50", title: "App Builder Agent로 학습 가이드 제작기", ref: "SPECIAL", company: "Office Tutor", speaker: "윤미영(유니)", description: "Copilot과 Agent로 손쉽게 만드는 학습 가이드" },
-  { time: "16:50–17:50", title: "GitHub Copilot 3종 기능, 직접 해보기!", ref: "WORKSHOP", company: "Microsoft", speaker: "유승호", description: "Ask·Agent·Plan 기능으로 경험하는 AI 기반 개발 워크플로우" },
+  { time: "16:20–16:50", title: "App Builder Agent로 학습 가이드 제작기", ref: "SPECIAL", company: "Office Tutor", speaker: "윤미영(유니)", description: "Copilot과 Agent로 손쉽게 만드는 학습 가이드", linkedin: "https://www.linkedin.com/in/younni/" },
+  { time: "16:50–17:50", title: "GitHub Copilot 3종 기능, 직접 해보기!", ref: "WORKSHOP", company: "Microsoft", speaker: "유승호", description: "Ask·Agent·Plan 기능으로 경험하는 AI 기반 개발 워크플로우", linkedin: "https://www.linkedin.com/in/hahahaysh/" },
+];
+
+const buildGallery = [
+  { src: "/events/season-2/build/build-poster-linkedin.jpg", alt: "Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 포스터", caption: "2026년 6월 14일, 한국마이크로소프트에서 열린 AI놀이터 여름 밋업", label: "OFFICIAL POSTER" },
+  { src: "/events/season-2/build/build-scenes-linkedin.jpg", alt: "BUILD 행사에서 GitHub Copilot 세션을 진행하는 유승호 연사", caption: "GitHub Copilot 3종 기능을 직접 따라 해본 실습 세션", label: "LIVE SESSION" },
+  { src: "/events/season-2/build/build-speaker-highlight.jpg", alt: "Claw and Agent Harness 김훈동 MVP 세션 포스터", caption: "커뮤니티가 다시 해석한 Build 2026의 Agentic AI 이야기", label: "SPEAKER STORY" },
 ];
 
 const snowflakeSessions = [
@@ -27,6 +33,10 @@ const snowflakeSessions = [
 
 function BuildEventRecord() {
   return <>
+    <section className="build-visual-story" aria-label="BUILD 행사 주요 이미지">
+      <figure className="build-visual-poster"><img src={buildGallery[0].src} alt={buildGallery[0].alt} /><figcaption><span>OFFICIAL POSTER</span><strong>BUILD / localhost:SEOUL</strong></figcaption></figure>
+      <div className="build-visual-scenes"><figure><img src={buildGallery[1].src} alt={buildGallery[1].alt} /><figcaption>현장에서 직접 따라 해본 GitHub Copilot</figcaption></figure><figure><img src={buildGallery[2].src} alt={buildGallery[2].alt} /><figcaption>Build 2026을 커뮤니티 언어로 다시 읽다</figcaption></figure></div>
+    </section>
     <section className="build-record-section build-overview" aria-labelledby="build-overview-title">
       <div className="build-record-heading"><span>BUILD / LOCALHOST:SEOUL</span><h2 id="build-overview-title">행사 개요</h2><p>Build 2026의 핵심 발표를 커뮤니티의 언어로 다시 만나고, Copilot과 Agent를 직접 경험한 AI놀이터 여름 밋업입니다.</p></div>
       <div className="build-table-wrap">
@@ -47,7 +57,7 @@ function BuildEventRecord() {
           <tbody>{buildSessions.map((session) => <tr key={`${session.time}-${session.title}`} className={session.ref === "BREAK" ? "break-row" : ""}>
             <td><time>{session.time}</time></td>
             <td><strong>{session.title}</strong><span>{session.description}</span></td>
-            <td>{session.speaker && <><strong>{session.speaker}</strong><span>{session.company}</span></>}</td>
+            <td>{session.speaker && <>{session.linkedin ? <a className="build-speaker-link" href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong><i aria-hidden="true">in</i></a> : <strong>{session.speaker}</strong>}<span>{session.company}</span></>}</td>
             <td><b>{session.ref}</b></td>
           </tr>)}</tbody>
         </table>
@@ -119,6 +129,6 @@ export default async function SeasonTwoEventPage({ params }: Props) {
     <a className="archive-detail-back" href="/seasons/season-2">← 시즌 2 공식 행사</a>
     {event.slug === "snowflake" ? <SnowflakeEventRecord /> : <div className={`event-detail-hero ${event.accent}`}><span>{event.eyebrow} · {event.state}</span><h1>{event.title}</h1><p>{event.description}</p></div>}
     {event.slug === "build" && <BuildEventRecord />}
-    <EventGallery title={`${event.title} 갤러리`} items={[]} emptyMessage={event.slug === "snowflake" ? "8월 27일 Snowflake 행사 사진과 발표 자료가 정리되는 대로 이곳에 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."} />
+    <EventGallery title={`${event.title} 갤러리`} items={event.slug === "build" ? buildGallery : []} emptyMessage={event.slug === "snowflake" ? "8월 27일 Snowflake 행사 사진과 발표 자료가 정리되는 대로 이곳에 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."} />
   </section><SiteFooter /></main>;
 }

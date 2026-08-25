@@ -36,3 +36,24 @@ test("BUILD detail credits sponsors and shows the supplied sponsor board", async
   assert.match(html, /Eden House/);
   assert.match(html, /build\/build-sponsors\.png/);
 });
+
+test("BUILD detail restores event imagery and speaker LinkedIn links", async () => {
+  const response = await renderBuildDetail();
+  const html = await response.text();
+  assert.match(html, /class="build-visual-story"/);
+  assert.match(html, /build-poster-linkedin\.jpg/);
+  assert.match(html, /build-scenes-linkedin\.jpg/);
+  assert.match(html, /build-speaker-highlight\.jpg/);
+  for (const profile of ["hoondong-kim", "canrobot", "learner-bora", "youngbinlee", "younni", "hahahaysh"]) {
+    assert.match(html, new RegExp(`linkedin\\.com\\/in\\/${profile}`));
+  }
+});
+
+test("BUILD section headings flow from label to title to description before the table", async () => {
+  const response = await renderBuildDetail();
+  const html = await response.text();
+  const section = html.slice(html.indexOf('aria-labelledby="build-sessions-title"'), html.indexOf('class="build-sponsors"'));
+  assert.ok(section.indexOf("TRACK 1 · JEJU ROOM") < section.indexOf("세션 일정"));
+  assert.ok(section.indexOf("세션 일정") < section.indexOf("오후 1시부터 7개의 발표와 실습"));
+  assert.ok(section.indexOf("오후 1시부터 7개의 발표와 실습") < section.indexOf('class="build-session-table"'));
+});

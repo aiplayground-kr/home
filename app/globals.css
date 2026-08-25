@@ -62,11 +62,12 @@
 @media(max-width:620px){.org-map .steering{padding:28px}.steering-people{grid-template-columns:1fr}.org-person{grid-template-columns:64px minmax(0,1fr) auto}.org-avatar{width:64px;height:64px}.org-person-copy strong{font-size:17px}.org-person-copy small,.org-person-summary{font-size:13px}}
 
 /* Season 2 BUILD event record */
+.build-visual-story{padding:34px clamp(22px,6vw,88px) 88px;background:#07192e;display:grid;grid-template-columns:minmax(300px,.8fr) minmax(420px,1.2fr);gap:18px}.build-visual-story figure{position:relative;margin:0;overflow:hidden;border-radius:20px;background:#102b47;color:white}.build-visual-story img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}.build-visual-story figure:hover img{transform:scale(1.025)}.build-visual-poster{min-height:620px}.build-visual-poster img{object-position:center}.build-visual-story figcaption{position:absolute;inset:auto 0 0;padding:48px 24px 22px;background:linear-gradient(180deg,transparent,rgba(3,18,34,.9));display:flex;justify-content:space-between;gap:16px;align-items:end;font-size:12px}.build-visual-story figcaption span{color:#65d5ff;font-size:9px;font-weight:850;letter-spacing:.13em}.build-visual-scenes{display:grid;grid-template-rows:1fr 1fr;gap:18px}.build-visual-scenes figure{min-height:300px}.build-visual-scenes figure:first-child img{object-position:center 40%}.build-visual-scenes figcaption{justify-content:flex-start;font-weight:750}
 .build-record-section{padding:88px clamp(22px,6vw,88px);border-bottom:1px solid var(--line);background:white}
 .build-record-section:nth-of-type(even){background:var(--ice)}
-.build-record-heading{display:grid;grid-template-columns:minmax(170px,.35fr) minmax(280px,.75fr) minmax(300px,.9fr);gap:34px;align-items:end;margin-bottom:38px}
+.build-record-heading{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:38px;max-width:830px}
 .build-record-heading>span{color:var(--blue);font-size:11px;font-weight:850;letter-spacing:.14em}
-.build-record-heading h2{margin:0;font-size:clamp(36px,4.5vw,64px);line-height:1;letter-spacing:-.055em}
+.build-record-heading h2{margin:15px 0 18px;font-size:clamp(36px,4.5vw,64px);line-height:1;letter-spacing:-.055em}
 .build-record-heading p{margin:0;color:var(--muted);font-size:16px;line-height:1.75}
 .build-table-wrap{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:white;box-shadow:0 16px 42px rgba(19,55,84,.07)}
 .build-facts-table,.build-session-table{width:100%;border-collapse:collapse}
@@ -87,6 +88,7 @@
 .build-session-table td strong{font-size:16px;line-height:1.45}
 .build-session-table td span{margin-top:6px;color:var(--muted);font-size:12px;line-height:1.6}
 .build-session-table td b{display:inline-block;padding:7px 9px;border-radius:999px;background:var(--sky);color:var(--blue);font-size:10px;letter-spacing:.08em}
+.build-speaker-link{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink)}.build-speaker-link:hover{color:var(--blue)}.build-speaker-link i{width:22px;height:22px;border-radius:4px;background:#0a66c2;color:white;display:grid;place-items:center;font:800 10px Arial,sans-serif;font-style:normal;flex:0 0 auto}.build-session-table .build-speaker-link strong{font-size:16px}
 .build-session-table .break-row{background:#f3f7fa}
 .build-session-table .break-row td:nth-child(2) strong{color:var(--muted)}
 .build-session-scroll{overflow-x:auto;scrollbar-color:var(--blue) var(--sky)}
@@ -96,8 +98,8 @@
 .build-sponsor-board figcaption{padding:24px 28px;display:flex;justify-content:space-between;gap:30px;background:var(--navy);color:white}
 .build-sponsor-board figcaption strong{font-size:16px}
 .build-sponsor-board figcaption span{color:#cfe2f0;font-size:13px;text-align:right}
-@media(max-width:950px){.build-record-heading{grid-template-columns:1fr}.build-record-heading p{max-width:720px}.build-session-scroll{border-radius:14px}}
-@media(max-width:620px){.build-record-section{padding:64px 20px}.build-record-heading{gap:16px;margin-bottom:28px}.build-facts-table th,.build-facts-table td{display:block;width:100%;padding:15px 18px}.build-facts-table th{border-bottom:0}.build-sponsor-board figcaption{align-items:flex-start;flex-direction:column;gap:8px}.build-sponsor-board figcaption span{text-align:left}}
+@media(max-width:950px){.build-visual-story{grid-template-columns:1fr}.build-visual-poster{min-height:540px}.build-visual-scenes{grid-template-columns:1fr 1fr;grid-template-rows:auto}.build-record-heading p{max-width:720px}.build-session-scroll{border-radius:14px}}
+@media(max-width:620px){.build-visual-story{padding:22px 14px 60px}.build-visual-poster{min-height:470px}.build-visual-scenes{grid-template-columns:1fr}.build-visual-scenes figure{min-height:250px}.build-record-section{padding:64px 20px}.build-record-heading{margin-bottom:28px}.build-record-heading h2{margin:13px 0 16px}.build-facts-table th,.build-facts-table td{display:block;width:100%;padding:15px 18px}.build-facts-table th{border-bottom:0}.build-sponsor-board figcaption{align-items:flex-start;flex-direction:column;gap:8px}.build-sponsor-board figcaption span{text-align:left}}
 
 /* Snowflake World Tour event detail */
 .snowflake-poster{padding:36px clamp(22px,6vw,88px) 96px;background:radial-gradient(circle at 18% 16%,rgba(88,218,255,.2),transparent 31%),radial-gradient(circle at 82% 78%,rgba(79,101,255,.3),transparent 38%),#031a35;display:grid;place-items:center;overflow:hidden}
