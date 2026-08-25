@@ -108,7 +108,6 @@ function SnowflakeEventRecord() {
         <article><b>03</b><span>LIVE DEMO</span><h3>MVP 특별 시연</h3><p>여섯 개 세션에서 Copilot과 Power Platform의 실제 활용을 확인합니다.</p></article>
         <article><b>04</b><span>COMMUNITY</span><h3>커뮤니티 네트워킹</h3><p>배움의 장면을 이야기로 나누고 다음 연결을 만드는 시간입니다.</p></article>
       </div>
-      <div className="snowflake-program-link"><p>퀴즈는 별도의 행사 페이지에서 참여할 수 있습니다.</p><a href="https://snowflake-ai-playground-quiz.youni.chatgpt.site/play.html" target="_blank" rel="noreferrer">행사 퀴즈 페이지 보기 ↗</a></div>
     </section>
   </>;
 }

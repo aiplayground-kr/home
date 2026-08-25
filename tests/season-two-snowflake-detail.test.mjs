@@ -29,7 +29,7 @@ test("Snowflake detail flows from poster to host, sessions, and program", async 
   assert.ok(html.indexOf("snowflake-sessions") < html.indexOf("snowflake-program"));
 });
 
-test("Snowflake detail publishes six sessions and links out to the quiz", async () => {
+test("Snowflake detail publishes six sessions without a quiz action", async () => {
   const response = await renderSnowflakeDetail();
   const html = await response.text();
   assert.equal((html.match(/class="snowflake-session-card/g) ?? []).length, 6);
@@ -42,7 +42,8 @@ test("Snowflake detail publishes six sessions and links out to the quiz", async 
   assert.match(html, /AI 퀴즈/);
   assert.match(html, /Lucky Draw/);
   assert.match(html, /MVP 특별 시연/);
-  assert.match(html, /href="https:\/\/snowflake-ai-playground-quiz\.youni\.chatgpt\.site\/play\.html"/);
+  assert.doesNotMatch(html, /snowflake-program-link/);
+  assert.doesNotMatch(html, /snowflake-ai-playground-quiz/);
   assert.doesNotMatch(html, /<iframe/);
   assert.doesNotMatch(html, /class="quiz-question/);
 });
