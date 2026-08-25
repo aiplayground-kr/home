@@ -38,4 +38,5 @@ test("organization page shows verified public profile portraits and LinkedIn lin
   assert.doesNotMatch(playSection, /이종혁/);
   assert.match(playSection, /문종훈[\s\S]*서동훈/);
   assert.match(playSection, /서동훈[\s\S]*PLAY Crew/);
+  assert.match(html, /윤미영[\s\S]*SHARE Lead · MCT/);
 });
