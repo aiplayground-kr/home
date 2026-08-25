@@ -34,7 +34,8 @@ test("organization page shows verified public profile portraits and LinkedIn lin
 
   const steeringSection = html.slice(html.indexOf('class="steering-people"'), html.indexOf('</article>', html.indexOf('class="steering-people"')));
   const playSection = html.slice(html.indexOf('<b>PLAY</b>'), html.indexOf('</article>', html.indexOf('<b>PLAY</b>')));
-  assert.doesNotMatch(steeringSection, /이종혁/);
-  assert.match(playSection, /이종혁/);
-  assert.match(playSection, /PLAY Crew/);
+  assert.match(steeringSection, /이종혁/);
+  assert.doesNotMatch(playSection, /이종혁/);
+  assert.match(playSection, /문종훈[\s\S]*서동훈/);
+  assert.match(playSection, /서동훈[\s\S]*PLAY Crew/);
 });
