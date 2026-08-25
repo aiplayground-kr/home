@@ -10,5 +10,5 @@
 .host-photo-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,27,43,.03) 32%,rgba(7,27,43,.24) 60%,rgba(7,27,43,.88) 100%)}
 .host-photo-card figcaption{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:34px}
 .host-photo-card figcaption>span,.host-photo-card figcaption>small{font-size:10px;font-weight:850;letter-spacing:.14em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
-.host-photo-card blockquote{margin:auto 0 28px;max-width:92%;font-size:clamp(29px,3.3vw,49px);font-weight:750;line-height:1.12;letter-spacing:-.05em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
-@media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:34px}}
+.host-photo-card blockquote{margin:auto 0 28px;max-width:92%;font-size:clamp(25px,2.8vw,41px);font-weight:750;line-height:1.16;letter-spacing:-.045em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+@media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:30px}}
