@@ -20,6 +20,14 @@ test("organization page shows verified public profile portraits and LinkedIn lin
   assert.match(html, /src="\/host-sung-mi-kim-profile\.png"/);
   assert.match(html, /src="\/team\/jonghoon-moon\.jpg"/);
   assert.match(html, /src="\/team\/mina-jin\.jpg"/);
+  assert.match(html, /src="\/team\/huh-seok\.jpg"/);
+  assert.match(html, /src="\/team\/jonghyeok-lee\.jpg"/);
+  assert.match(html, /src="\/team\/miyoung-youn\.jpg"/);
+  assert.match(html, /linkedin\.com\/in\/hwanhee-lee-it-manager/);
+  assert.match(html, /linkedin\.com\/in\/jonghyeok-lee424/);
+  assert.match(html, /linkedin\.com\/in\/younni/);
   assert.match(html, /linkedin\.com\/in\/canrobot/);
   assert.match(html, /aria-label="문종훈 LinkedIn 프로필 열기"/);
+  assert.match(html, /Microsoft 365 Copilot MVP/);
+  assert.match(html, /AI 커뮤니티 행사 운영/);
 });
