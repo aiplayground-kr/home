@@ -41,9 +41,10 @@ test("BUILD detail restores event imagery and speaker LinkedIn links", async () 
   const response = await renderBuildDetail();
   const html = await response.text();
   assert.match(html, /class="build-visual-story"/);
-  assert.match(html, /build-poster-linkedin\.jpg/);
-  assert.match(html, /build-scenes-linkedin\.jpg/);
-  assert.match(html, /build-speaker-highlight\.jpg/);
+  for (const image of ["32", "33", "35", "37", "41", "46", "50"]) {
+    assert.match(html, new RegExp(`build\/archive\/${image}\\.png`));
+  }
+  assert.match(html, /17(?:<!-- -->)? CUTS/);
   for (const profile of ["hoondong-kim", "canrobot", "learner-bora", "youngbinlee", "younni", "hahahaysh"]) {
     assert.match(html, new RegExp(`linkedin\\.com\\/in\\/${profile}`));
   }

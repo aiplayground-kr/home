@@ -17,9 +17,23 @@ const buildSessions = [
 ];
 
 const buildGallery = [
-  { src: "/events/season-2/build/build-poster-linkedin.jpg", alt: "Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 포스터", caption: "2026년 6월 14일, 한국마이크로소프트에서 열린 AI놀이터 여름 밋업", label: "OFFICIAL POSTER" },
-  { src: "/events/season-2/build/build-scenes-linkedin.jpg", alt: "BUILD 행사에서 GitHub Copilot 세션을 진행하는 유승호 연사", caption: "GitHub Copilot 3종 기능을 직접 따라 해본 실습 세션", label: "LIVE SESSION" },
-  { src: "/events/season-2/build/build-speaker-highlight.jpg", alt: "Claw and Agent Harness 김훈동 MVP 세션 포스터", caption: "커뮤니티가 다시 해석한 Build 2026의 Agentic AI 이야기", label: "SPEAKER STORY" },
+  { src: "/events/season-2/build/archive/32.png", alt: "Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 공식 포스터", caption: "2026년 6월 14일, 한국마이크로소프트에서 열린 AI놀이터 여름 밋업", label: "OFFICIAL POSTER" },
+  { src: "/events/season-2/build/archive/33.png", alt: "BUILD localhost Seoul AI놀이터 전체 커뮤니티 구성원 보드", caption: "행사를 함께 만든 AI놀이터 Crew", label: "COMMUNITY CREW" },
+  { src: "/events/season-2/build/archive/34.png", alt: "BUILD localhost Seoul AI놀이터 연사 일곱 명 소개 보드", caption: "BUILD를 커뮤니티의 언어로 전한 연사 라인업", label: "SPEAKER BOARD" },
+  { src: "/events/season-2/build/archive/35.png", alt: "BUILD localhost Seoul AI놀이터 행사 참가자 단체사진", caption: "발표와 실습을 마친 뒤 함께 남긴 단체사진", label: "GROUP PHOTO" },
+  { src: "/events/season-2/build/archive/36.png", alt: "BUILD localhost Seoul AI놀이터 발표 현장 사진 모음", caption: "무대에서 BUILD를 쉽고 생생하게 풀어낸 연사들", label: "LIVE SPEAKERS" },
+  { src: "/events/season-2/build/archive/37.png", alt: "BUILD localhost Seoul AI놀이터 등록 세션 네트워킹 현장 사진 모음", caption: "등록부터 세션과 네트워킹까지 이어진 행사 현장", label: "EVENT SCENES" },
+  { src: "/events/season-2/build/archive/38.png", alt: "BUILD localhost Seoul AI놀이터 여름 밋업 Crew 소개 보드", caption: "AI놀이터 여름 밋업을 함께 준비한 Crew", label: "MEETUP CREW" },
+  { src: "/events/season-2/build/archive/39.png", alt: "BUILD localhost Seoul AI놀이터 제주룸 발표와 실습 현장", caption: "제주룸을 가득 채운 참가자와 실습 현장", label: "FULL HOUSE" },
+  { src: "/events/season-2/build/archive/40.png", alt: "BUILD localhost Seoul AI놀이터 전체 스피커 포스터", caption: "AI놀이터 여름 밋업의 전체 스피커", label: "SPEAKER LINEUP" },
+  { src: "/events/season-2/build/archive/41.png", alt: "BUILD localhost Seoul AI놀이터 행사 일정과 세션 시간표", caption: "BUILD 여름 밋업 세션 시간표", label: "SESSION GUIDE" },
+  { src: "/events/season-2/build/archive/42.png", alt: "BUILD localhost Seoul AI놀이터 스피커 소개 포스터", caption: "BUILD를 대신 읽고 쉽게 풀어준 사람들", label: "SPEAKER POSTER" },
+  { src: "/events/season-2/build/archive/45.png", alt: "전대호 Copilot Cowork 업무 자동화 세션 소개", caption: "Copilot Cowork로 업무 자동화 뚝딱 해치우기", label: "SESSION · JEON DAEHO" },
+  { src: "/events/season-2/build/archive/46.png", alt: "김훈동 Claw and Agent Harness 세션 소개", caption: "1인 기업가가 되기 위한 마지막 관문, Claw and Agent Harness", label: "SESSION · KIM HOONDONG" },
+  { src: "/events/season-2/build/archive/47.png", alt: "이보라 GitHub Copilot SDK 세션 소개", caption: "엔터프라이즈가 사랑하는 GitHub Copilot SDK와 확장 가능성", label: "SESSION · LEE BORA" },
+  { src: "/events/season-2/build/archive/48.png", alt: "유승호 GitHub Copilot 실습 세션 소개", caption: "GitHub Copilot 3종 기능 직접 해보기", label: "SESSION · YOU SUNGHO" },
+  { src: "/events/season-2/build/archive/49.png", alt: "윤미영 Microsoft Copilot Agent 세션 소개", caption: "Microsoft Copilot Agent로 학습 가이드 제작하기", label: "SESSION · YOUN MIYOUNG" },
+  { src: "/events/season-2/build/archive/50.png", alt: "이영빈 GitHub Copilot AI 비서 세션 소개", caption: "비개발자가 팀 전용 AI 비서를 만든 이야기", label: "SESSION · LEE YOUNGBIN" },
 ];
 
 const snowflakeSessions = [
@@ -35,7 +49,7 @@ function BuildEventRecord() {
   return <>
     <section className="build-visual-story" aria-label="BUILD 행사 주요 이미지">
       <figure className="build-visual-poster"><img src={buildGallery[0].src} alt={buildGallery[0].alt} /><figcaption><span>OFFICIAL POSTER</span><strong>BUILD / localhost:SEOUL</strong></figcaption></figure>
-      <div className="build-visual-scenes"><figure><img src={buildGallery[1].src} alt={buildGallery[1].alt} /><figcaption>현장에서 직접 따라 해본 GitHub Copilot</figcaption></figure><figure><img src={buildGallery[2].src} alt={buildGallery[2].alt} /><figcaption>Build 2026을 커뮤니티 언어로 다시 읽다</figcaption></figure></div>
+      <div className="build-visual-scenes"><figure><img src={buildGallery[3].src} alt={buildGallery[3].alt} /><figcaption>배움과 실습을 함께 완주한 AI놀이터 커뮤니티</figcaption></figure><figure><img src={buildGallery[5].src} alt={buildGallery[5].alt} /><figcaption>세션·실습·네트워킹으로 이어진 현장 기록</figcaption></figure></div>
     </section>
     <section className="build-record-section build-overview" aria-labelledby="build-overview-title">
       <div className="build-record-heading"><span>BUILD / LOCALHOST:SEOUL</span><h2 id="build-overview-title">행사 개요</h2><p>Build 2026의 핵심 발표를 커뮤니티의 언어로 다시 만나고, Copilot과 Agent를 직접 경험한 AI놀이터 여름 밋업입니다.</p></div>
