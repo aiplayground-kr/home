@@ -60,3 +60,41 @@
 .org-profile-note{margin:26px 0;padding:18px 20px;border-left:3px solid var(--blue);background:var(--ice);color:var(--muted);font-size:12px;line-height:1.7}
 @media(max-width:950px){.org-map .steering{grid-template-columns:1fr}.steering-people{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.org-map .steering{padding:28px}.steering-people{grid-template-columns:1fr}.org-person{grid-template-columns:64px minmax(0,1fr) auto}.org-avatar{width:64px;height:64px}.org-person-copy strong{font-size:17px}.org-person-copy small,.org-person-summary{font-size:13px}}
+
+/* Season 2 BUILD event record */
+.build-record-section{padding:88px clamp(22px,6vw,88px);border-bottom:1px solid var(--line);background:white}
+.build-record-section:nth-of-type(even){background:var(--ice)}
+.build-record-heading{display:grid;grid-template-columns:minmax(170px,.35fr) minmax(280px,.75fr) minmax(300px,.9fr);gap:34px;align-items:end;margin-bottom:38px}
+.build-record-heading>span{color:var(--blue);font-size:11px;font-weight:850;letter-spacing:.14em}
+.build-record-heading h2{margin:0;font-size:clamp(36px,4.5vw,64px);line-height:1;letter-spacing:-.055em}
+.build-record-heading p{margin:0;color:var(--muted);font-size:16px;line-height:1.75}
+.build-table-wrap{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:white;box-shadow:0 16px 42px rgba(19,55,84,.07)}
+.build-facts-table,.build-session-table{width:100%;border-collapse:collapse}
+.build-facts-table th,.build-facts-table td{padding:21px 24px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.build-facts-table tr:last-child th,.build-facts-table tr:last-child td{border-bottom:0}
+.build-facts-table th{width:180px;background:var(--sky);color:var(--blue);font-size:12px;letter-spacing:.09em}
+.build-facts-table td{font-size:15px;line-height:1.65}
+.build-session-table{min-width:900px}
+.build-session-table thead{background:var(--navy);color:white}
+.build-session-table th{padding:17px 20px;text-align:left;font-size:11px;letter-spacing:.12em}
+.build-session-table td{padding:22px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+.build-session-table tbody tr:last-child td{border-bottom:0}
+.build-session-table td:first-child{width:140px;color:var(--blue);font-weight:850}
+.build-session-table td:nth-child(2){width:52%}
+.build-session-table td:nth-child(3){width:190px}
+.build-session-table td:last-child{width:100px}
+.build-session-table td strong,.build-session-table td span{display:block}
+.build-session-table td strong{font-size:16px;line-height:1.45}
+.build-session-table td span{margin-top:6px;color:var(--muted);font-size:12px;line-height:1.6}
+.build-session-table td b{display:inline-block;padding:7px 9px;border-radius:999px;background:var(--sky);color:var(--blue);font-size:10px;letter-spacing:.08em}
+.build-session-table .break-row{background:#f3f7fa}
+.build-session-table .break-row td:nth-child(2) strong{color:var(--muted)}
+.build-session-scroll{overflow-x:auto;scrollbar-color:var(--blue) var(--sky)}
+.build-session-scroll:focus-visible{outline:3px solid rgba(20,92,197,.28);outline-offset:4px}
+.build-sponsor-board{margin:0;overflow:hidden;border-radius:20px;background:#0875c9;box-shadow:0 24px 55px rgba(8,80,143,.18)}
+.build-sponsor-board img{display:block;width:100%;height:auto;background:#0875c9}
+.build-sponsor-board figcaption{padding:24px 28px;display:flex;justify-content:space-between;gap:30px;background:var(--navy);color:white}
+.build-sponsor-board figcaption strong{font-size:16px}
+.build-sponsor-board figcaption span{color:#cfe2f0;font-size:13px;text-align:right}
+@media(max-width:950px){.build-record-heading{grid-template-columns:1fr}.build-record-heading p{max-width:720px}.build-session-scroll{border-radius:14px}}
+@media(max-width:620px){.build-record-section{padding:64px 20px}.build-record-heading{gap:16px;margin-bottom:28px}.build-facts-table th,.build-facts-table td{display:block;width:100%;padding:15px 18px}.build-facts-table th{border-bottom:0}.build-sponsor-board figcaption{align-items:flex-start;flex-direction:column;gap:8px}.build-sponsor-board figcaption span{text-align:left}}
