@@ -19,7 +19,6 @@ export default function SeasonTwoPage() { return <main><SiteHeader />
       </div>
       <div className="calendar-actions">
         <span>{e.dateLabel}</span>
-        <a href="https://timetreeapp.com/calendars/events/new?date=2026-08-27&all_day=true" target="_blank" rel="noreferrer">TimeTree에 담기 ↗</a>
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI%EB%86%80%EC%9D%B4%ED%84%B0%20Season%202%20%C3%97%20Snowflake&dates=20260827%2F20260828&details=AI%EB%86%80%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%A6%8C%202%20Snowflake%20%EA%B3%B5%EC%8B%9D%20%ED%96%89%EC%82%AC" target="_blank" rel="noreferrer">Google 캘린더 ↗</a>
       </div>
     </div>}
