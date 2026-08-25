@@ -32,7 +32,8 @@ test("Snowflake detail flows from poster to host, sessions, and program", async 
 test("Snowflake detail publishes six sessions without a quiz action", async () => {
   const response = await renderSnowflakeDetail();
   const html = await response.text();
-  assert.equal((html.match(/class="snowflake-session-card/g) ?? []).length, 6);
+  assert.match(html, /class="snowflake-session-table"/);
+  assert.equal((html.match(/<tr>/g) ?? []).length, 7);
   assert.match(html, /전대호/);
   assert.match(html, /진미나/);
   assert.match(html, /이재석/);

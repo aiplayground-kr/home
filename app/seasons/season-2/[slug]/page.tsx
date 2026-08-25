@@ -93,11 +93,15 @@ function SnowflakeEventRecord() {
 
     <section className="snowflake-sessions" aria-labelledby="snowflake-sessions-title">
       <header><span>MICROSOFT MVP · 90 MINUTE SESSIONS</span><h2 id="snowflake-sessions-title">AI놀이터 세션 안내</h2><p>여섯 명의 Microsoft MVP와 Crew가 1시간 30분씩 실전 설명과 데모를 이어갑니다.</p></header>
-      <div className="snowflake-session-grid">{snowflakeSessions.map((session) => <article className="snowflake-session-card" key={session.no}>
-        <div className="snowflake-session-time"><span>SESSION {session.no}</span><time>{session.time}</time><small>1시간 30분</small></div>
-        <div className="snowflake-speaker-avatar">{session.image ? <img src={session.image} alt={`${session.speaker} 연사`} /> : <span>{session.initials}</span>}</div>
-        <div className="snowflake-session-copy"><span>{session.role}</span><h3>{session.topic}</h3><a href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong> ↗</a><p>{session.description}</p><div className="snowflake-crew"><b>함께하는 Crew</b>{session.crew.map((member) => <i key={member}>{member}</i>)}</div></div>
-      </article>)}</div>
+      <div className="snowflake-session-table-wrap" tabIndex={0} aria-label="Snowflake 행사 세션 표, 가로로 스크롤 가능"><table className="snowflake-session-table">
+        <thead><tr><th scope="col">시간</th><th scope="col">세션</th><th scope="col">연사</th><th scope="col">함께하는 Crew</th></tr></thead>
+        <tbody>{snowflakeSessions.map((session) => <tr key={session.no}>
+          <td><span>SESSION {session.no}</span><time>{session.time}</time><small>1시간 30분</small></td>
+          <td><strong>{session.topic}</strong><p>{session.description}</p></td>
+          <td><div className="snowflake-table-speaker"><div className="snowflake-speaker-avatar">{session.image ? <img src={session.image} alt={`${session.speaker} 연사`} /> : <span>{session.initials}</span>}</div><div><span>{session.role}</span><a href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong> ↗</a></div></div></td>
+          <td><div className="snowflake-crew">{session.crew.map((member) => <i key={member}>{member}</i>)}</div></td>
+        </tr>)}</tbody>
+      </table></div>
     </section>
 
     <section className="snowflake-program" aria-labelledby="snowflake-program-title">
