@@ -20,7 +20,20 @@ test("host page presents Sung Mi Kim with the supplied portrait", async () => {
   assert.match(html, /class="host-photo-card"/);
   assert.match(html, /src="\/host-sung-mi-kim-profile\.png"/);
   assert.match(html, /alt="김성미 AI놀이터 모임장 프로필 사진"/);
+  assert.match(html, /class="host-signature"/);
+  assert.match(html, /<strong>김성미<\/strong>/);
   assert.doesNotMatch(html, /프로필 사진은 LinkedIn 공식 이미지 확인 후 반영합니다/);
+});
+
+test("host page summarizes verified career and community activity", async () => {
+  const response = await renderHost();
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /Microsoft · SME&amp;C/);
+  assert.match(html, /AI놀이터 Lead/);
+  assert.match(html, /AgentCon Seoul 2026/);
+  assert.match(html, /Microsoft Certified: Azure AI Fundamentals/);
+  assert.match(html, /확인한 공개 기록/);
 });
 
 test("host portrait styling preserves the face-centered crop", async () => {
