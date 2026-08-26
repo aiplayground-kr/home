@@ -126,13 +126,15 @@ export function HomeEventStage() {
           <div className="hero-console-screen" aria-live="polite">
             <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime={nextEvent.date}>{displayDate(nextEvent.date, true)}</time></div>
             <a href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
-              {nextEvent.image ? (
-                <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
-              ) : (
-                <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
-                  <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
-                </div>
-              )}
+              <div className="hero-screen-media">
+                {nextEvent.image ? (
+                  <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
+                ) : (
+                  <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
+                    <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
+                  </div>
+                )}
+              </div>
               <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.screenTitle ?? nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
             </a>
           </div>

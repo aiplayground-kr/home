@@ -51,6 +51,17 @@ test("home console posters and placeholders share a non-overlapping two-column f
   assert.match(css, /\.hero-screen-placeholder\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*150px;[^}]*min-width:\s*0;[^}]*min-height:\s*0/);
 });
 
+test("home console keeps poster and placeholder artwork on the same stage", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+
+  assert.match(html, /class="hero-screen-media"[\s\S]*snowflake-world-tour-poster\.png/);
+  assert.match(css, /\.hero-screen-media\s*\{[^}]*display:\s*grid;[^}]*place-items:\s*center;[^}]*width:\s*100%;[^}]*height:\s*230px/);
+  assert.match(css, /\.hero-screen-media\s*>\s*img\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%/);
+  assert.match(css, /\.hero-screen-media\s*>\s*\.hero-screen-placeholder\s*\{[^}]*height:\s*100%/);
+});
+
 test("home small playground section is poster-led and links to event details", async () => {
   const response = await renderHome();
   const html = await response.text();
