@@ -29,3 +29,13 @@ test("BUILD season card shows the supplied official poster without people", asyn
   assert.match(buildCard, /events\/season-2\/build\/archive\/32\.png/);
   assert.match(buildCard, /2026년 6월 14일/);
 });
+
+test("Snowflake season card shows the official event poster", async () => {
+  const response = await renderSeasonTwo();
+  const html = await response.text();
+  const snowflakeCard = html.slice(html.lastIndexOf("<article", html.indexOf('id="snowflake"')));
+  assert.match(snowflakeCard, /class="build-card-poster snowflake-card-poster"/);
+  assert.match(snowflakeCard, /events\/season-2\/snowflake\/snowflake-world-tour-poster\.png/);
+  assert.match(snowflakeCard, /2026년 8월 27일 공식 포스터/);
+  assert.doesNotMatch(snowflakeCard, /class="snow-console"/);
+});

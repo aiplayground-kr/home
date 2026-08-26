@@ -7,17 +7,8 @@ export default function SeasonTwoPage() { return <main><SiteHeader />
     <div className="event-card-top"><span>OFFICIAL EVENT · 0{i+1}</span><b>{e.state}</b></div>
     <div className="event-copy"><p>{e.eyebrow}</p><h2>{e.title}</h2><p>{e.description}</p></div>
     {e.slug === "build" && <a className="build-card-poster" href="/seasons/season-2/build" aria-label="BUILD localhost Seoul 공식 포스터와 행사 상세 보기"><img src="/events/season-2/build/archive/32.png" alt="Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 공식 포스터: 2026년 6월 14일, 한국마이크로소프트 13층" /><span>OFFICIAL POSTER <b>크게 보기 →</b></span></a>}
-    {e.slug === "snowflake" && <div className="snow-console-wrap">
-      <div className="date-cartridge" aria-hidden="true"><span>PLAY DATE</span><i /></div>
-      <div className="snow-console" role="img" aria-label="Snowflake 행사일 2026년 8월 27일 목요일을 표시한 게임기 모양 캘린더">
-        <div className="console-left" aria-hidden="true"><span className="console-speaker" /><div className="dpad"><i /><i /></div></div>
-        <div className="console-screen">
-          <div className="screen-status"><span>SNOWFLAKE</span><span className="screen-live">NEXT PLAY</span></div>
-          <div className="calendar-display"><span className="calendar-month">AUG</span><strong>27</strong><span className="calendar-day">THURSDAY</span></div>
-          <time dateTime="2026-08-27">2026.08.27 · 목요일</time>
-        </div>
-        <div className="console-right" aria-hidden="true"><div className="ab-buttons"><i /><i /><i /><i /></div><span className="power-light" /></div>
-      </div>
+    {e.slug === "snowflake" && <div className="snowflake-card-media">
+      <a className="build-card-poster snowflake-card-poster" href="/seasons/season-2/snowflake" aria-label="Snowflake World Tour 서울 공식 포스터와 행사 상세 보기"><img src="/events/season-2/snowflake/snowflake-world-tour-poster.png" alt="Microsoft AI놀이터가 함께하는 Snowflake World Tour 서울 2026년 8월 27일 공식 포스터" /><span>OFFICIAL POSTER <b>크게 보기 →</b></span></a>
       <div className="calendar-actions">
         <span>{e.dateLabel}</span>
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI%EB%86%80%EC%9D%B4%ED%84%B0%20Season%202%20%C3%97%20Snowflake&dates=20260827%2F20260828&details=AI%EB%86%80%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%A6%8C%202%20Snowflake%20%EA%B3%B5%EC%8B%9D%20%ED%96%89%EC%82%AC" target="_blank" rel="noreferrer">Google 캘린더 ↗</a>

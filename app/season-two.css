@@ -91,6 +91,15 @@
   right: -72px;
 }
 
+.snowflake-card-media {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
+}
+
+.snowflake-card-poster { margin-bottom: 0; background: #19aee8; }
+.snowflake-card-poster img { object-position: center; }
+
 .snow-console-wrap {
   position: relative;
   z-index: 2;
