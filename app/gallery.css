@@ -102,6 +102,122 @@
   letter-spacing: .12em;
 }
 
+.gallery-thumbnail-grid {
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 12px;
+}
+
+.gallery-thumbnail-grid figure,
+.gallery-thumbnail-grid figure:nth-child(n) {
+  grid-column: auto;
+}
+
+.gallery-thumbnail {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border: 1px solid #c9ddea;
+  border-radius: 10px;
+  background: #edf6fc;
+  cursor: pointer;
+}
+
+.gallery-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.gallery-thumbnail > span {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgba(7, 33, 57, .78);
+  color: white;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+
+.gallery-thumbnail:hover img,
+.gallery-thumbnail:focus-visible img { transform: scale(1.06); filter: brightness(.88); }
+.gallery-thumbnail:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.gallery-lightbox[hidden] { display: none; }
+
+.gallery-lightbox {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(10px, 3vw, 36px);
+  padding: clamp(18px, 4vw, 54px);
+  background: rgba(3, 18, 31, .94);
+  backdrop-filter: blur(10px);
+}
+
+.gallery-lightbox > figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: min(100%, 1120px);
+  height: min(88vh, 860px);
+  margin: auto;
+}
+
+.gallery-lightbox > figure > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.gallery-lightbox figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 4px 0;
+  color: white;
+  font-size: 13px;
+}
+
+.gallery-lightbox figcaption small { color: #64d5ff; font-size: 9px; font-weight: 850; letter-spacing: .12em; }
+.gallery-lightbox figcaption b { color: #b9d2e3; font-size: 10px; letter-spacing: .12em; }
+
+.gallery-lightbox-close,
+.gallery-lightbox-nav {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  color: white;
+  cursor: pointer;
+}
+
+.gallery-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.gallery-lightbox-nav { width: 52px; height: 52px; font-size: 38px; }
+.gallery-lightbox button:hover,
+.gallery-lightbox button:focus-visible { background: white; color: var(--navy); outline: none; }
+.gallery-lightbox-open { overflow: hidden; }
+
 .gallery-empty {
   display: flex;
   align-items: center;
@@ -162,6 +278,17 @@
   .gallery-grid figure:nth-child(n) { grid-column: span 12; }
   .gallery-grid a { min-height: 220px; }
   .gallery-grid a > span { opacity: 1; transform: none; }
+  .gallery-thumbnail-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .gallery-thumbnail-grid figure,
+  .gallery-thumbnail-grid figure:nth-child(n) { grid-column: auto; }
+  .gallery-thumbnail { border-radius: 7px; }
+  .gallery-lightbox { grid-template-columns: 1fr 1fr; align-content: center; padding: 68px 16px 24px; }
+  .gallery-lightbox > figure { grid-column: 1 / -1; grid-row: 1; height: min(72vh, 680px); }
+  .gallery-lightbox-nav { grid-row: 2; width: 48px; height: 48px; }
+  .gallery-lightbox-nav.previous { justify-self: end; }
+  .gallery-lightbox-nav.next { justify-self: start; }
+  .gallery-lightbox figcaption { grid-template-columns: 1fr auto; }
+  .gallery-lightbox figcaption small { display: none; }
   .gallery-empty { align-items: flex-start; padding: 24px; }
   .archive-detail-shell,
   .event-detail-shell { padding: 48px 20px 80px; }
@@ -169,5 +296,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .gallery-grid img,
-  .gallery-grid a > span { transition: none; }
+  .gallery-grid a > span,
+  .gallery-thumbnail img { transition: none; }
 }

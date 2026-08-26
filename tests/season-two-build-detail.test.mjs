@@ -72,6 +72,19 @@ test("BUILD event photos live in the final gallery", async () => {
   assert.match(html.slice(galleryIndex), /build\/archive\/37\.png/);
 });
 
+test("BUILD gallery renders square thumbnail controls and an in-page lightbox", async () => {
+  const response = await renderBuildDetail();
+  const html = await response.text();
+  const gallery = html.slice(html.indexOf('class="event-gallery"'));
+
+  assert.match(gallery, /data-gallery-mode="thumbnail-lightbox"/);
+  assert.equal((gallery.match(/class="gallery-thumbnail"/g) ?? []).length, 17);
+  assert.match(gallery, /role="dialog"/);
+  assert.match(gallery, /aria-label="이전 이미지"/);
+  assert.match(gallery, /aria-label="다음 이미지"/);
+  assert.match(gallery, /aria-label="큰 이미지 닫기"/);
+});
+
 test("season galleries are generated from event media folders at build time", async () => {
   const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
   const generator = await readFile(new URL("../scripts/generate-event-media-manifest.mjs", import.meta.url), "utf8");
