@@ -4,11 +4,25 @@ import { HomeEventProvider, HomeEventStage, HomeEventStrip } from "./home-event-
 import { smallPlaygroundPrograms } from "./small-playground/data";
 import { SiteFooter, SiteHeader } from "./site-shell";
 
+function getKoreaDateKey(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function getProgramDateKey(date: string) {
+  const [year = "9999", month = "12", day] = date.match(/\d+/g) ?? [];
+  return `${year}-${month.padStart(2, "0")}-${(day ?? "31").padStart(2, "0")}`;
+}
+
 export default function Home() {
-  const homePrograms = [...smallPlaygroundPrograms].sort((a, b) => {
-    const order: Record<string, number> = { NEXT: 0, UPCOMING: 1, ARCHIVE: 2 };
-    return (order[a.status] ?? 3) - (order[b.status] ?? 3) || b.date.localeCompare(a.date);
-  });
+  const today = getKoreaDateKey();
+  const homePrograms = smallPlaygroundPrograms.map((program) => ({ ...program, eventDate: getProgramDateKey(program.date) })).sort((a, b) => {
+    const aUpcoming = a.eventDate >= today;
+    const bUpcoming = b.eventDate >= today;
+    if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+    return aUpcoming ? a.eventDate.localeCompare(b.eventDate) : b.eventDate.localeCompare(a.eventDate);
+  }).map((program, index) => ({ ...program, homeStatus: program.eventDate >= today ? (index === 0 ? "NEXT" : "UPCOMING") : "ARCHIVE" }));
   return <main>
     <SiteHeader />
     <HomeEventProvider>
@@ -54,10 +68,10 @@ export default function Home() {
 
     <section className="small-preview small-preview-v2 section-pad">
       <div className="small-showcase-head"><div className="small-showcase-copy"><p className="eyebrow">SMALL PLAYGROUND · OFFICIAL SERIES</p><div className="small-showcase-title-row"><h2>작지만 진짜로 만들어보는<br />다음 플레이들.</h2><a className="button light" href="/small-playground">전체 프로그램 보기</a></div><p>큰 시즌 행사와 별개로 이어지는 실습 시리즈입니다.<br />포스터를 눌러 각 프로그램의 내용과 갤러리를 확인하세요.</p></div></div>
-      <div className="small-program-showcase">{homePrograms.map((p, index) => <a className={`small-program-card status-${p.status.toLowerCase()} ${index === 0 ? "featured" : ""}`} href={`/small-playground/${p.slug}`} key={p.slug}>
+      <div className="small-program-showcase">{homePrograms.map((p, index) => <a className={`small-program-card status-${p.homeStatus.toLowerCase()} ${index === 0 ? "featured" : ""}`} href={`/small-playground/${p.slug}`} key={p.slug}>
         <div className="small-program-poster">
           {p.image ? <img src={p.image} alt={`${p.number} ${p.title} 공식 포스터`} /> : <div className={`small-poster-placeholder placeholder-${p.slug}`}><span>AI PLAYGROUND</span><strong>{p.number}</strong><div aria-hidden="true"><i /><i /><i /><i /></div><b>{p.shortTitle}</b></div>}
-          <span className="small-status-badge">{p.status === "NEXT" ? "NEXT PLAY" : p.status}</span>
+          <span className="small-status-badge">{p.homeStatus === "NEXT" ? "NEXT PLAY" : p.homeStatus}</span>
         </div>
         <div className="small-program-card-copy"><div><span>{p.number}</span><time>{p.date}</time></div><h3>{p.shortTitle}</h3><p>{p.description}</p><b>내용과 갤러리 보기 →</b></div>
       </a>)}</div>

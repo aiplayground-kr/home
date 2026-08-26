@@ -52,6 +52,29 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /만들면서 배우는 GitHub Copilot/);
 });
 
+test("home small playground orders the next programs by date and features the nearest one", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-26T00:00:00+09:00") });
+  const response = await renderHome();
+  const html = await response.text();
+  const showcase = html.slice(html.indexOf('class="small-program-showcase"'), html.indexOf('class="join join-v2'));
+  const slugs = [...showcase.matchAll(/href="\/small-playground\/(\d+)"/g)].map((match) => match[1]);
+
+  assert.deepEqual(slugs, ["3", "4", "5", "6", "7", "2", "1"]);
+  assert.match(showcase, /class="small-program-card status-next featured" href="\/small-playground\/3"/);
+});
+
+test("home small playground advances the featured card after an event date passes", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-09-02T00:00:00+09:00") });
+  const response = await renderHome();
+  const html = await response.text();
+  const showcase = html.slice(html.indexOf('class="small-program-showcase"'), html.indexOf('class="join join-v2'));
+  const slugs = [...showcase.matchAll(/href="\/small-playground\/(\d+)"/g)].map((match) => match[1]);
+
+  assert.deepEqual(slugs, ["4", "5", "6", "7", "3", "2", "1"]);
+  assert.match(showcase, /class="small-program-card status-next featured" href="\/small-playground\/4"/);
+  assert.match(showcase, /class="small-program-card status-archive " href="\/small-playground\/3"/);
+});
+
 test("home small playground heading keeps its description and index action left-aligned together", async () => {
   const response = await renderHome();
   const html = await response.text();
