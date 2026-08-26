@@ -26,6 +26,23 @@ test("home hero presents the AI Playground identity and current plays", async ()
   assert.ok(strip.indexOf("2026.08.27") < strip.indexOf("2026.09.01"));
 });
 
+test("home upcoming rail shows three chronological events in a rolling live region", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const strip = html.slice(html.indexOf('class="hero-now-strip"'), html.indexOf('class="manifesto manifesto-v2'));
+  const dates = [...strip.matchAll(/dateTime="([0-9-]+)"/g)].map((match) => match[1]);
+  assert.equal(dates.length, 3);
+  assert.deepEqual(dates, [...dates].sort());
+  assert.match(strip, /class="hero-now-track"/);
+  assert.match(strip, /aria-live="polite"/);
+});
+
+test("home console gives more space to its central screen", async () => {
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero-console-body\s*\{[^}]*grid-template-columns:\s*42px minmax\(0,1fr\) 50px/);
+  assert.match(css, /\.hero-console-screen\s*\{[^}]*min-height:\s*300px/);
+});
+
 test("home small playground section is poster-led and links to event details", async () => {
   const response = await renderHome();
   const html = await response.text();
@@ -90,7 +107,10 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /event\.date >= today/);
   assert.match(component, /setInterval\([\s\S]*60_000/);
   assert.match(component, /upcoming\(smallEvents, today, 1\)/);
-  assert.match(component, /upcoming\(timelineEvents, today, 3\)/);
+  assert.match(component, /upcoming\(timelineEvents, today, timelineEvents\.length\)/);
+  assert.match(component, /Math\.ceil\(nextEvents\.length \/ 3\)/);
+  assert.match(component, /slice\(rollIndex \* 3, rollIndex \* 3 \+ 3\)/);
+  assert.match(component, /4_500/);
 });
 
 test("home console uses the Microsoft logo below the screen", async () => {

@@ -70,8 +70,9 @@ function displayDate(date: string, includeYear = false) {
 }
 
 function upcoming(events: HomeEvent[], today: string, count: number) {
-  const future = events.filter((event) => event.date >= today);
-  return (future.length ? future : events.slice(-count)).slice(0, count);
+  const ordered = [...events].sort((a, b) => a.date.localeCompare(b.date));
+  const future = ordered.filter((event) => event.date >= today);
+  return (future.length ? future : ordered.slice(-count)).slice(0, count);
 }
 
 export function HomeEventStage() {
@@ -114,17 +115,32 @@ export function HomeEventStage() {
 
 export function HomeEventStrip() {
   const today = useKoreaToday();
-  const nextEvents = upcoming(timelineEvents, today, 3);
+  const [rollIndex, setRollIndex] = useState(0);
+  const nextEvents = upcoming(timelineEvents, today, timelineEvents.length);
+  const pageCount = Math.ceil(nextEvents.length / 3);
+
+  useEffect(() => {
+    setRollIndex(0);
+    if (pageCount <= 1) return;
+    const timer = window.setInterval(() => {
+      setRollIndex((index) => (index + 1) % pageCount);
+    }, 4_500);
+    return () => window.clearInterval(timer);
+  }, [today, pageCount]);
+
+  const visibleEvents = nextEvents.slice(rollIndex * 3, rollIndex * 3 + 3);
   return (
     <div className="hero-now-strip" aria-label="다가오는 AI놀이터 일정">
       <span className="now-strip-label"><i /> UP NEXT</span>
-      {nextEvents.map((event) => (
-        <a href={event.href} key={`${event.date}-${event.href}`}>
-          <time dateTime={event.date}>{displayDate(event.date, true)} {weekday(event.date)}</time>
-          <strong>{event.title}</strong>
-          <span>{event.subtitle}</span>
-        </a>
-      ))}
+      <div className="hero-now-track" aria-live="polite" key={`${today}-${rollIndex}`}>
+        {visibleEvents.map((event) => (
+          <a href={event.href} key={`${event.date}-${event.href}`}>
+            <time dateTime={event.date}>{displayDate(event.date, true)} {weekday(event.date)}</time>
+            <strong>{event.title}</strong>
+            <span>{event.subtitle}</span>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
