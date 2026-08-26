@@ -97,8 +97,14 @@
 .hero-console-buttons i:nth-child(2) { top: 19px; right: 0; background: var(--cyan); }
 .hero-console-buttons i:nth-child(3) { bottom: 0; left: 19px; background: var(--coral); }
 .hero-console-buttons i:nth-child(4) { top: 19px; left: 0; background: var(--green); }
-.hero-console-slot { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 16px auto 0; color: #315d73; font-size: 7px; font-weight: 900; letter-spacing: .15em; }
-.hero-console-slot i { width: 70px; height: 4px; border-radius: 99px; background: rgba(23,63,90,.24); }
+.hero-console-slot { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 14px auto 0; color: #1f1f1f; }
+.hero-console-slot strong { font-family: "Segoe UI", Arial, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -.02em; line-height: 1; }
+.microsoft-mark { display: grid; grid-template-columns: repeat(2, 8px); grid-template-rows: repeat(2, 8px); gap: 1px; }
+.microsoft-mark i { display: block; width: 8px; height: 8px; }
+.microsoft-mark i:nth-child(1) { background: #f25022; }
+.microsoft-mark i:nth-child(2) { background: #7fba00; }
+.microsoft-mark i:nth-child(3) { background: #00a4ef; }
+.microsoft-mark i:nth-child(4) { background: #ffb900; }
 
 .hero-floating-date {
   position: absolute;

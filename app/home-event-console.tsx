@@ -102,7 +102,10 @@ export function HomeEventStage() {
           </div>
           <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
         </div>
-        <div className="hero-console-slot"><span>INSERT CURIOSITY</span><i /></div>
+        <div className="hero-console-slot" aria-label="Microsoft">
+          <span className="microsoft-mark" aria-hidden="true"><i /><i /><i /><i /></span>
+          <strong>Microsoft</strong>
+        </div>
       </article>
       <a className="hero-floating-date" href={nextSmall.href}><span>{nextSmall.label}</span><strong>{displayDate(nextSmall.date)}</strong><small>{weekday(nextSmall.date)} · NEXT PLAY →</small></a>
     </div>

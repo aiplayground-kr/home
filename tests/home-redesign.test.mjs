@@ -49,3 +49,12 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /upcoming\(smallEvents, today, 1\)/);
   assert.match(component, /upcoming\(timelineEvents, today, 3\)/);
 });
+
+test("home console uses the Microsoft logo below the screen", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  assert.match(html, /class="hero-console-slot" aria-label="Microsoft"/);
+  assert.match(html, /class="microsoft-mark"/);
+  assert.match(html, />Microsoft<\/strong>/);
+  assert.doesNotMatch(html, /INSERT CURIOSITY/);
+});
