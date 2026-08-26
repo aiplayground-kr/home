@@ -179,10 +179,10 @@
 .manifesto-intro .eyebrow { margin: 0; }
 .manifesto-index { color: #66839b; font-size: 8px; font-weight: 850; letter-spacing: .11em; writing-mode: vertical-rl; transform: rotate(180deg); }
 .manifesto-v2 > .manifesto-content { display: grid; grid-template-columns: 1fr; gap: 46px; }
-.manifesto-message { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(240px, .75fr); gap: clamp(34px, 5vw, 76px); align-items: end; }
+.manifesto-message { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
 .manifesto-v2 .manifesto-message h2 { margin: 0; font-size: clamp(34px, 3.5vw, 50px); line-height: 1.08; letter-spacing: -.05em; }
 .manifesto-v2 .manifesto-message h2 em { color: var(--blue); font-style: normal; }
-.manifesto-message > p { margin: 0; padding-top: 21px; border-top: 1px solid #a9c9dc; color: #4e6a80; font-size: 15px; line-height: 1.85; }
+.manifesto-message > p { max-width: 720px; margin: 0; color: #4e6a80; font-size: 15px; line-height: 1.85; }
 .manifesto-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .manifesto-steps article { position: relative; min-height: 184px; padding: 25px; overflow: hidden; border: 1px solid #d5e6f0; border-radius: 18px; background: rgba(255,255,255,.88); box-shadow: 0 14px 35px rgba(20,73,112,.06); }
 .manifesto-steps article::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--blue); }

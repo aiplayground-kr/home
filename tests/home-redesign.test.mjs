@@ -66,6 +66,8 @@ test("home manifesto overrides the legacy direct-child grid so its message and s
   const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
   assert.match(css, /\.manifesto-v2\s*>\s*\.manifesto-intro\s*\{[^}]*display:\s*flex/);
   assert.match(css, /\.manifesto-v2\s*>\s*\.manifesto-content\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\.manifesto-message\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\.manifesto-message\s*>\s*p\s*\{[^}]*max-width:/);
 });
 
 test("home Snowflake poster preserves its full aspect ratio", async () => {
