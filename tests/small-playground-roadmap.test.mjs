@@ -55,3 +55,8 @@ test("GitHub Pages export includes the new program detail routes", async () => {
   assert.match(exporter, /"\/small-playground\/6"/);
   assert.match(exporter, /"\/small-playground\/7"/);
 });
+
+test("small playground detail hero gives the poster a prominent desktop size", async () => {
+  const typography = await readFile(new URL("../app/typography.css", import.meta.url), "utf8");
+  assert.match(typography, /\.small-detail-page \.detail-hero > \.program-cover[\s\S]*?width: min\(100%, 360px\);[\s\S]*?max-width: 360px;/);
+});
