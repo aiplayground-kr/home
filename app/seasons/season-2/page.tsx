@@ -6,6 +6,7 @@ export default function SeasonTwoPage() { return <main><SiteHeader />
   <section className="event-list section-pad compact">{seasonTwoEvents.map((e, i) => <article className={`${e.accent} ${e.slug === "snowflake" ? "snowflake-feature" : ""}`} id={e.slug} key={e.slug}>
     <div className="event-card-top"><span>OFFICIAL EVENT · 0{i+1}</span><b>{e.state}</b></div>
     <div className="event-copy"><p>{e.eyebrow}</p><h2>{e.title}</h2><p>{e.description}</p></div>
+    {e.slug === "build" && <a className="build-card-poster" href="/seasons/season-2/build" aria-label="BUILD localhost Seoul 공식 포스터와 행사 상세 보기"><img src="/events/season-2/build/archive/32.png" alt="Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 공식 포스터: 2026년 6월 14일, 한국마이크로소프트 13층" /><span>OFFICIAL POSTER <b>크게 보기 →</b></span></a>}
     {e.slug === "snowflake" && <div className="snow-console-wrap">
       <div className="date-cartridge" aria-hidden="true"><span>PLAY DATE</span><i /></div>
       <div className="snow-console" role="img" aria-label="Snowflake 행사일 2026년 8월 27일 목요일을 표시한 게임기 모양 캘린더">

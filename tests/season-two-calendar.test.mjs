@@ -20,3 +20,12 @@ test("Snowflake calendar keeps Google Calendar without the TimeTree action", asy
   assert.doesNotMatch(html, /TimeTree에 담기/);
   assert.doesNotMatch(html, /timetreeapp\.com\/calendars\/events\/new/);
 });
+
+test("BUILD season card shows the supplied official poster without people", async () => {
+  const response = await renderSeasonTwo();
+  const html = await response.text();
+  const buildCard = html.slice(html.lastIndexOf("<article", html.indexOf('id="build"')), html.indexOf('id="snowflake"'));
+  assert.match(buildCard, /class="build-card-poster"/);
+  assert.match(buildCard, /events\/season-2\/build\/archive\/32\.png/);
+  assert.match(buildCard, /2026년 6월 14일/);
+});

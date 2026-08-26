@@ -26,6 +26,43 @@
   letter-spacing: .14em;
 }
 
+.build-card-poster {
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  margin: 28px 0 24px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 18px;
+  background: #07111c;
+  box-shadow: 0 22px 44px rgba(2, 24, 55, .24);
+}
+
+.build-card-poster img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 7 / 6;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+
+.build-card-poster > span {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 36px 18px 16px;
+  background: linear-gradient(180deg, transparent, rgba(2, 15, 28, .92));
+  color: #ffcf3f;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.build-card-poster > span b { color: #fff; font-size: 10px; letter-spacing: 0; }
+.build-card-poster:hover img { transform: scale(1.025); }
+
 .snowflake-feature {
   background:
     radial-gradient(circle at 78% 18%, rgba(157, 240, 255, .34), transparent 28%),
@@ -321,4 +358,5 @@
 @media (prefers-reduced-motion: reduce) {
   .snow-console,
   .date-cartridge { animation: none; }
+  .build-card-poster img { transition: none; }
 }
