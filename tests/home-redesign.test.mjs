@@ -69,3 +69,10 @@ test("home closes with an inclusive community invitation", async () => {
   assert.match(html, /전공·직무 무관/);
   assert.match(html, /AI놀이터 커뮤니티 참여/);
 });
+
+test("site footer echoes the bright hero palette", async () => {
+  const css = await readFile(new URL("../app/footer.css", import.meta.url), "utf8");
+  assert.match(css, /linear-gradient\(145deg, #f9fcff 0%, #eaf5fb/);
+  assert.match(css, /linear-gradient\(90deg, var\(--blue\)/);
+  assert.doesNotMatch(css, /#fff8e9|#f1e4cf/);
+});
