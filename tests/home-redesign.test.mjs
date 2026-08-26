@@ -58,3 +58,14 @@ test("home console uses the Microsoft logo below the screen", async () => {
   assert.match(html, />Microsoft<\/strong>/);
   assert.doesNotMatch(html, /INSERT CURIOSITY/);
 });
+
+test("home closes with an inclusive community invitation", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  assert.match(html, /class="join join-v2 section-pad"/);
+  assert.match(html, /호기심과 열정만 있다면/);
+  assert.match(html, /누구나 함께할 수 있어요/);
+  assert.match(html, /처음이어도 환영/);
+  assert.match(html, /전공·직무 무관/);
+  assert.match(html, /AI놀이터 커뮤니티 참여/);
+});
