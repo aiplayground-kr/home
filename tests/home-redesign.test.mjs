@@ -69,6 +69,13 @@ test("home Season 1 archive shows all four event posters", async () => {
   }
 });
 
+test("home Season 2 panel uses a brighter Microsoft blue treatment", async () => {
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+  assert.match(css, /\.season-panel\.current\s*\{[^}]*linear-gradient\([^}]*#145cc5/i);
+  assert.match(css, /\.season-panel\.current::before\s*\{[^}]*#ffbf00/i);
+  assert.match(css, /\.season-panel\.current \.mini-events a\s*\{[^}]*rgba\(255,\s*255,\s*255,\s*\.16\)/i);
+});
+
 test("home manifesto turns the playground philosophy into three experience steps", async () => {
   const response = await renderHome();
   const html = await response.text();

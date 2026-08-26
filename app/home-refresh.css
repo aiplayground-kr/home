@@ -156,6 +156,25 @@
 .hero-now-strip strong { margin: 6px 0 3px; font-size: 13px; }
 .hero-now-strip a span { color: var(--muted); font-size: 10px; }
 
+.season-panel.current {
+  background: linear-gradient(140deg, #145cc5 0%, #1679db 58%, #19aee8 100%);
+  box-shadow: 0 22px 48px rgba(20, 92, 197, .2);
+}
+.season-panel.current::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 8px;
+  background: #ffbf00;
+}
+.season-panel.current .mini-events a {
+  border-color: rgba(255, 255, 255, .42);
+  background: rgba(255, 255, 255, .16);
+}
+.season-panel.current .mini-events a:hover { background: rgba(255, 255, 255, .24); }
+.season-panel.current .mini-events span { color: #fff0a8; }
+.season-panel.current .mini-events small { color: rgba(255, 255, 255, .9); }
+
 .manifesto-v2 {
   position: relative;
   display: grid;
