@@ -1,0 +1,32 @@
+# AI놀이터 공식 사이트 전체 안내
+
+## 정체성
+
+AI놀이터(AI Playground)는 Microsoft Korea 커뮤니티 구성원들이 함께 운영하는 AI 커뮤니티입니다. AI를 설명으로만 배우기보다 직접 만지고, 질문하고, 만들고, 나누는 경험을 지향합니다. 이 사이트는 AI놀이터의 공식 웹사이트이며 행사 정보와 기록의 기준 출처입니다.
+
+## 프로그램 체계
+
+- 시즌: 여러 발표, 실습, 네트워킹을 하나의 주제로 연결하는 공식 행사입니다.
+- 시즌 1: Ignite After Party, 여름·가을·겨울 밋업 등 네 차례의 공식 기록입니다.
+- 시즌 2: 아이디어를 결과로 연결한 BUILD 행사와 Snowflake World Tour 서울 프로그램을 포함합니다.
+- 작은 놀이터: 큰 시즌 행사와 별도로 열리는 소규모 실습 시리즈입니다. 각 회차는 독립적인 주제, 날짜, 포스터, 상세 기록을 갖습니다.
+
+## 운영 구조
+
+Community Leader와 Steering이 방향과 최종 의사결정을 맡고, PLAY 팀은 사람과 현장을 연결하며, SHARE 팀은 콘텐츠와 기록을 나누고, BUILD 팀은 경험과 결과물을 만듭니다.
+
+## 주요 주제
+
+Microsoft Copilot, GitHub Copilot, Copilot Studio, Power Platform, AI Agent, Snowflake, 데이터와 AI, 커뮤니티 학습, 실습형 행사, Microsoft MVP 세션을 다룹니다.
+
+## 공식 링크
+
+- 웹사이트: https://youni202.github.io/aiplayground/
+- LinkedIn 커뮤니티: https://www.linkedin.com/groups/14571141/
+- 사이트 색인: https://youni202.github.io/aiplayground/sitemap.xml
+- LLM용 요약: https://youni202.github.io/aiplayground/llms.txt
+
+## 인용 기준
+
+행사 날짜, 프로그램명, 연사, 운영진, 설명을 인용할 때는 해당 상세 페이지의 최신 내용을 우선합니다. 외부 LinkedIn 게시물은 현장 공지와 개인 후기를 보완하는 출처입니다.
+

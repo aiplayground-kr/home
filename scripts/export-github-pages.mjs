@@ -1,11 +1,11 @@
-import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const output = path.resolve(root, "docs");
-const basePath = "/AIplayground";
-const canonicalOrigin = "https://youni202.github.io/AIplayground";
+const output = path.resolve(root, "_site");
+const basePath = "/aiplayground";
+const canonicalOrigin = "https://youni202.github.io/aiplayground";
 const routes = [
   "/",
   "/host",
@@ -29,16 +29,14 @@ const routes = [
   "/small-playground/7",
 ];
 
-if (path.dirname(output) !== root || path.basename(output) !== "docs") {
-  throw new Error(`Refusing to replace unexpected output directory: ${output}`);
+if (path.dirname(output) !== root || path.basename(output) !== "_site") {
+  throw new Error(`Unexpected GitHub Pages output directory: ${output}`);
 }
 
-await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(path.join(root, "public"), output, { recursive: true });
-await mkdir(path.join(output, "_next", "static"), { recursive: true });
-await cp(path.join(root, "dist", "client", "_next", "static", "css"), path.join(output, "_next", "static", "css"), { recursive: true });
-await cp(path.join(root, "dist", "client", "_next", "static", "_vinext_fonts"), path.join(output, "_next", "static", "_vinext_fonts"), { recursive: true });
+await mkdir(path.join(output, "_next"), { recursive: true });
+await cp(path.join(root, "dist", "client", "_next", "static"), path.join(output, "_next", "static"), { recursive: true });
 
 const workerUrl = pathToFileURL(path.join(root, "dist", "server", "index.js"));
 workerUrl.searchParams.set("static-export", String(Date.now()));
@@ -46,14 +44,12 @@ const { default: worker } = await import(workerUrl.href);
 const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
 const context = { waitUntil() {}, passThroughOnException() {} };
 
-function makeStatic(html) {
+function makeStatic(html, route) {
+  const canonicalPath = route === "/" ? "/" : `${route}/`;
   return html
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
-    .replace(/<link\b(?=[^>]*\brel=["']modulepreload["'])[^>]*>/gi, "")
-    .replace(/<link\b(?=[^>]*\bas=["']script["'])[^>]*>/gi, "")
-    .replace(/(href|src)="\/(?!\/)/g, `$1="${basePath}/`)
+    .replace(/(["'`])\/(?!\/|>)/g, `$1${basePath}/`)
     .replaceAll("https://ai-noriter-season2.youni.chatgpt.site", canonicalOrigin)
-    .replace("</head>", `<meta name="github-pages-base" content="${basePath}"></head>`);
+    .replace("</head>", `<link rel="canonical" href="${canonicalOrigin}${canonicalPath}"><meta name="github-pages-base" content="${basePath}"></head>`);
 }
 
 for (const route of routes) {
@@ -61,7 +57,7 @@ for (const route of routes) {
   if (!response.ok) throw new Error(`Static render failed for ${route}: ${response.status}`);
   const routeDirectory = route === "/" ? output : path.join(output, ...route.slice(1).split("/"));
   await mkdir(routeDirectory, { recursive: true });
-  await writeFile(path.join(routeDirectory, "index.html"), makeStatic(await response.text()), "utf8");
+  await writeFile(path.join(routeDirectory, "index.html"), makeStatic(await response.text(), route), "utf8");
 }
 
 async function rewriteCss(directory) {
@@ -75,7 +71,19 @@ async function rewriteCss(directory) {
   }
 }
 
+async function rewriteClientChunks(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) await rewriteClientChunks(target);
+    if (entry.isFile() && /^(home-event-console|program-grid|event-gallery|season-event-components)-.*\.js$/.test(entry.name)) {
+      const source = await readFile(target, "utf8");
+      await writeFile(target, source.replace(/(["'`])\/(?!\/)/g, `$1${basePath}/`), "utf8");
+    }
+  }
+}
+
 await rewriteCss(path.join(output, "_next", "static", "css"));
+await rewriteClientChunks(path.join(output, "_next", "static", "chunks"));
 await writeFile(path.join(output, ".nojekyll"), "", "utf8");
 await cp(path.join(output, "index.html"), path.join(output, "404.html"));
 console.log(`Exported ${routes.length} routes to ${output}`);
