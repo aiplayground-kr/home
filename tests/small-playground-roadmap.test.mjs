@@ -24,6 +24,20 @@ test("small playground index presents programs 4 through 7", async () => {
   assert.match(html, /href="\/small-playground\/7"/);
 });
 
+test("placeholder posters use the four-tile Microsoft mark on index and detail", async () => {
+  const [index, detail] = await Promise.all([
+    render("/small-playground").then((response) => response.text()),
+    render("/small-playground/5").then((response) => response.text()),
+  ]);
+
+  for (const html of [index, detail]) {
+    const start = html.indexOf('class="ms-tile-mark"');
+    assert.notEqual(start, -1);
+    const mark = html.slice(start, html.indexOf("</div>", start));
+    assert.equal((mark.match(/<i/g) ?? []).length, 4);
+  }
+});
+
 test("program detail pages show the supplied schedule and audience", async () => {
   const [four, five, six, seven] = await Promise.all([
     render("/small-playground/4").then((response) => response.text()),

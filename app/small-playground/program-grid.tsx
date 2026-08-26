@@ -12,7 +12,7 @@ export function ProgramGrid({ programs }: { programs: SmallPlaygroundProgram[] }
     <button className={filter === "archive" ? "active" : ""} onClick={() => setFilter("archive")}>아카이브</button>
   </div></div><div className="small-grid">{visible.map((p) => <a href={`/small-playground/${p.slug}`} key={p.slug}>
     <div className="program-card-media">
-      {p.image ? <img src={p.image} alt={`${p.number} ${p.title} 행사 포스터`} /> : <div className={`program-cover cover-${(Number(p.slug) % 4) + 1}`}><span>AI PLAYGROUND</span><b>{p.number}</b><small>SMALL PLAYGROUND</small><h2>{p.shortTitle}</h2><time>{p.date}</time></div>}
+      {p.image ? <img src={p.image} alt={`${p.number} ${p.title} 행사 포스터`} /> : <div className={`program-cover cover-${(Number(p.slug) % 4) + 1}`}><span>AI PLAYGROUND</span><b>{p.number}</b><div className="ms-tile-mark" aria-hidden="true"><i /><i /><i /><i /></div><small>SMALL PLAYGROUND</small><h2>{p.shortTitle}</h2><time>{p.date}</time></div>}
       <span className="poster-badge">{p.image ? "OFFICIAL POSTER" : "POSTER COMING SOON"}</span>
     </div>
     <div className="program-info"><span>{p.status}</span><h3>{p.title}</h3><p>{p.description}</p><b>자세히 보기</b></div>
