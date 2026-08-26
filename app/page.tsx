@@ -53,7 +53,7 @@ export default function Home() {
     </section>
 
     <section className="small-preview small-preview-v2 section-pad">
-      <div className="small-showcase-head"><div className="small-showcase-copy"><p className="eyebrow">SMALL PLAYGROUND · OFFICIAL SERIES</p><h2>작지만 진짜로 만들어보는<br />다음 플레이들.</h2><p>큰 시즌 행사와 별개로 이어지는 실습 시리즈입니다.<br />포스터를 눌러 각 프로그램의 내용과 갤러리를 확인하세요.</p><a className="button light" href="/small-playground">전체 프로그램 보기</a></div></div>
+      <div className="small-showcase-head"><div className="small-showcase-copy"><p className="eyebrow">SMALL PLAYGROUND · OFFICIAL SERIES</p><div className="small-showcase-title-row"><h2>작지만 진짜로 만들어보는<br />다음 플레이들.</h2><a className="button light" href="/small-playground">전체 프로그램 보기</a></div><p>큰 시즌 행사와 별개로 이어지는 실습 시리즈입니다.<br />포스터를 눌러 각 프로그램의 내용과 갤러리를 확인하세요.</p></div></div>
       <div className="small-program-showcase">{homePrograms.map((p, index) => <a className={`small-program-card status-${p.status.toLowerCase()} ${index === 0 ? "featured" : ""}`} href={`/small-playground/${p.slug}`} key={p.slug}>
         <div className="small-program-poster">
           {p.image ? <img src={p.image} alt={`${p.number} ${p.title} 공식 포스터`} /> : <div className={`small-poster-placeholder placeholder-${p.slug}`}><span>AI PLAYGROUND</span><strong>{p.number}</strong><div aria-hidden="true"><i /><i /><i /><i /></div><b>{p.shortTitle}</b></div>}
