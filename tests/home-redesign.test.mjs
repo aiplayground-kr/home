@@ -237,6 +237,20 @@ test("home offers the supplied sponsorship and promotion form immediately before
   assert.match(support, /target="_blank"/);
 });
 
+test("sponsorship background floats Microsoft symbols without affecting accessibility", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const supportIndex = html.indexOf('class="support-opportunity section-pad"');
+  const joinIndex = html.indexOf('class="join join-v2 section-pad"');
+  const support = html.slice(supportIndex, joinIndex);
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+
+  assert.match(support, /class="support-logo-cloud" aria-hidden="true"/);
+  assert.equal([...support.matchAll(/class="support-ms-mark"/g)].length, 6);
+  assert.match(css, /@keyframes support-logo-float/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.support-ms-mark[\s\S]*animation:\s*none/);
+});
+
 test("site footer echoes the bright hero palette", async () => {
   const css = await readFile(new URL("../app/footer.css", import.meta.url), "utf8");
   assert.match(css, /linear-gradient\(145deg, #f9fcff 0%, #eaf5fb/);

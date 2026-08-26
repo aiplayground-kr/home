@@ -78,6 +78,9 @@ export default function Home() {
     </section>
 
     <section className="support-opportunity section-pad">
+      <div className="support-logo-cloud" aria-hidden="true">
+        {Array.from({ length: 6 }, (_, index) => <span className="support-ms-mark" key={index}><i /><i /><i /><i /></span>)}
+      </div>
       <div className="support-opportunity-heading">
         <p className="eyebrow">SPONSOR &amp; PROMOTION</p>
         <h2>후원으로 경험을 만들고,<br /><em>함께 알릴 기회를 넓힙니다.</em></h2>
