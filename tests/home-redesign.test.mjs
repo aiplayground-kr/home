@@ -150,3 +150,10 @@ test("site footer echoes the bright hero palette", async () => {
   assert.match(css, /linear-gradient\(90deg, var\(--blue\)/);
   assert.doesNotMatch(css, /#fff8e9|#f1e4cf/);
 });
+
+test("site footer keeps its desktop height compact", async () => {
+  const css = await readFile(new URL("../app/footer.css", import.meta.url), "utf8");
+  assert.match(css, /\.site-footer\s*\{[^}]*padding-top:\s*30px;[^}]*padding-bottom:\s*30px;/);
+  assert.match(css, /\.site-footer \.footer-brand-stack > img\s*\{[^}]*width:\s*180px;/);
+  assert.match(css, /\.site-footer::after\s*\{[^}]*width:\s*210px;[^}]*height:\s*210px;/);
+});

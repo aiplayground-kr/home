@@ -1,8 +1,8 @@
 .site-footer {
   position: relative;
   overflow: hidden;
-  padding-top: 54px;
-  padding-bottom: 54px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   border-top-color: #d4e6f2;
   background:
     radial-gradient(circle at 7% 18%, rgba(25, 174, 232, .11), transparent 26%),
@@ -23,13 +23,13 @@
 
 .site-footer::after {
   position: absolute;
-  right: -72px;
-  bottom: -128px;
-  width: 290px;
-  height: 290px;
+  right: -54px;
+  bottom: -104px;
+  width: 210px;
+  height: 210px;
   border: 1px solid rgba(20, 92, 197, .13);
   border-radius: 50%;
-  box-shadow: 0 0 0 46px rgba(255,255,255,.25), 0 0 0 47px rgba(20,92,197,.06);
+  box-shadow: 0 0 0 30px rgba(255,255,255,.25), 0 0 0 31px rgba(20,92,197,.06);
   content: "";
   pointer-events: none;
 }
@@ -39,11 +39,11 @@
   z-index: 1;
   flex-direction: column;
   align-items: flex-start;
-  gap: 13px;
+  gap: 8px;
 }
 
 .site-footer .footer-brand-stack > img {
-  width: 205px;
+  width: 180px;
 }
 
 .microsoft-korea {
@@ -80,7 +80,7 @@
 
 .site-footer .footer-links a {
   position: relative;
-  padding: 9px 2px;
+  padding: 6px 2px;
   color: #284d68;
   font-weight: 750;
   transition: color .2s ease;
@@ -109,16 +109,17 @@
 .site-footer > p {
   color: #547086;
   font-weight: 650;
+  line-height: 1.55;
 }
 
 @media (max-width: 950px) {
-  .site-footer .footer-brand-stack { gap: 14px; }
-  .site-footer .footer-links { justify-content: flex-start; margin-top: 8px; }
-  .site-footer { gap: 24px; }
+  .site-footer .footer-brand-stack { gap: 8px; }
+  .site-footer .footer-links { justify-content: flex-start; margin-top: 0; }
+  .site-footer { gap: 16px; }
 }
 
 @media (max-width: 620px) {
-  .site-footer { padding-top: 42px; padding-bottom: 42px; }
+  .site-footer { padding-top: 28px; padding-bottom: 28px; }
   .site-footer .footer-links { gap: 18px; }
-  .site-footer .footer-brand-stack > img { width: 185px; }
+  .site-footer .footer-brand-stack > img { width: 165px; }
 }
