@@ -27,7 +27,23 @@ export default function Home() {
       <HomeEventStrip />
     </section>
 
-    <section className="manifesto section-pad"><p className="eyebrow">WHY WE PLAY</p><div><h2>설명보다 한 번의 경험이<br /><em>AI를 더 가깝게</em> 만듭니다.</h2><p>누군가는 처음이라서, 누군가는 더 깊이 알고 싶어서 이곳에 옵니다. 서로의 질문이 다음 사람의 힌트가 되고, 작은 시도가 모두의 배움이 됩니다.</p></div></section>
+    <section className="manifesto manifesto-v2 section-pad">
+      <div className="manifesto-intro">
+        <p className="eyebrow">WHY WE PLAY</p>
+        <span className="manifesto-index">01 · PLAYGROUND PHILOSOPHY</span>
+      </div>
+      <div className="manifesto-content">
+        <div className="manifesto-message">
+          <h2>설명보다 한 번의 경험이<br /><em>AI를 더 가깝게</em> 만듭니다.</h2>
+          <p>누군가는 처음이라서, 누군가는 더 깊이 알고 싶어서 이곳에 옵니다. 서로의 질문이 다음 사람의 힌트가 되고, 작은 시도가 모두의 배움이 됩니다.</p>
+        </div>
+        <div className="manifesto-steps" aria-label="AI놀이터의 경험 흐름">
+          <article><span>01</span><strong>QUESTION</strong><h3>편하게 질문하고</h3><p>모르는 것에서 시작해도 괜찮아요.</p></article>
+          <article><span>02</span><strong>PLAY</strong><h3>직접 해보고</h3><p>작은 시도를 실제 경험으로 바꿉니다.</p></article>
+          <article><span>03</span><strong>SHARE</strong><h3>함께 나눠요</h3><p>나의 발견이 다음 사람의 힌트가 됩니다.</p></article>
+        </div>
+      </div>
+    </section>
 
     <section className="season-preview section-pad">
       <div className="section-head"><div><p className="eyebrow">SEASONS</p><h2>두 시즌, 이어지는 질문</h2></div><a href="/seasons">시즌 전체 보기</a></div>

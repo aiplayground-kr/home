@@ -35,6 +35,16 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /만들면서 배우는 GitHub Copilot/);
 });
 
+test("home manifesto turns the playground philosophy into three experience steps", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  assert.match(html, /class="manifesto manifesto-v2 section-pad"/);
+  assert.match(html, /class="manifesto-steps"/);
+  for (const text of ["QUESTION", "PLAY", "SHARE", "편하게 질문하고", "직접 해보고", "함께 나눠요"]) {
+    assert.match(html, new RegExp(text));
+  }
+});
+
 test("home Snowflake poster preserves its full aspect ratio", async () => {
   const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
   assert.match(css, /\.hero-screen-snowflake img\{[^}]*height:auto;[^}]*object-fit:contain/);
