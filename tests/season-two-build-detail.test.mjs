@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function renderBuildDetail() {
@@ -40,7 +41,9 @@ test("BUILD detail credits sponsors and shows the supplied sponsor board", async
 test("BUILD detail restores event imagery and speaker LinkedIn links", async () => {
   const response = await renderBuildDetail();
   const html = await response.text();
-  assert.match(html, /class="build-visual-story"/);
+  assert.match(html, /class="season-event-cover cover-tone-build"/);
+  assert.match(html, /class="speaker-carousel-track"/);
+  assert.doesNotMatch(html, /class="build-visual-story"/);
   for (const image of ["32", "33", "35", "37", "41", "46", "50"]) {
     assert.match(html, new RegExp(`build\/archive\/${image}\\.png`));
   }
@@ -57,4 +60,23 @@ test("BUILD section headings flow from label to title to description before the 
   assert.ok(section.indexOf("TRACK 1 · JEJU ROOM") < section.indexOf("세션 일정"));
   assert.ok(section.indexOf("세션 일정") < section.indexOf("오후 1시부터 7개의 발표와 실습"));
   assert.ok(section.indexOf("오후 1시부터 7개의 발표와 실습") < section.indexOf('class="build-session-table"'));
+});
+
+test("BUILD event photos live in the final gallery", async () => {
+  const response = await renderBuildDetail();
+  const html = await response.text();
+  const galleryIndex = html.indexOf('class="event-gallery"');
+  assert.ok(galleryIndex > html.indexOf('class="build-sponsors"'));
+  assert.ok(galleryIndex > html.indexOf('class="speaker-carousel-track"'));
+  assert.match(html.slice(galleryIndex), /build\/archive\/35\.png/);
+  assert.match(html.slice(galleryIndex), /build\/archive\/37\.png/);
+});
+
+test("season galleries are generated from event media folders at build time", async () => {
+  const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
+  const generator = await readFile(new URL("../scripts/generate-event-media-manifest.mjs", import.meta.url), "utf8");
+  const manifest = await readFile(new URL("../app/generated/event-media.ts", import.meta.url), "utf8");
+  assert.match(packageJson, /generate-event-media-manifest\.mjs/);
+  assert.match(generator, /\["archive", "gallery"\]/);
+  assert.match(manifest, /season-2\/build\/archive/);
 });

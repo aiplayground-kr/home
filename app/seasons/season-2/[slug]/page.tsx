@@ -2,55 +2,14 @@ import type { Metadata } from "next";
 import { seasonTwoEvents } from "../../../content";
 import { EventGallery } from "../../../event-gallery";
 import { SiteFooter, SiteHeader } from "../../../site-shell";
+import { SeasonEventCover, SpeakerCarousel } from "../../season-event-components";
+import { buildGallery as eventBuildGallery, buildSessions as eventBuildSessions, buildSpeakers, snowflakeSessions as eventSnowflakeSessions } from "../../season-two-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const buildSessions = [
-  { time: "13:00–13:20", title: "환영합니다", ref: "WELCOME", company: "Microsoft", speaker: "송주현 리더", description: "BUILD / localhost:SEOUL의 문을 여는 환영 인사" },
-  { time: "13:20–14:00", title: "1인 기업가가 되기 위한 마지막 관문, Claw and Agent Harness", ref: "BRK243", company: "Microsoft MVP", speaker: "김훈동", description: "Foundry의 Claw Agent와 다중 에이전트 시스템", linkedin: "https://www.linkedin.com/in/hoondong-kim/" },
-  { time: "14:00–14:40", title: "Copilot Cowork로 업무 자동화 뚝딱 해치우기", ref: "SPECIAL", company: "Microsoft MVP", speaker: "전대호", description: "왕초보도 시작할 수 있는 Copilot Cowork 업무 자동화", linkedin: "https://www.linkedin.com/in/canrobot/" },
-  { time: "14:40–15:20", title: "개발자가 주목해야 할 Build 2026 요약", ref: "BRK206", company: "Microsoft MVP", speaker: "이보라", description: "Visual Studio와 GitHub Copilot의 디버깅·프로파일링·테스트 에이전트", linkedin: "https://www.linkedin.com/in/learner-bora/" },
-  { time: "15:20–16:00", title: "비개발자가 GitHub Copilot으로 팀 전용 AI 비서를 만든 이야기", ref: "LTG402", company: "GM Technical Korea", speaker: "이영빈", description: "아이디어를 AI 네이티브 런타임의 프로덕션 준비 에이전트로 연결한 경험", linkedin: "https://www.linkedin.com/in/youngbinlee/" },
-  { time: "16:00–16:20", title: "Bio Break", ref: "BREAK", company: "", speaker: "", description: "휴식과 네트워킹" },
-  { time: "16:20–16:50", title: "App Builder Agent로 학습 가이드 제작기", ref: "SPECIAL", company: "Office Tutor", speaker: "윤미영(유니)", description: "Copilot과 Agent로 손쉽게 만드는 학습 가이드", linkedin: "https://www.linkedin.com/in/younni/" },
-  { time: "16:50–17:50", title: "GitHub Copilot 3종 기능, 직접 해보기!", ref: "WORKSHOP", company: "Microsoft", speaker: "유승호", description: "Ask·Agent·Plan 기능으로 경험하는 AI 기반 개발 워크플로우", linkedin: "https://www.linkedin.com/in/hahahaysh/" },
-];
-
-const buildGallery = [
-  { src: "/events/season-2/build/archive/32.png", alt: "Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 공식 포스터", caption: "2026년 6월 14일, 한국마이크로소프트에서 열린 AI놀이터 여름 밋업", label: "OFFICIAL POSTER" },
-  { src: "/events/season-2/build/archive/33.png", alt: "BUILD localhost Seoul AI놀이터 전체 커뮤니티 구성원 보드", caption: "행사를 함께 만든 AI놀이터 Crew", label: "COMMUNITY CREW" },
-  { src: "/events/season-2/build/archive/34.png", alt: "BUILD localhost Seoul AI놀이터 연사 일곱 명 소개 보드", caption: "BUILD를 커뮤니티의 언어로 전한 연사 라인업", label: "SPEAKER BOARD" },
-  { src: "/events/season-2/build/archive/35.png", alt: "BUILD localhost Seoul AI놀이터 행사 참가자 단체사진", caption: "발표와 실습을 마친 뒤 함께 남긴 단체사진", label: "GROUP PHOTO" },
-  { src: "/events/season-2/build/archive/36.png", alt: "BUILD localhost Seoul AI놀이터 발표 현장 사진 모음", caption: "무대에서 BUILD를 쉽고 생생하게 풀어낸 연사들", label: "LIVE SPEAKERS" },
-  { src: "/events/season-2/build/archive/37.png", alt: "BUILD localhost Seoul AI놀이터 등록 세션 네트워킹 현장 사진 모음", caption: "등록부터 세션과 네트워킹까지 이어진 행사 현장", label: "EVENT SCENES" },
-  { src: "/events/season-2/build/archive/38.png", alt: "BUILD localhost Seoul AI놀이터 여름 밋업 Crew 소개 보드", caption: "AI놀이터 여름 밋업을 함께 준비한 Crew", label: "MEETUP CREW" },
-  { src: "/events/season-2/build/archive/39.png", alt: "BUILD localhost Seoul AI놀이터 제주룸 발표와 실습 현장", caption: "제주룸을 가득 채운 참가자와 실습 현장", label: "FULL HOUSE" },
-  { src: "/events/season-2/build/archive/40.png", alt: "BUILD localhost Seoul AI놀이터 전체 스피커 포스터", caption: "AI놀이터 여름 밋업의 전체 스피커", label: "SPEAKER LINEUP" },
-  { src: "/events/season-2/build/archive/41.png", alt: "BUILD localhost Seoul AI놀이터 행사 일정과 세션 시간표", caption: "BUILD 여름 밋업 세션 시간표", label: "SESSION GUIDE" },
-  { src: "/events/season-2/build/archive/42.png", alt: "BUILD localhost Seoul AI놀이터 스피커 소개 포스터", caption: "BUILD를 대신 읽고 쉽게 풀어준 사람들", label: "SPEAKER POSTER" },
-  { src: "/events/season-2/build/archive/45.png", alt: "전대호 Copilot Cowork 업무 자동화 세션 소개", caption: "Copilot Cowork로 업무 자동화 뚝딱 해치우기", label: "SESSION · JEON DAEHO" },
-  { src: "/events/season-2/build/archive/46.png", alt: "김훈동 Claw and Agent Harness 세션 소개", caption: "1인 기업가가 되기 위한 마지막 관문, Claw and Agent Harness", label: "SESSION · KIM HOONDONG" },
-  { src: "/events/season-2/build/archive/47.png", alt: "이보라 GitHub Copilot SDK 세션 소개", caption: "엔터프라이즈가 사랑하는 GitHub Copilot SDK와 확장 가능성", label: "SESSION · LEE BORA" },
-  { src: "/events/season-2/build/archive/48.png", alt: "유승호 GitHub Copilot 실습 세션 소개", caption: "GitHub Copilot 3종 기능 직접 해보기", label: "SESSION · YOU SUNGHO" },
-  { src: "/events/season-2/build/archive/49.png", alt: "윤미영 Microsoft Copilot Agent 세션 소개", caption: "Microsoft Copilot Agent로 학습 가이드 제작하기", label: "SESSION · YOUN MIYOUNG" },
-  { src: "/events/season-2/build/archive/50.png", alt: "이영빈 GitHub Copilot AI 비서 세션 소개", caption: "비개발자가 팀 전용 AI 비서를 만든 이야기", label: "SESSION · LEE YOUNGBIN" },
-];
-
-const snowflakeSessions = [
-  { no: "01", time: "08:00–09:30", topic: "Copilot", speaker: "전대호", role: "Microsoft MVP", crew: ["주인화", "이종혁"], description: "Copilot 설명과 데모로 하루의 첫 플레이를 엽니다.", image: "/team/daeho-jeon.jpg", linkedin: "https://www.linkedin.com/in/canrobot/" },
-  { no: "02", time: "09:30–11:00", topic: "Copilot Studio", speaker: "진미나", role: "Microsoft MVP", crew: ["윤미영", "염선영"], description: "Copilot Studio 기반 업무와 Agent 시나리오를 설명하고 시연합니다.", image: "/team/mina-jin.jpg", linkedin: "https://www.linkedin.com/in/mina-jin-91333493/" },
-  { no: "03", time: "11:00–12:30", topic: "Power Platform / P.P", speaker: "이재석", role: "Microsoft MVP", crew: ["김성미"], description: "Power Platform을 활용한 자동화와 실제 업무 시나리오를 만납니다.", initials: "이재석", linkedin: "https://www.linkedin.com/in/leejaeseok/" },
-  { no: "04", time: "13:30–15:00", topic: "Power Platform / P.P", speaker: "허석", role: "Microsoft MVP", crew: ["이미희", "박경덕"], description: "Power Platform 기반 자동화와 업무 적용 경험을 데모로 연결합니다.", image: "/team/huh-seok.jpg", linkedin: "https://www.linkedin.com/in/somissem/" },
-  { no: "05", time: "15:00–16:30", topic: "GitHub Copilot", speaker: "이보라", role: "Microsoft MVP", crew: ["진선라(오후)", "김성미"], description: "개발자를 위한 AI Coding과 GitHub Copilot 경험을 공유합니다.", initials: "이보라", linkedin: "https://www.linkedin.com/in/learner-bora/" },
-  { no: "06", time: "16:30–18:00", topic: "Copilot + PC", speaker: "서동훈", role: "Microsoft", crew: ["문종호"], description: "Surface 기반 AI on Device 경험과 현장 데모를 콘텐츠로 만듭니다.", initials: "서동훈", linkedin: "https://www.linkedin.com/in/daveseo/" },
-];
-
 function BuildEventRecord() {
   return <>
-    <section className="build-visual-story" aria-label="BUILD 행사 주요 이미지">
-      <figure className="build-visual-poster"><img src={buildGallery[0].src} alt={buildGallery[0].alt} /><figcaption><span>OFFICIAL POSTER</span><strong>BUILD / localhost:SEOUL</strong></figcaption></figure>
-      <div className="build-visual-scenes"><figure><img src={buildGallery[3].src} alt={buildGallery[3].alt} /><figcaption>배움과 실습을 함께 완주한 AI놀이터 커뮤니티</figcaption></figure><figure><img src={buildGallery[5].src} alt={buildGallery[5].alt} /><figcaption>세션·실습·네트워킹으로 이어진 현장 기록</figcaption></figure></div>
-    </section>
+    <SeasonEventCover id="build-cover-title" tone="build" image="/events/season-2/build/archive/32.png" imageAlt="Microsoft BUILD localhost Seoul AI놀이터 여름 밋업 공식 포스터" eyebrow="MICROSOFT BUILD 2026 · LOCALHOST:SEOUL" title={<>BUILD를 커뮤니티의 언어로,<br />직접 만들며 이해합니다</>} description="Build 2026의 핵심 발표를 함께 읽고, Copilot과 Agent를 직접 경험하며 아이디어를 실제 결과로 연결한 AI놀이터 여름 밋업입니다." facts={[{ label: "DATE", value: "2026년 6월 14일 (일)" }, { label: "PLACE", value: "한국마이크로소프트 13층 · 제주룸" }, { label: "PLAY", value: "Build 리뷰 · Copilot 실습 · 네트워킹" }]} tags={["REAL CODE", "REAL WORKFLOWS", "REAL COMMUNITY"]} />
     <section className="build-record-section build-overview" aria-labelledby="build-overview-title">
       <div className="build-record-heading"><span>BUILD / LOCALHOST:SEOUL</span><h2 id="build-overview-title">행사 개요</h2><p>Build 2026의 핵심 발표를 커뮤니티의 언어로 다시 만나고, Copilot과 Agent를 직접 경험한 AI놀이터 여름 밋업입니다.</p></div>
       <div className="build-table-wrap">
@@ -63,12 +22,14 @@ function BuildEventRecord() {
       </div>
     </section>
 
+    <SpeakerCarousel eyebrow="SPEAKERS · SWIPE TO EXPLORE" title="BUILD를 함께 읽어준 연사들" description="카드를 좌우로 넘기며 여섯 명의 연사와 발표 주제를 확인할 수 있습니다." speakers={buildSpeakers} />
+
     <section className="build-record-section" aria-labelledby="build-sessions-title">
       <div className="build-record-heading"><span>TRACK 1 · JEJU ROOM</span><h2 id="build-sessions-title">세션 일정</h2><p>오후 1시부터 7개의 발표와 실습이 이어진 BUILD 플레이리스트입니다.</p></div>
       <div className="build-table-wrap build-session-scroll" tabIndex={0} aria-label="BUILD 행사 세션 표, 가로로 스크롤 가능">
         <table className="build-session-table">
           <thead><tr><th scope="col">시간</th><th scope="col">세션</th><th scope="col">연사</th><th scope="col">Build</th></tr></thead>
-          <tbody>{buildSessions.map((session) => <tr key={`${session.time}-${session.title}`} className={session.ref === "BREAK" ? "break-row" : ""}>
+          <tbody>{eventBuildSessions.map((session) => <tr key={`${session.time}-${session.title}`} className={session.ref === "BREAK" ? "break-row" : ""}>
             <td><time>{session.time}</time></td>
             <td><strong>{session.title}</strong><span>{session.description}</span></td>
             <td>{session.speaker && <>{session.linkedin ? <a className="build-speaker-link" href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong><i aria-hidden="true">in</i></a> : <strong>{session.speaker}</strong>}<span>{session.company}</span></>}</td>
@@ -87,16 +48,7 @@ function BuildEventRecord() {
 
 function SnowflakeEventRecord() {
   return <>
-    <section className="snowflake-poster snowflake-poster-split" aria-labelledby="snowflake-poster-title">
-      <figure className="snowflake-poster-image"><img src="/events/season-2/snowflake/snowflake-world-tour-poster.png" alt="Microsoft AI놀이터가 함께하는 Snowflake World Tour 서울 8월 27일 공식 포스터" /><figcaption>OFFICIAL POSTER · SEOUL · AUG 27</figcaption></figure>
-      <div className="snowflake-event-intro">
-        <span>SNOWFLAKE × MICROSOFT · SEOUL</span>
-        <h1 id="snowflake-poster-title">Snowflake World Tour에서<br />AI놀이터를 만나요</h1>
-        <p>데이터와 AI가 만나는 Snowflake World Tour 서울 현장에 Microsoft AI놀이터가 함께합니다. 가볍게 즐기는 Microsoft 퀴즈와 여섯 명의 MVP가 준비한 특별 시연, 커뮤니티의 새로운 연결을 한자리에서 만나보세요.</p>
-        <dl><div><dt>DATE</dt><dd>2026년 8월 27일 (목)</dd></div><div><dt>PLACE</dt><dd>서울 · Snowflake World Tour</dd></div><div><dt>PLAY</dt><dd>AI 퀴즈 · Lucky Draw · MVP 특별 시연</dd></div></dl>
-        <div className="snowflake-intro-tags" aria-label="행사 키워드"><span>AI QUIZ</span><span>LIVE DEMO</span><span>COMMUNITY</span></div>
-      </div>
-    </section>
+    <SeasonEventCover id="snowflake-poster-title" tone="snowflake" image="/events/season-2/snowflake/snowflake-world-tour-poster.png" imageAlt="Microsoft AI놀이터가 함께하는 Snowflake World Tour 서울 8월 27일 공식 포스터" eyebrow="SNOWFLAKE × MICROSOFT · SEOUL" title={<>Snowflake World Tour에서<br />AI놀이터를 만나요</>} description="데이터와 AI가 만나는 Snowflake World Tour 서울 현장에 Microsoft AI놀이터가 함께합니다. Microsoft 퀴즈와 여섯 명의 MVP 특별 시연, 커뮤니티의 새로운 연결을 한자리에서 만나보세요." facts={[{ label: "DATE", value: "2026년 8월 27일 (목)" }, { label: "PLACE", value: "서울 · Snowflake World Tour" }, { label: "PLAY", value: "AI 퀴즈 · Lucky Draw · MVP 특별 시연" }]} tags={["AI QUIZ", "LIVE DEMO", "COMMUNITY"]} />
 
     <section className="snowflake-host" aria-labelledby="snowflake-host-title">
       <figure><img src="/host-sung-mi-kim-profile.png" alt="AI놀이터 모임장 김성미" /></figure>
@@ -107,7 +59,7 @@ function SnowflakeEventRecord() {
       <header><span>MICROSOFT MVP · 90 MINUTE SESSIONS</span><h2 id="snowflake-sessions-title">AI놀이터 세션 안내</h2><p>여섯 명의 Microsoft MVP와 Crew가 1시간 30분씩 실전 설명과 데모를 이어갑니다.</p></header>
       <div className="snowflake-session-table-wrap" tabIndex={0} aria-label="Snowflake 행사 세션 표, 가로로 스크롤 가능"><table className="snowflake-session-table">
         <thead><tr><th scope="col">시간</th><th scope="col">세션</th><th scope="col">연사</th><th scope="col">함께하는 Crew</th></tr></thead>
-        <tbody>{snowflakeSessions.map((session) => <tr key={session.no}>
+        <tbody>{eventSnowflakeSessions.map((session) => <tr key={session.no}>
           <td><span>SESSION {session.no}</span><time>{session.time}</time><small>1시간 30분</small></td>
           <td><strong>{session.topic}</strong><p>{session.description}</p></td>
           <td><div className="snowflake-table-speaker"><div className="snowflake-speaker-avatar">{session.image ? <img src={session.image} alt={`${session.speaker} 연사`} /> : <span>{session.initials}</span>}</div><div><span>{session.role}</span><a href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong> ↗</a></div></div></td>
@@ -142,8 +94,7 @@ export default async function SeasonTwoEventPage({ params }: Props) {
   if (!event) return <main><SiteHeader /><section className="small-not-found"><p>행사를 찾을 수 없습니다.</p><a href="/seasons/season-2">시즌 2로 돌아가기</a></section></main>;
   return <main><SiteHeader /><section className="event-detail-shell">
     <a className="archive-detail-back" href="/seasons/season-2">← 시즌 2 공식 행사</a>
-    {event.slug === "snowflake" ? <SnowflakeEventRecord /> : <div className={`event-detail-hero ${event.accent}`}><span>{event.eyebrow} · {event.state}</span><h1>{event.title}</h1><p>{event.description}</p></div>}
-    {event.slug === "build" && <BuildEventRecord />}
-    <EventGallery title={`${event.title} 갤러리`} items={event.slug === "build" ? buildGallery : []} emptyMessage={event.slug === "snowflake" ? "8월 27일 Snowflake 행사 사진과 발표 자료가 정리되는 대로 이곳에 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."} />
+    {event.slug === "snowflake" ? <SnowflakeEventRecord /> : event.slug === "build" ? <BuildEventRecord /> : <div className={`event-detail-hero ${event.accent}`}><span>{event.eyebrow} · {event.state}</span><h1>{event.title}</h1><p>{event.description}</p></div>}
+    <EventGallery title={`${event.title} 갤러리`} items={event.slug === "build" ? eventBuildGallery : []} emptyMessage={event.slug === "snowflake" ? "8월 27일 Snowflake 행사 사진과 발표 자료가 정리되는 대로 이곳에 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."} />
   </section><SiteFooter /></main>;
 }

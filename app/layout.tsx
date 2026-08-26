@@ -4,6 +4,7 @@ import "./posters.css";
 import "./typography.css";
 import "./season-one.css";
 import "./season-two.css";
+import "./season-event-shared.css";
 import "./footer.css";
 import "./gallery.css";
 import "./home-refresh.css";

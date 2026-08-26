@@ -16,9 +16,9 @@ test("Snowflake detail flows from poster to host, sessions, and program", async 
   const response = await renderSnowflakeDetail();
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /class="snowflake-poster/);
+  assert.match(html, /class="season-event-cover cover-tone-snowflake"/);
   assert.match(html, /snowflake-world-tour-poster\.png/);
-  assert.match(html, /SEOUL · AUG 27/);
+  assert.match(html, /SNOWFLAKE × MICROSOFT · SEOUL/);
   assert.match(html, /Snowflake World Tour에서[\s\S]*AI놀이터를 만나요/);
   assert.match(html, /2026년 8월 27일/);
   assert.match(html, /class="snowflake-host/);
@@ -26,7 +26,7 @@ test("Snowflake detail flows from poster to host, sessions, and program", async 
   assert.match(html, /host-sung-mi-kim-profile\.png/);
   assert.match(html, /class="snowflake-sessions/);
   assert.match(html, /class="snowflake-program/);
-  assert.ok(html.indexOf("snowflake-poster") < html.indexOf("snowflake-host"));
+  assert.ok(html.indexOf("season-event-cover") < html.indexOf("snowflake-host"));
   assert.ok(html.indexOf("snowflake-host") < html.indexOf("snowflake-sessions"));
   assert.ok(html.indexOf("snowflake-sessions") < html.indexOf("snowflake-program"));
 });
