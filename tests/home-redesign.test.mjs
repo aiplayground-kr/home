@@ -62,6 +62,14 @@ test("home manifesto turns the playground philosophy into three experience steps
   }
 });
 
+test("home manifesto keeps the left rail concise so the main content can move left", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const intro = html.slice(html.indexOf('class="manifesto-intro"'), html.indexOf('class="manifesto-content"'));
+  assert.match(intro, /WHY WE PLAY/);
+  assert.doesNotMatch(intro, /PLAYGROUND PHILOSOPHY/);
+});
+
 test("home manifesto overrides the legacy direct-child grid so its message and steps stack", async () => {
   const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
   assert.match(css, /\.manifesto-v2\s*>\s*\.manifesto-intro\s*\{[^}]*display:\s*flex/);

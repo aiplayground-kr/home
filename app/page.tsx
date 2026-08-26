@@ -30,7 +30,6 @@ export default function Home() {
     <section className="manifesto manifesto-v2 section-pad">
       <div className="manifesto-intro">
         <p className="eyebrow">WHY WE PLAY</p>
-        <span className="manifesto-index">01 · PLAYGROUND PHILOSOPHY</span>
       </div>
       <div className="manifesto-content">
         <div className="manifesto-message">
