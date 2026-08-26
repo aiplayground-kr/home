@@ -13,11 +13,12 @@ async function renderSeasonTwo() {
   );
 }
 
-test("Snowflake calendar keeps Google Calendar without the TimeTree action", async () => {
+test("Snowflake season card omits the date and calendar actions", async () => {
   const response = await renderSeasonTwo();
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /Google 캘린더/);
+  assert.doesNotMatch(html, /2026년 8월 27일 목요일/);
+  assert.doesNotMatch(html, /Google 캘린더/);
   assert.doesNotMatch(html, /TimeTree에 담기/);
   assert.doesNotMatch(html, /timetreeapp\.com\/calendars\/events\/new/);
 });
