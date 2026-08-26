@@ -11,7 +11,7 @@
 .host-photo-card figcaption{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:34px}
 .host-photo-card figcaption>span,.host-photo-card figcaption>small{font-size:10px;font-weight:850;letter-spacing:.14em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
 .host-quote-copy{margin-top:auto}
-.host-photo-card blockquote{margin:0 0 20px;max-width:92%;font-size:clamp(25px,2.8vw,41px);font-weight:750;line-height:1.16;letter-spacing:-.045em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.host-photo-card blockquote{margin:0 0 20px;max-width:92%;font-size:clamp(22px,2.2vw,34px);font-weight:750;line-height:1.2;letter-spacing:-.04em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
 .host-signature{display:flex;align-items:center;gap:12px;margin:0 0 24px;text-shadow:0 1px 10px rgba(0,0,0,.55)}
 .host-signature strong{font-size:18px}.host-signature span{padding-left:12px;border-left:1px solid rgba(255,255,255,.45);font-size:11px;letter-spacing:.04em}
 .host-profile{background:var(--ice)}
@@ -31,7 +31,7 @@
 .host-sources{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:24px;color:var(--muted);font-size:12px}
 .host-sources>span{font-weight:850;color:var(--navy);letter-spacing:.08em}.host-sources a{border-bottom:1px solid #9eb5c8;padding-bottom:3px}.host-sources a:hover{color:var(--blue)}
 @media(max-width:950px){.host-profile-head{grid-template-columns:1fr}.host-profile-grid{grid-template-columns:1fr}.host-credentials{grid-template-columns:1fr}}
-@media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:30px}.host-signature{align-items:flex-start;flex-direction:column;gap:5px}.host-signature span{padding-left:0;border-left:0}.host-profile-grid article{min-height:240px;padding:28px}.host-credentials{padding:28px}.host-sources{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:25px}.host-signature{align-items:flex-start;flex-direction:column;gap:5px}.host-signature span{padding-left:0;border-left:0}.host-profile-grid article{min-height:240px;padding:28px}.host-credentials{padding:28px}.host-sources{align-items:flex-start;flex-direction:column}}
 
 /* Organization profile portraits */
 .org-map .steering{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:end;padding:42px}

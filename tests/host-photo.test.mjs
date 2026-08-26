@@ -41,5 +41,5 @@ test("host portrait styling preserves the face-centered crop", async () => {
   assert.match(css, /\.host-photo-card\s*>\s*img/);
   assert.match(css, /object-fit:\s*cover/);
   assert.match(css, /object-position:\s*50%\s+40%/);
-  assert.match(css, /\.host-photo-card blockquote\{[^}]*font-size:clamp\(25px,2\.8vw,41px\)/);
+  assert.match(css, /\.host-photo-card blockquote\{[^}]*font-size:clamp\(22px,2\.2vw,34px\)/);
 });
