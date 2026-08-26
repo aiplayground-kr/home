@@ -34,11 +34,11 @@
 @media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:25px}.host-signature{align-items:flex-start;flex-direction:column;gap:5px}.host-signature span{padding-left:0;border-left:0}.host-profile-grid article{min-height:240px;padding:28px}.host-credentials{padding:28px}.host-sources{align-items:flex-start;flex-direction:column}}
 
 /* Organization profile portraits */
-.org-map .steering{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:end;padding:42px}
+.org-map .steering{display:flex;flex-direction:column;align-items:stretch;gap:30px;padding:42px}
 .steering>div:first-child>span{font-size:10px;font-weight:800;letter-spacing:.13em}
 .steering>div:first-child h2{font-size:clamp(32px,4vw,58px);margin:20px 0 10px}
 .steering>div:first-child p{margin:0;color:#c9deed}
-.steering-people{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.steering-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%}
 .org-person{min-width:0;padding:17px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--ink);display:grid;grid-template-columns:68px minmax(0,1fr) auto;gap:14px;align-items:start;transition:transform .2s,box-shadow .2s}
 .steering .org-person{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:white}
 .org-person:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,51,81,.16)}
@@ -58,7 +58,7 @@
 .org-person.compact .org-avatar{width:60px;height:60px}
 .team-grid ul{margin-top:auto}
 .org-profile-note{margin:26px 0;padding:18px 20px;border-left:3px solid var(--blue);background:var(--ice);color:var(--muted);font-size:12px;line-height:1.7}
-@media(max-width:950px){.org-map .steering{grid-template-columns:1fr}.steering-people{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:950px){.steering-people{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:620px){.org-map .steering{padding:28px}.steering-people{grid-template-columns:1fr}.org-person{grid-template-columns:64px minmax(0,1fr) auto}.org-avatar{width:64px;height:64px}.org-person-copy strong{font-size:17px}.org-person-copy small,.org-person-summary{font-size:13px}}
 
 /* Season 2 BUILD event record */
