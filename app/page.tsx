@@ -77,6 +77,17 @@ export default function Home() {
       </a>)}</div>
     </section>
 
+    <section className="support-opportunity section-pad">
+      <div className="support-opportunity-heading">
+        <p className="eyebrow">SPONSOR &amp; PROMOTION</p>
+        <h2>후원으로 경험을 만들고,<br /><em>함께 알릴 기회를 넓힙니다.</em></h2>
+      </div>
+      <div className="support-opportunity-message">
+        <p>공간·기술·다과·도서·굿즈·경품 후원부터 브랜드와 활동을 알리는 협업까지, AI놀이터와 함께 만들고 싶은 제안을 남겨주세요.</p>
+        <a className="button primary support-opportunity-button" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__tX6uDRUOVM1NE1RUFFKOEk4QVVBOTlFWkFWTERTUi4u" target="_blank" rel="noreferrer">후원·홍보 협업 제안 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
     <section className="join join-v2 section-pad">
       <div className="join-copy">
         <div className="join-heading"><p className="eyebrow">JOIN THE PLAYGROUND</p><h2>호기심과 열정만 있다면,<br /><em>누구나 함께할 수 있어요.</em></h2></div>

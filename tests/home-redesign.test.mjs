@@ -222,6 +222,21 @@ test("home closes with an inclusive community invitation", async () => {
   assert.doesNotMatch(join, /class="join-play-card"/);
 });
 
+test("home offers the supplied sponsorship and promotion form immediately before joining", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const supportIndex = html.indexOf('class="support-opportunity section-pad"');
+  const joinIndex = html.indexOf('class="join join-v2 section-pad"');
+
+  assert.ok(supportIndex >= 0, "expected a sponsorship opportunity section");
+  assert.ok(supportIndex < joinIndex, "expected sponsorship immediately before the join section");
+
+  const support = html.slice(supportIndex, joinIndex);
+  assert.match(support, /후원·홍보 협업/);
+  assert.match(support, /href="https:\/\/forms\.cloud\.microsoft\/Pages\/ResponsePage\.aspx\?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__tX6uDRUOVM1NE1RUFFKOEk4QVVBOTlFWkFWTERTUi4u"/);
+  assert.match(support, /target="_blank"/);
+});
+
 test("site footer echoes the bright hero palette", async () => {
   const css = await readFile(new URL("../app/footer.css", import.meta.url), "utf8");
   assert.match(css, /linear-gradient\(145deg, #f9fcff 0%, #eaf5fb/);

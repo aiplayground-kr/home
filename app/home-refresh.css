@@ -348,3 +348,76 @@
   .small-program-poster > img,
   .hero-screen-event img { transition: none; }
 }
+
+.support-opportunity {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  align-items: center;
+  gap: clamp(44px, 7vw, 110px);
+  padding-block: 72px;
+  background: linear-gradient(135deg, #f8fcff 0%, #e8f5ff 100%);
+  border-top: 1px solid #d5e8f5;
+  overflow: hidden;
+}
+
+.support-opportunity::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue) 0 34%, var(--cyan) 34% 58%, var(--green) 58% 78%, var(--yellow) 78% 90%, var(--coral) 90%);
+}
+
+.support-opportunity > div {
+  position: relative;
+  z-index: 1;
+}
+
+.support-opportunity h2 {
+  margin: 0;
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.05em;
+}
+
+.support-opportunity h2 em {
+  color: var(--blue);
+  font-style: normal;
+}
+
+.support-opportunity-message > p {
+  max-width: 620px;
+  margin: 0;
+  color: #4e6a80;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.support-opportunity-button {
+  gap: 12px;
+  margin-top: 24px;
+  min-height: 54px;
+  padding-inline: 24px;
+}
+
+.support-opportunity-button span {
+  font-size: 17px;
+}
+
+@media (max-width: 1080px) {
+  .support-opportunity {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+@media (max-width: 760px) {
+  .support-opportunity {
+    padding-block: 58px;
+  }
+
+  .support-opportunity h2 {
+    font-size: 34px;
+  }
+}
