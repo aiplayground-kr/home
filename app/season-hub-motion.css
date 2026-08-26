@@ -1,0 +1,60 @@
+.hub-card { isolation: isolate; }
+.hub-card > :not(.season-bubbles) { position: relative; z-index: 2; }
+.season-bubbles { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.season-bubbles i {
+  --bubble-size: 58px;
+  --bubble-x: 10%;
+  --bubble-y: 13%;
+  --bubble-delay: 0ms;
+  --bubble-drift: 0px;
+  position: absolute;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  left: var(--bubble-x);
+  top: var(--bubble-y);
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 50%;
+  background: rgba(242,250,255,.48);
+  box-shadow: inset 8px 10px 14px rgba(255,255,255,.52), inset -8px -10px 18px rgba(11,61,108,.13), 0 12px 24px rgba(13,67,111,.12);
+  opacity: 0;
+  transform: translate3d(0, -330px, 0) scale(.22);
+}
+.season-bubbles i::after { content: ""; position: absolute; width: 24%; height: 24%; left: 21%; top: 17%; border-radius: 50%; background: rgba(255,255,255,.78); filter: blur(1px); }
+.season-bubbles i:nth-child(4n + 1) { background-color: rgba(20,92,197,.58); }
+.season-bubbles i:nth-child(4n + 2) { background-color: rgba(120,190,32,.55); }
+.season-bubbles i:nth-child(4n + 3) { background-color: rgba(255,191,0,.60); }
+.season-bubbles i:nth-child(4n + 4) { background-color: rgba(255,91,53,.55); }
+.season-bubbles i:nth-child(1)  { --bubble-size: 82px;  --bubble-x: 6%;  --bubble-y: 68%; --bubble-delay: 20ms;  --bubble-drift: 8px; }
+.season-bubbles i:nth-child(2)  { --bubble-size: 42px;  --bubble-x: 21%; --bubble-y: 82%; --bubble-delay: 150ms; --bubble-drift: -9px; }
+.season-bubbles i:nth-child(3)  { --bubble-size: 64px;  --bubble-x: 35%; --bubble-y: 61%; --bubble-delay: 75ms;  --bubble-drift: 11px; }
+.season-bubbles i:nth-child(4)  { --bubble-size: 34px;  --bubble-x: 49%; --bubble-y: 88%; --bubble-delay: 235ms; --bubble-drift: -6px; }
+.season-bubbles i:nth-child(5)  { --bubble-size: 106px; --bubble-x: 69%; --bubble-y: 65%; --bubble-delay: 115ms; --bubble-drift: 13px; }
+.season-bubbles i:nth-child(6)  { --bubble-size: 48px;  --bubble-x: 87%; --bubble-y: 84%; --bubble-delay: 280ms; --bubble-drift: -12px; }
+.season-bubbles i:nth-child(7)  { --bubble-size: 54px;  --bubble-x: 11%; --bubble-y: 42%; --bubble-delay: 330ms; --bubble-drift: 7px; }
+.season-bubbles i:nth-child(8)  { --bubble-size: 30px;  --bubble-x: 29%; --bubble-y: 51%; --bubble-delay: 410ms; --bubble-drift: -8px; }
+.season-bubbles i:nth-child(9)  { --bubble-size: 74px;  --bubble-x: 52%; --bubble-y: 40%; --bubble-delay: 365ms; --bubble-drift: 10px; }
+.season-bubbles i:nth-child(10) { --bubble-size: 38px;  --bubble-x: 81%; --bubble-y: 48%; --bubble-delay: 470ms; --bubble-drift: -7px; }
+.season-bubbles i:nth-child(11) { --bubble-size: 46px;  --bubble-x: 4%;  --bubble-y: 22%; --bubble-delay: 520ms; --bubble-drift: 6px; }
+.season-bubbles i:nth-child(12) { --bubble-size: 28px;  --bubble-x: 43%; --bubble-y: 26%; --bubble-delay: 610ms; --bubble-drift: -5px; }
+.season-bubbles i:nth-child(13) { --bubble-size: 58px;  --bubble-x: 73%; --bubble-y: 19%; --bubble-delay: 555ms; --bubble-drift: 9px; }
+.season-bubbles i:nth-child(14) { --bubble-size: 25px;  --bubble-x: 92%; --bubble-y: 31%; --bubble-delay: 675ms; --bubble-drift: -6px; }
+.season-bubbles i:nth-child(15) { --bubble-size: 36px;  --bubble-x: 25%; --bubble-y: 12%; --bubble-delay: 720ms; --bubble-drift: 7px; }
+.season-bubbles i:nth-child(16) { --bubble-size: 24px;  --bubble-x: 58%; --bubble-y: 8%;  --bubble-delay: 790ms; --bubble-drift: -5px; }
+.hub-card:hover .season-bubbles i,
+.hub-card:focus-visible .season-bubbles i { animation: season-bubble-drop 820ms cubic-bezier(.2,.72,.26,1.18) var(--bubble-delay) forwards; }
+.hub-card.season2 .season-bubbles { mix-blend-mode: screen; opacity: .82; }
+.hub-card.season1 .season-bubbles { opacity: .76; }
+.hub-card:focus-visible { outline: 3px solid var(--cyan); outline-offset: 5px; }
+@keyframes season-bubble-drop {
+  0% { opacity: 0; transform: translate3d(0, -330px, 0) scale(.22); }
+  56% { opacity: .78; }
+  78% { transform: translate3d(var(--bubble-drift), 10px, 0) scale(1.06); }
+  100% { opacity: .7; transform: translate3d(var(--bubble-drift), 0, 0) scale(1); }
+}
+@media (hover: none) {
+  .season-bubbles i:nth-child(-n + 6) { opacity: .15; transform: scale(.78); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hub-card:hover .season-bubbles i,
+  .hub-card:focus-visible .season-bubbles i { animation: none; opacity: .18; transform: scale(.82); }
+}
