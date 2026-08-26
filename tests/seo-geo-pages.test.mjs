@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
-const siteUrl = "https://youni202.github.io/aiplayground";
+const siteUrl = "https://aiplayground-kr.github.io/home";
 
 async function text(path) {
   return readFile(new URL(path, root), "utf8");
@@ -19,7 +19,7 @@ test("publishes official AI Playground discovery files for search and LLMs", asy
     text("public/sitemap.xml"),
   ]);
 
-  assert.match(layout, /https:\/\/youni202\.github\.io\/aiplayground/);
+  assert.match(layout, /https:\/\/aiplayground-kr\.github\.io\/home/);
   assert.match(layout, /application\/ld\+json/);
   assert.match(layout, /"@type": "Organization"/);
   assert.match(layout, /AI놀이터 공식 사이트/);
@@ -51,9 +51,9 @@ test("GitHub Pages export uses the lowercase project path and a non-destructive 
     text(".github/workflows/deploy-pages.yml"),
   ]);
 
-  assert.match(exportScript, /const basePath = "\/aiplayground"/);
+  assert.match(exportScript, /const basePath = "\/home"/);
   assert.match(exportScript, /const output = path\.resolve\(root, "_site"\)/);
-  assert.match(exportScript, /canonicalOrigin = "https:\/\/youni202\.github\.io\/aiplayground"/);
+  assert.match(exportScript, /canonicalOrigin = "https:\/\/aiplayground-kr\.github\.io\/home"/);
   assert.doesNotMatch(exportScript, /rm\(output, \{ recursive: true/);
   assert.doesNotMatch(exportScript, /<script\\b\[\^>\]\*>/);
   assert.match(exportScript, /dist", "client", "_next", "static"/);

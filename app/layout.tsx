@@ -13,7 +13,7 @@ import "./season-hub-motion.css";
 import "./snowflake-speaker-portraits.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://youni202.github.io/aiplayground/"),
+  metadataBase: new URL("https://aiplayground-kr.github.io/home/"),
   title: { default: "AI놀이터 공식 사이트 | 놀다 보면 알게 되는 AI", template: "%s | AI놀이터 공식 사이트" },
   description: "Microsoft Korea 커뮤니티 AI놀이터의 공식 사이트입니다. 시즌 행사와 작은 놀이터에서 직접 만지고, 질문하고, 함께 만드는 AI 경험을 기록합니다.",
   applicationName: "AI놀이터",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
 };
 
-const siteUrl = "https://youni202.github.io/aiplayground";
+const siteUrl = "https://aiplayground-kr.github.io/home";
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",

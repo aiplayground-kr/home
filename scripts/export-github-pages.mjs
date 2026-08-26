@@ -4,8 +4,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, "_site");
-const basePath = "/aiplayground";
-const canonicalOrigin = "https://youni202.github.io/aiplayground";
+const basePath = "/home";
+const canonicalOrigin = "https://aiplayground-kr.github.io/home";
 const routes = [
   "/",
   "/host",

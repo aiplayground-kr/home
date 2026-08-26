@@ -35,7 +35,7 @@ test("keeps obsolete starter-preview assets out of the production application", 
   ]);
 
   assert.match(page, /AI놀이터/);
-  assert.match(layout, /metadataBase: new URL\("https:\/\/youni202\.github\.io\/aiplayground\/"\)/);
+  assert.match(layout, /metadataBase: new URL\("https:\/\/aiplayground-kr\.github\.io\/home\/"\)/);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
   assert.doesNotMatch(layout, /Starter Project|_sites-preview/);
   await assert.rejects(access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)));

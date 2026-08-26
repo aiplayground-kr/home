@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://youni202.github.io/aiplayground/sitemap.xml
-
+Sitemap: https://aiplayground-kr.github.io/home/sitemap.xml

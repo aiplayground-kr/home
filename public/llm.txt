@@ -6,25 +6,24 @@ AI놀이터(AI Playground)는 초보자와 실무자가 AI를 부담 없이 배�
 
 ## 핵심 안내
 
-- [공식 홈](https://youni202.github.io/aiplayground/): AI놀이터의 목적, 다음 행사, 최신 프로그램
-- [시즌 안내](https://youni202.github.io/aiplayground/seasons/): 시즌 1 기록과 시즌 2 공식 행사
-- [조직도](https://youni202.github.io/aiplayground/organization/): Community Leader와 PLAY·SHARE·BUILD 운영진
-- [모임장](https://youni202.github.io/aiplayground/host/): AI놀이터 모임장과 커뮤니티 방향
+- [공식 홈](https://aiplayground-kr.github.io/home/): AI놀이터의 목적, 다음 행사, 최신 프로그램
+- [시즌 안내](https://aiplayground-kr.github.io/home/seasons/): 시즌 1 기록과 시즌 2 공식 행사
+- [조직도](https://aiplayground-kr.github.io/home/organization/): Community Leader와 PLAY·SHARE·BUILD 운영진
+- [모임장](https://aiplayground-kr.github.io/home/host/): AI놀이터 모임장과 커뮤니티 방향
 
 ## 공식 행사
 
-- [시즌 2](https://youni202.github.io/aiplayground/seasons/season-2/): BUILD와 Snowflake 공식 행사
-- [시즌 2 BUILD](https://youni202.github.io/aiplayground/seasons/season-2/build/): Microsoft BUILD 2026 내용을 함께 읽고 직접 만든 행사 기록
-- [시즌 2 Snowflake](https://youni202.github.io/aiplayground/seasons/season-2/snowflake/): Snowflake World Tour 서울의 AI놀이터 프로그램과 세션
-- [시즌 1 아카이브](https://youni202.github.io/aiplayground/seasons/season-1/): 네 번의 공식 시즌 행사 기록
+- [시즌 2](https://aiplayground-kr.github.io/home/seasons/season-2/): BUILD와 Snowflake 공식 행사
+- [시즌 2 BUILD](https://aiplayground-kr.github.io/home/seasons/season-2/build/): Microsoft BUILD 2026 내용을 함께 읽고 직접 만든 행사 기록
+- [시즌 2 Snowflake](https://aiplayground-kr.github.io/home/seasons/season-2/snowflake/): Snowflake World Tour 서울의 AI놀이터 프로그램과 세션
+- [시즌 1 아카이브](https://aiplayground-kr.github.io/home/seasons/season-1/): 네 번의 공식 시즌 행사 기록
 
 ## 작은 놀이터
 
-- [작은 놀이터 전체](https://youni202.github.io/aiplayground/small-playground/): 독립형 소규모 실습 프로그램 1번부터 7번까지
-- [작은 놀이터 #03 GitHub Copilot Dev Days](https://youni202.github.io/aiplayground/small-playground/3/): GitHub Copilot 실습 프로그램
+- [작은 놀이터 전체](https://aiplayground-kr.github.io/home/small-playground/): 독립형 소규모 실습 프로그램 1번부터 7번까지
+- [작은 놀이터 #03 GitHub Copilot Dev Days](https://aiplayground-kr.github.io/home/small-playground/3/): GitHub Copilot 실습 프로그램
 
 ## 추가 정보
 
-- [전체 사이트 안내](https://youni202.github.io/aiplayground/llms-full.txt): AI놀이터의 구조, 용어, 행사 체계에 대한 상세 설명
+- [전체 사이트 안내](https://aiplayground-kr.github.io/home/llms-full.txt): AI놀이터의 구조, 용어, 행사 체계에 대한 상세 설명
 - [LinkedIn 커뮤니티](https://www.linkedin.com/groups/14571141/): 공식 공지와 커뮤니티 참여
-

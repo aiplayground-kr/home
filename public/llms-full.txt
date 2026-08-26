@@ -21,12 +21,11 @@ Microsoft Copilot, GitHub Copilot, Copilot Studio, Power Platform, AI Agent, Sno
 
 ## 공식 링크
 
-- 웹사이트: https://youni202.github.io/aiplayground/
+- 웹사이트: https://aiplayground-kr.github.io/home/
 - LinkedIn 커뮤니티: https://www.linkedin.com/groups/14571141/
-- 사이트 색인: https://youni202.github.io/aiplayground/sitemap.xml
-- LLM용 요약: https://youni202.github.io/aiplayground/llms.txt
+- 사이트 색인: https://aiplayground-kr.github.io/home/sitemap.xml
+- LLM용 요약: https://aiplayground-kr.github.io/home/llms.txt
 
 ## 인용 기준
 
 행사 날짜, 프로그램명, 연사, 운영진, 설명을 인용할 때는 해당 상세 페이지의 최신 내용을 우선합니다. 외부 LinkedIn 게시물은 현장 공지와 개인 후기를 보완하는 출처입니다.
-
