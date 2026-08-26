@@ -35,6 +35,13 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /만들면서 배우는 GitHub Copilot/);
 });
 
+test("home small playground heading keeps its description and index action left-aligned together", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const heading = html.slice(html.indexOf('class="small-showcase-head"'), html.indexOf('class="small-program-showcase"'));
+  assert.match(heading, /class="small-showcase-copy"[\s\S]*작지만 진짜로 만들어보는[\s\S]*큰 시즌 행사와 별개로 이어지는 실습 시리즈입니다\.[\s\S]*전체 프로그램 보기/);
+});
+
 test("home Season 1 archive shows all four event posters", async () => {
   const response = await renderHome();
   const html = await response.text();
