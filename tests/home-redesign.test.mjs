@@ -123,6 +123,12 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /4_500/);
 });
 
+test("home console keeps Snowflake as the featured next event", async () => {
+  const component = await readFile(new URL("../app/home-event-console.tsx", import.meta.url), "utf8");
+  assert.match(component, /const featuredEvent = officialEvents\[0\]/);
+  assert.match(component, /return \[featuredEvent, \.\.\.future\.filter\(\(event\) => event !== featuredEvent\)\]\.slice\(0, count\)/);
+});
+
 test("home console uses the Microsoft logo below the screen", async () => {
   const response = await renderHome();
   const html = await response.text();
