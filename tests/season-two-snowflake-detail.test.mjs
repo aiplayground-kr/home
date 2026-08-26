@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function renderSnowflakeDetail() {
@@ -60,10 +61,19 @@ test("Snowflake session table shows a real portrait for every speaker", async ()
   assert.doesNotMatch(sessions, /class="snowflake-speaker-avatar"><span>/);
 });
 
-test("Jaeseok Lee portrait keeps his face centered in the round frame", async () => {
+test("Jaeseok Lee session uses the supplied standalone portrait", async () => {
   const response = await renderSnowflakeDetail();
   const html = await response.text();
   const portrait = html.slice(html.indexOf('alt="이재석 연사"') - 180, html.indexOf('alt="이재석 연사"') + 180);
-  assert.match(portrait, /left:-446px/);
-  assert.match(portrait, /top:-92px/);
+  assert.match(portrait, /src="\/assets\/mvp-jaeseok\.jpg"/);
+  assert.doesNotMatch(portrait, /snowflake-speaker-crop/);
+  assert.doesNotMatch(portrait, /style=/);
+});
+
+test("Snowflake session table fits desktop without horizontal scrolling", async () => {
+  const css = await readFile(new URL("../app/snowflake-speaker-portraits.css", import.meta.url), "utf8");
+  const desktop = css.slice(css.indexOf("@media (min-width: 951px)"));
+  assert.match(desktop, /\.snowflake-sessions\s*\{[^}]*padding-inline:\s*clamp\(16px,\s*2\.5vw,\s*36px\)/s);
+  assert.match(desktop, /\.snowflake-session-table-wrap\s*\{[^}]*overflow-x:\s*visible/s);
+  assert.match(desktop, /\.snowflake-session-table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/s);
 });

@@ -16,3 +16,36 @@
   max-width: none;
   object-fit: fill;
 }
+
+@media (min-width: 951px) {
+  .snowflake-sessions {
+    padding-inline: clamp(16px, 2.5vw, 36px);
+  }
+
+  .snowflake-session-table-wrap {
+    overflow-x: visible;
+  }
+
+  .snowflake-session-table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .snowflake-session-table th,
+  .snowflake-session-table td {
+    padding-inline: 12px;
+  }
+
+  .snowflake-session-table td:first-child {
+    width: 145px;
+  }
+
+  .snowflake-session-table td:nth-child(2) {
+    width: 34%;
+  }
+
+  .snowflake-table-speaker,
+  .snowflake-session-table .snowflake-crew {
+    min-width: 0;
+  }
+}
