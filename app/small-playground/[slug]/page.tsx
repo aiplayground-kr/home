@@ -45,8 +45,8 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
       <SiteHeader />
 
       <section className="detail-hero">
-        <div className="detail-number">{program.number}</div>
         <div className="detail-title-block">
+          <div className="detail-number">{program.number}</div>
           <div className="detail-status"><i /> {program.status}</div>
           <p>SMALL PLAYGROUND · SEASON SERIES</p>
           <h1>{program.title}</h1>

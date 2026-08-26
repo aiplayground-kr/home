@@ -34,8 +34,12 @@ test("program detail pages show the supplied schedule and audience", async () =>
   assert.match(four, /스킬/);
   assert.match(four, /배포/);
   assert.match(five, /2026\.10\.04/);
-  assert.match(five, /오전 10:00–12:00/);
-  assert.match(five, /김연지/);
+    assert.match(five, /오전 10:00–12:00/);
+    assert.match(five, /김연지/);
+    const hero = five.slice(five.indexOf('class="detail-hero"'), five.indexOf('class="detail-content"'));
+    const titleBlock = hero.slice(hero.indexOf('class="detail-title-block"'), hero.indexOf('class="detail-poster"'));
+    assert.ok(titleBlock.indexOf('class="detail-number"') < titleBlock.indexOf("<h1>"));
+    assert.ok(titleBlock.indexOf("<h1>") < titleBlock.indexOf('class="detail-description"'));
   assert.match(six, /2026\.10\.10/);
   assert.match(six, /오후 4:00–7:00/);
   assert.match(six, /여성 엔지니어/);
