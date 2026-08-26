@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { communityUrl, seasonOneEvents, seasonTwoEvents } from "./content";
+import { HomeEventStage, HomeEventStrip } from "./home-event-console";
 import { smallPlaygroundPrograms } from "./small-playground/data";
 import { SiteFooter, SiteHeader } from "./site-shell";
 
@@ -21,32 +22,9 @@ export default function Home() {
           <div className="actions"><a className="button primary" href="/seasons/season-2">시즌 2 플레이</a><a className="button ghost" href="/small-playground">작은 놀이터 입장</a></div>
         </div>
 
-        <div className="hero-stage" aria-label="현재 진행 중인 AI놀이터 프로그램">
-          <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
-          <article className="hero-play-console">
-            <div className="hero-console-top"><span>AI PLAYGROUND</span><b><i /> PLAY MODE</b></div>
-            <div className="hero-console-body">
-              <div className="hero-console-left" aria-hidden="true"><span /><span /></div>
-              <div className="hero-console-screen">
-                <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime="2026-08-27">2026.08.27</time></div>
-                <a href="/seasons/season-2/snowflake" className="hero-screen-event hero-screen-snowflake">
-                  <img src="/events/season-2/snowflake/snowflake-world-tour-poster.png" alt="Snowflake World Tour 서울 AI놀이터 공식 포스터" />
-                  <div><span>SEASON 2 · SNOWFLAKE</span><strong>Snowflake<br />World Tour</strong><small>행사 만나보기 →</small></div>
-                </a>
-              </div>
-              <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
-            </div>
-            <div className="hero-console-slot"><span>INSERT CURIOSITY</span><i /></div>
-          </article>
-          <a className="hero-floating-date" href="/seasons/season-2/snowflake"><span>SEASON 2 · SNOWFLAKE</span><strong>08.27</strong><small>THU · NEXT PLAY →</small></a>
-        </div>
+        <HomeEventStage />
       </div>
-      <div className="hero-now-strip" aria-label="다가오는 AI놀이터 일정">
-        <span className="now-strip-label"><i /> NOW PLAYING</span>
-        <a href="/seasons/season-2/snowflake"><time dateTime="2026-08-27">2026.08.27 THU</time><strong>Season 2</strong><span>Snowflake × AI Playground</span></a>
-        <a href="/small-playground/3"><time dateTime="2026-09-01">09.01 TUE</time><strong>작은 놀이터 #03</strong><span>GitHub Copilot Dev Days</span></a>
-        <a href="/small-playground/4"><time dateTime="2026-09-12">09.12 SAT</time><strong>작은 놀이터 #04</strong><span>만들면서 배우는 GitHub Copilot</span></a>
-      </div>
+      <HomeEventStrip />
     </section>
 
     <section className="manifesto section-pad"><p className="eyebrow">WHY WE PLAY</p><div><h2>설명보다 한 번의 경험이<br /><em>AI를 더 가깝게</em> 만듭니다.</h2><p>누군가는 처음이라서, 누군가는 더 깊이 알고 싶어서 이곳에 옵니다. 서로의 질문이 다음 사람의 힌트가 되고, 작은 시도가 모두의 배움이 됩니다.</p></div></section>
