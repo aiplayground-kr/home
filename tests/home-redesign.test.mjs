@@ -43,6 +43,14 @@ test("home console gives more space to its central screen", async () => {
   assert.match(css, /\.hero-console-screen\s*\{[^}]*min-height:\s*300px/);
 });
 
+test("home console posters and placeholders share a non-overlapping two-column frame", async () => {
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.hero-screen-event\s*\{[^}]*grid-template-columns:\s*minmax\(0,\.82fr\) minmax\(0,1\.18fr\)/);
+  assert.match(css, /\.hero-screen-event\s*>\s*\*\s*\{[^}]*min-width:\s*0/);
+  assert.match(css, /\.hero-screen-placeholder\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*150px;[^}]*min-width:\s*0;[^}]*min-height:\s*0/);
+});
+
 test("home small playground section is poster-led and links to event details", async () => {
   const response = await renderHome();
   const html = await response.text();
