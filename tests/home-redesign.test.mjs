@@ -35,6 +35,16 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /만들면서 배우는 GitHub Copilot/);
 });
 
+test("home Season 1 archive shows all four event posters", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const stack = html.slice(html.indexOf('class="poster-stack"'), html.indexOf('시즌 1 기록 보기'));
+  assert.equal((stack.match(/<img /g) ?? []).length, 4);
+  for (const poster of ["01-ignite-after-party.png", "02-summer-meetup.png", "03-fall-meetup.png", "04-winter-meetup.png"]) {
+    assert.match(stack, new RegExp(poster));
+  }
+});
+
 test("home manifesto turns the playground philosophy into three experience steps", async () => {
   const response = await renderHome();
   const html = await response.text();

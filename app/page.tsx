@@ -49,7 +49,7 @@ export default function Home() {
       <div className="section-head"><div><p className="eyebrow">SEASONS</p><h2>두 시즌, 이어지는 질문</h2></div><a href="/seasons">시즌 전체 보기</a></div>
       <div className="season-columns">
         <article className="season-panel current"><p>SEASON 2 · NOW</p><h3>함께 배우는 것을 넘어<br />함께 만들어갑니다.</h3><div className="mini-events">{seasonTwoEvents.map(e => <a href={`/seasons/season-2#${e.slug}`} key={e.slug}><span>{e.state}</span><strong>{e.eyebrow.replace("OFFICIAL EVENT · ", "")}</strong><small>{e.title}</small></a>)}</div><a className="inline-link" href="/seasons/season-2">시즌 2 자세히 보기</a></article>
-        <article className="season-panel archive"><p>SEASON 1 · ARCHIVE</p><h3>네 번의 만남,<br />하나의 플레이리스트</h3><div className="poster-stack">{seasonOneEvents.slice(0,3).map((e, i) => <img style={{"--i": i} as CSSProperties} key={e.slug} src={e.image} alt="" />)}</div><a className="inline-link" href="/seasons/season-1">시즌 1 기록 보기</a></article>
+        <article className="season-panel archive"><p>SEASON 1 · ARCHIVE</p><h3>네 번의 만남,<br />하나의 플레이리스트</h3><div className="poster-stack">{seasonOneEvents.map((e, i) => <img style={{"--i": i} as CSSProperties} key={e.slug} src={e.image} alt="" />)}</div><a className="inline-link" href="/seasons/season-1">시즌 1 기록 보기</a></article>
       </div>
     </section>
 
