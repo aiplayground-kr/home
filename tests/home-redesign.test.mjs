@@ -86,17 +86,20 @@ test("home manifesto turns the playground philosophy into three experience steps
   }
 });
 
-test("home manifesto keeps the left rail concise so the main content can move left", async () => {
+test("home manifesto places WHY WE PLAY above the title without a separate left rail", async () => {
   const response = await renderHome();
   const html = await response.text();
-  const intro = html.slice(html.indexOf('class="manifesto-intro"'), html.indexOf('class="manifesto-content"'));
-  assert.match(intro, /WHY WE PLAY/);
-  assert.doesNotMatch(intro, /PLAYGROUND PHILOSOPHY/);
+  const manifesto = html.slice(html.indexOf('class="manifesto manifesto-v2'), html.indexOf('class="season-preview'));
+  const message = manifesto.slice(manifesto.indexOf('class="manifesto-message"'), manifesto.indexOf('class="manifesto-steps"'));
+  assert.doesNotMatch(manifesto, /class="manifesto-intro"/);
+  assert.ok(message.indexOf("WHY WE PLAY") < message.indexOf("설명보다 한 번의 경험이"));
+  assert.ok(message.indexOf("설명보다 한 번의 경험이") < message.indexOf("누군가는 처음이라서"));
 });
 
-test("home manifesto overrides the legacy direct-child grid so its message and steps stack", async () => {
+test("home manifesto uses the reclaimed rail space for one full-width content column", async () => {
   const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
-  assert.match(css, /\.manifesto-v2\s*>\s*\.manifesto-intro\s*\{[^}]*display:\s*flex/);
+  assert.match(css, /\.manifesto-v2\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.doesNotMatch(css, /\.manifesto-v2\s*>\s*\.manifesto-intro\s*\{/);
   assert.match(css, /\.manifesto-v2\s*>\s*\.manifesto-content\s*\{[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /\.manifesto-message\s*\{[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /\.manifesto-message\s*>\s*p\s*\{[^}]*max-width:/);

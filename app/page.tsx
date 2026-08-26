@@ -28,11 +28,9 @@ export default function Home() {
     </section>
 
     <section className="manifesto manifesto-v2 section-pad">
-      <div className="manifesto-intro">
-        <p className="eyebrow">WHY WE PLAY</p>
-      </div>
       <div className="manifesto-content">
         <div className="manifesto-message">
+          <p className="eyebrow">WHY WE PLAY</p>
           <h2>설명보다 한 번의 경험이<br /><em>AI를 더 가깝게</em> 만듭니다.</h2>
           <p>누군가는 처음이라서, 누군가는 더 깊이 알고 싶어서 이곳에 옵니다. 서로의 질문이 다음 사람의 힌트가 되고, 작은 시도가 모두의 배움이 됩니다.</p>
         </div>
