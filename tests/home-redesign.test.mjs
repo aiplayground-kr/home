@@ -19,9 +19,9 @@ test("home hero presents the AI Playground identity and current plays", async ()
   assert.equal(response.status, 200);
   assert.match(html, /class="hero-play-console/);
   assert.match(html, /UP NEXT/);
-  assert.match(html, /NEXT SMALL PLAY/);
-  assert.match(html, /03-github-copilot-dev-days\.png/);
-  assert.match(html, /GitHub Copilot Dev Days/);
+  assert.match(html, /NEXT PLAY/);
+  assert.match(html, /snowflake-world-tour-poster\.png/);
+  assert.match(html, /Snowflake × AI Playground/);
   const strip = html.slice(html.indexOf('class="hero-now-strip"'));
   assert.ok(strip.indexOf("2026.08.27") < strip.indexOf("2026.09.01"));
 });
@@ -116,7 +116,7 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /timeZone: "Asia\/Seoul"/);
   assert.match(component, /event\.date >= today/);
   assert.match(component, /setInterval\([\s\S]*60_000/);
-  assert.match(component, /upcoming\(smallEvents, today, 1\)/);
+  assert.match(component, /upcoming\(timelineEvents, today, 1\)/);
   assert.match(component, /upcoming\(timelineEvents, today, timelineEvents\.length\)/);
   assert.match(component, /Math\.ceil\(nextEvents\.length \/ 3\)/);
   assert.match(component, /slice\(rollIndex \* 3, rollIndex \* 3 \+ 3\)/);

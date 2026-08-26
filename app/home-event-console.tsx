@@ -20,6 +20,7 @@ const officialEvents: HomeEvent[] = [
     label: "SEASON 2",
     title: "Season 2",
     subtitle: "Snowflake × AI Playground",
+    image: "/events/season-2/snowflake/snowflake-world-tour-poster.png",
   },
 ];
 
@@ -77,29 +78,30 @@ function upcoming(events: HomeEvent[], today: string, count: number) {
 
 export function HomeEventStage() {
   const today = useKoreaToday();
-  const nextSmall = upcoming(smallEvents, today, 1)[0];
-  if (!nextSmall) return null;
+  const nextEvent = upcoming(timelineEvents, today, 1)[0];
+  if (!nextEvent) return null;
 
-  const coverNumber = Number(nextSmall.number?.replace("#", "")) || 1;
+  const isSmallPlay = Boolean(nextEvent.number);
+  const coverNumber = Number(nextEvent.number?.replace("#", "")) || 1;
   return (
-    <div className="hero-stage" aria-label="가장 가까운 다음 작은 놀이터">
+    <div className="hero-stage" aria-label="가장 가까운 다음 AI놀이터 일정">
       <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
       <article className="hero-play-console">
         <div className="hero-console-top"><span>AI PLAYGROUND</span><b><i /> PLAY MODE</b></div>
         <div className="hero-console-body">
           <div className="hero-console-left" aria-hidden="true"><span /><span /></div>
           <div className="hero-console-screen">
-            <div className="hero-screen-meta"><strong>NEXT SMALL PLAY</strong><time dateTime={nextSmall.date}>{displayDate(nextSmall.date, true)}</time></div>
-            <a href={nextSmall.href} className="hero-screen-event hero-screen-small">
-              {nextSmall.image ? (
-                <img src={nextSmall.image} alt={`${nextSmall.title} 공식 포스터`} />
-              ) : (
-                <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
-                  <span>AI PLAYGROUND</span><b>{nextSmall.number}</b><small>SMALL PLAYGROUND</small><strong>{nextSmall.subtitle}</strong>
-                </div>
-              )}
-              <div className="hero-screen-copy"><span>{nextSmall.label}</span><strong>{nextSmall.subtitle}</strong><small>게임 시작하기 →</small></div>
-            </a>
+              <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime={nextEvent.date}>{displayDate(nextEvent.date, true)}</time></div>
+              <a href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
+                {nextEvent.image ? (
+                  <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
+                ) : (
+                  <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
+                    <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
+                  </div>
+                )}
+                <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
+              </a>
           </div>
           <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
         </div>
@@ -108,7 +110,7 @@ export function HomeEventStage() {
           <strong>Microsoft</strong>
         </div>
       </article>
-      <a className="hero-floating-date" href={nextSmall.href}><span>{nextSmall.label}</span><strong>{displayDate(nextSmall.date)}</strong><small>{weekday(nextSmall.date)} · NEXT PLAY →</small></a>
+      <a className="hero-floating-date" href={nextEvent.href}><span>{nextEvent.label}</span><strong>{displayDate(nextEvent.date)}</strong><small>{weekday(nextEvent.date)} · NEXT PLAY →</small></a>
     </div>
   );
 }
