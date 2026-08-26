@@ -9,11 +9,13 @@ export type GalleryItem = {
   label?: string;
 };
 
-type GalleryMode = "mosaic" | "thumbnail-lightbox";
+type GalleryMode = "mosaic" | "slider" | "thumbnail-lightbox";
 
 export function EventGallery({ title, items, emptyMessage = "행사 사진은 기록이 정리되는 대로 이곳에 업데이트됩니다.", mode = "mosaic" }: { title: string; items: GalleryItem[]; emptyMessage?: string; mode?: GalleryMode }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
   const openerRef = useRef<HTMLButtonElement | null>(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
   const activeItem = items[activeIndex ?? 0];
 
   const closeLightbox = () => {
@@ -23,6 +25,14 @@ export function EventGallery({ title, items, emptyMessage = "행사 사진은 �
 
   const move = (direction: -1 | 1) => {
     setActiveIndex((current) => current === null ? 0 : (current + direction + items.length) % items.length);
+  };
+
+  const moveSlide = (direction: -1 | 1) => {
+    const next = (slideIndex + direction + items.length) % items.length;
+    setSlideIndex(next);
+    const slider = sliderRef.current;
+    const slide = slider?.children.item(next) as HTMLElement | null;
+    if (slider && slide) slider.scrollTo({ left: slide.offsetLeft - slider.offsetLeft, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -45,7 +55,25 @@ export function EventGallery({ title, items, emptyMessage = "행사 사진은 �
       <div><span>PHOTO ARCHIVE</span><h2>{title}</h2></div>
       <strong>{String(items.length).padStart(2, "0")} CUTS</strong>
     </div>
-    {items.length && mode === "thumbnail-lightbox" ? <>
+    {items.length && mode === "slider" ? <>
+      <div className="gallery-slider-controls">
+        <button type="button" aria-label="이전 기록 이미지" onClick={() => moveSlide(-1)} disabled={items.length < 2}>←</button>
+        <span>{String(slideIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</span>
+        <button type="button" aria-label="다음 기록 이미지" onClick={() => moveSlide(1)} disabled={items.length < 2}>→</button>
+      </div>
+      <div className="gallery-slider" ref={sliderRef} onScroll={(event) => {
+        const slider = event.currentTarget;
+        const slides = Array.from(slider.children) as HTMLElement[];
+        const next = slides.reduce((closest, slide, index) =>
+          Math.abs(slide.offsetLeft - slider.offsetLeft - slider.scrollLeft) < Math.abs(slides[closest].offsetLeft - slider.offsetLeft - slider.scrollLeft) ? index : closest, 0);
+        setSlideIndex(next);
+      }}>
+        {items.map((item, index) => <figure key={`${item.src}-${index}`}>
+          <img src={item.src} alt={item.alt} loading="lazy" />
+          <figcaption><small>{item.label ?? `CUT ${String(index + 1).padStart(2, "0")}`}</small><span>{item.caption}</span></figcaption>
+        </figure>)}
+      </div>
+    </> : items.length && mode === "thumbnail-lightbox" ? <>
       <div className="gallery-grid gallery-thumbnail-grid">
         {items.map((item, index) => <figure key={`${item.src}-${index}`}>
           <button className="gallery-thumbnail" type="button" aria-label={`${item.caption} 크게 보기`} onClick={(event) => {

@@ -149,6 +149,18 @@
 .gallery-thumbnail:focus-visible img { transform: scale(1.06); filter: brightness(.88); }
 .gallery-thumbnail:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 
+.gallery-slider-controls { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: -8px 0 14px; }
+.gallery-slider-controls button { display: grid; width: 42px; height: 42px; padding: 0; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--blue); font-size: 18px; cursor: pointer; }
+.gallery-slider-controls button:hover,.gallery-slider-controls button:focus-visible { border-color: var(--blue); background: var(--blue); color: white; outline: none; }
+.gallery-slider-controls button:disabled { opacity: .35; cursor: default; }
+.gallery-slider-controls span { min-width: 58px; color: var(--blue); font-size: 10px; font-weight: 850; letter-spacing: .12em; text-align: center; }
+.gallery-slider { display: flex; gap: 18px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.gallery-slider::-webkit-scrollbar { display: none; }
+.gallery-slider figure { flex: 0 0 100%; margin: 0; scroll-snap-align: start; }
+.gallery-slider img { display: block; width: 100%; height: min(60vw, 560px); border-radius: 18px; background: linear-gradient(145deg, #edf6fc, #dcebf5); object-fit: contain; }
+.gallery-slider figcaption { display: flex; gap: 12px; padding: 14px 2px 0; color: #385268; font-size: 13px; line-height: 1.5; }
+.gallery-slider figcaption small { flex: 0 0 auto; color: var(--blue); font-size: 9px; font-weight: 850; letter-spacing: .12em; }
+
 .gallery-lightbox[hidden] { display: none; }
 
 .gallery-lightbox {
@@ -282,6 +294,7 @@
   .gallery-thumbnail-grid figure,
   .gallery-thumbnail-grid figure:nth-child(n) { grid-column: auto; }
   .gallery-thumbnail { border-radius: 7px; }
+  .gallery-slider img { height: min(78vw, 460px); border-radius: 12px; }
   .gallery-lightbox { grid-template-columns: 1fr 1fr; align-content: center; padding: 68px 16px 24px; }
   .gallery-lightbox > figure { grid-column: 1 / -1; grid-row: 1; height: min(72vh, 680px); }
   .gallery-lightbox-nav { grid-row: 2; width: 48px; height: 48px; }

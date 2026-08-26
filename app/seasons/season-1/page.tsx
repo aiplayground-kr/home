@@ -20,12 +20,6 @@ export default function SeasonOnePage() {
                 <img src={event.image} alt={`${event.title} 공식 포스터`} />
                 <span>{event.label}</span>
               </div>
-              {event.galleryImage ? (
-                <figure className="archive-gallery-image">
-                  <img src={event.galleryImage} alt={`${event.title} 현장 후원과 프로그램 이미지`} />
-                  <figcaption>MORE FROM THIS DAY</figcaption>
-                </figure>
-              ) : null}
             </div>
 
             <div className="archive-copy">
@@ -63,11 +57,9 @@ export default function SeasonOnePage() {
               </div>
 
               <details><summary>행사 개요 다시 보기</summary><p>{event.detail}</p></details>
-              <EventGallery title={`${event.title} 기록`} items={[
-                { src: event.image, alt: `${event.title} 공식 포스터`, caption: "공식 행사 포스터", label: "POSTER" },
-                ...(event.galleryImage ? [{ src: event.galleryImage, alt: `${event.title} 현장 자료`, caption: "현장 프로그램과 함께한 기록", label: "ON SITE" }] : []),
-                ...event.feedbackPeople.map((voice) => ({ src: voice.image, alt: `${voice.name} LinkedIn 프로필`, caption: `${voice.name} · ${voice.role}`, label: "VOICE" })),
-              ]} />
+              <EventGallery title={`${event.title} 기록`} mode="slider" items={event.galleryImage ? [
+                { src: event.galleryImage, alt: `${event.title} 현장 기록`, caption: "현장 프로그램과 함께한 기록", label: "ON SITE" },
+              ] : []} />
               <div className="archive-detail-actions"><a className="button primary" href={`/seasons/season-1/${event.slug}`}>이 행사 자세히 보기</a></div>
             </div>
           </article>
