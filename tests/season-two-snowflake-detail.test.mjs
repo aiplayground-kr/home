@@ -59,3 +59,11 @@ test("Snowflake session table shows a real portrait for every speaker", async ()
   assert.equal((sessions.match(/<img /g) ?? []).length, 6);
   assert.doesNotMatch(sessions, /class="snowflake-speaker-avatar"><span>/);
 });
+
+test("Jaeseok Lee portrait keeps his face centered in the round frame", async () => {
+  const response = await renderSnowflakeDetail();
+  const html = await response.text();
+  const portrait = html.slice(html.indexOf('alt="이재석 연사"') - 180, html.indexOf('alt="이재석 연사"') + 180);
+  assert.match(portrait, /left:-446px/);
+  assert.match(portrait, /top:-92px/);
+});
