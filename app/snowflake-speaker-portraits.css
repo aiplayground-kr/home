@@ -1,0 +1,18 @@
+.snowflake-table-speaker .snowflake-speaker-avatar {
+  position: relative;
+  background: #e6f1f8;
+  border: 3px solid white;
+  box-shadow: 0 8px 22px rgba(23,83,124,.20);
+}
+
+.snowflake-table-speaker .snowflake-speaker-avatar > img {
+  display: block;
+}
+
+.snowflake-table-speaker .snowflake-speaker-crop > img {
+  position: absolute;
+  width: 700px;
+  height: 600px;
+  max-width: none;
+  object-fit: fill;
+}

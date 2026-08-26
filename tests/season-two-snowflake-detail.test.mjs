@@ -50,3 +50,12 @@ test("Snowflake detail publishes six sessions without a quiz action", async () =
   assert.doesNotMatch(html, /<iframe/);
   assert.doesNotMatch(html, /class="quiz-question/);
 });
+
+test("Snowflake session table shows a real portrait for every speaker", async () => {
+  const response = await renderSnowflakeDetail();
+  const html = await response.text();
+  const sessions = html.slice(html.indexOf('class="snowflake-sessions"'), html.indexOf('class="snowflake-program"'));
+  assert.equal((sessions.match(/class="snowflake-speaker-avatar(?: |")/g) ?? []).length, 6);
+  assert.equal((sessions.match(/<img /g) ?? []).length, 6);
+  assert.doesNotMatch(sessions, /class="snowflake-speaker-avatar"><span>/);
+});

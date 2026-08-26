@@ -10,6 +10,7 @@ import "./gallery.css";
 import "./home-refresh.css";
 import "./subpage-intro.css";
 import "./season-hub-motion.css";
+import "./snowflake-speaker-portraits.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-noriter-season2.youni.chatgpt.site"),

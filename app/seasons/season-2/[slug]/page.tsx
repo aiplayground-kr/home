@@ -62,7 +62,7 @@ function SnowflakeEventRecord() {
         <tbody>{eventSnowflakeSessions.map((session) => <tr key={session.no}>
           <td><span>SESSION {session.no}</span><time>{session.time}</time><small>1시간 30분</small></td>
           <td><strong>{session.topic}</strong><p>{session.description}</p></td>
-          <td><div className="snowflake-table-speaker"><div className="snowflake-speaker-avatar">{session.image ? <img src={session.image} alt={`${session.speaker} 연사`} /> : <span>{session.initials}</span>}</div><div><span>{session.role}</span><a href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong> ↗</a></div></div></td>
+          <td><div className="snowflake-table-speaker"><div className={`snowflake-speaker-avatar${session.imageCrop ? " snowflake-speaker-crop" : ""}`}>{session.image ? <img src={session.image} alt={`${session.speaker} 연사`} style={session.imageCrop} /> : <span>{session.initials}</span>}</div><div><span>{session.role}</span><a href={session.linkedin} target="_blank" rel="noreferrer"><strong>{session.speaker}</strong> ↗</a></div></div></td>
           <td><div className="snowflake-crew">{session.crew.map((member) => <i key={member}>{member}</i>)}</div></td>
         </tr>)}</tbody>
       </table></div>
