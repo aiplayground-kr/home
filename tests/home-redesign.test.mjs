@@ -18,8 +18,10 @@ test("home hero presents the AI Playground identity and current plays", async ()
   assert.equal(response.status, 200);
   assert.match(html, /class="hero-play-console/);
   assert.match(html, /NOW PLAYING/);
-  assert.match(html, /2026\.09\.01/);
   assert.match(html, /2026\.08\.27/);
+  assert.match(html, /snowflake-world-tour-poster\.png/);
+  assert.match(html, /Snowflake[\s\S]*World Tour/);
+  assert.ok(html.indexOf("2026.08.27 THU") < html.indexOf("09.01 TUE"));
 });
 
 test("home small playground section is poster-led and links to event details", async () => {

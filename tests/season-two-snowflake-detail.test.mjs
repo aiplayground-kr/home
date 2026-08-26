@@ -17,8 +17,10 @@ test("Snowflake detail flows from poster to host, sessions, and program", async 
   const html = await response.text();
   assert.equal(response.status, 200);
   assert.match(html, /class="snowflake-poster/);
+  assert.match(html, /snowflake-world-tour-poster\.png/);
   assert.match(html, /SEOUL · AUG 27/);
-  assert.match(html, /즐겁게,[\s\S]*배우고,[\s\S]*선물 받자!/);
+  assert.match(html, /Snowflake World Tour에서[\s\S]*AI놀이터를 만나요/);
+  assert.match(html, /2026년 8월 27일/);
   assert.match(html, /class="snowflake-host/);
   assert.match(html, /김성미/);
   assert.match(html, /host-sung-mi-kim-profile\.png/);

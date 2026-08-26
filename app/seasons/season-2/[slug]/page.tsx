@@ -87,16 +87,14 @@ function BuildEventRecord() {
 
 function SnowflakeEventRecord() {
   return <>
-    <section className="snowflake-poster" aria-labelledby="snowflake-poster-title">
-      <div className="snowflake-poster-card">
-        <div className="snowflake-brand-row"><strong><i aria-hidden="true">❄</i> Snowflake</strong><span>×</span><strong>Microsoft</strong></div>
-        <p className="snowflake-place">SEOUL · AUG 27</p>
-        <div className="snowflake-flurry" aria-hidden="true"><span>✦</span><span>❄</span><span>✦</span></div>
-        <p className="snowflake-kicker">SNOWFLAKE WORLD TOUR · QUIZ &amp; LUCKY DRAW</p>
-        <h1 id="snowflake-poster-title"><em>즐겁게,</em><br />배우고, 선물 받자!</h1>
-        <p className="snowflake-poster-copy">Microsoft와 Snowflake AI를 가볍게 만나고,<br />특별 시연과 행운이 담긴 현장 프로그램을 즐겨보세요.</p>
-        <div className="snowflake-metrics" aria-label="행사 체험 정보"><span><strong>3</strong>문제</span><span><strong>1</strong>회 뽑기</span><span><strong>3</strong>분 체험</span></div>
-        <div className="snowflake-poster-foot"><span>2026.08.27 · 목요일</span><span>SEOUL · SNOWFLAKE WORLD TOUR</span></div>
+    <section className="snowflake-poster snowflake-poster-split" aria-labelledby="snowflake-poster-title">
+      <figure className="snowflake-poster-image"><img src="/events/season-2/snowflake/snowflake-world-tour-poster.png" alt="Microsoft AI놀이터가 함께하는 Snowflake World Tour 서울 8월 27일 공식 포스터" /><figcaption>OFFICIAL POSTER · SEOUL · AUG 27</figcaption></figure>
+      <div className="snowflake-event-intro">
+        <span>SNOWFLAKE × MICROSOFT · SEOUL</span>
+        <h1 id="snowflake-poster-title">Snowflake World Tour에서<br />AI놀이터를 만나요</h1>
+        <p>데이터와 AI가 만나는 Snowflake World Tour 서울 현장에 Microsoft AI놀이터가 함께합니다. 가볍게 즐기는 Microsoft 퀴즈와 여섯 명의 MVP가 준비한 특별 시연, 커뮤니티의 새로운 연결을 한자리에서 만나보세요.</p>
+        <dl><div><dt>DATE</dt><dd>2026년 8월 27일 (목)</dd></div><div><dt>PLACE</dt><dd>서울 · Snowflake World Tour</dd></div><div><dt>PLAY</dt><dd>AI 퀴즈 · Lucky Draw · MVP 특별 시연</dd></div></dl>
+        <div className="snowflake-intro-tags" aria-label="행사 키워드"><span>AI QUIZ</span><span>LIVE DEMO</span><span>COMMUNITY</span></div>
       </div>
     </section>
 
