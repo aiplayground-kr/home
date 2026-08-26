@@ -21,7 +21,7 @@ const officialEvents: HomeEvent[] = [
     label: "SEASON 2",
     title: "Season 2",
     subtitle: "Snowflake × AI Playground",
-    screenTitle: "AI놀이터",
+    screenTitle: "AI놀이터 + Snowflake",
     image: "/events/season-2/snowflake/snowflake-world-tour-poster.png",
   },
 ];

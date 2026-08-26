@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function renderSeasonTwo() {
@@ -38,4 +39,9 @@ test("Snowflake season card shows the official event poster", async () => {
   assert.match(snowflakeCard, /events\/season-2\/snowflake\/snowflake-world-tour-poster\.png/);
   assert.match(snowflakeCard, /2026년 8월 27일 공식 포스터/);
   assert.doesNotMatch(snowflakeCard, /class="snow-console"/);
+});
+
+test("Season 2 event introductions stay within a compact two-line title scale", async () => {
+  const css = await readFile(new URL("../app/season-two.css", import.meta.url), "utf8");
+  assert.match(css, /\.event-list \.event-copy h2\s*\{[^}]*font-size:\s*clamp\(34px,\s*3\.4vw,\s*46px\)[^}]*text-wrap:\s*balance/s);
 });
