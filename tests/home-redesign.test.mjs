@@ -105,12 +105,13 @@ test("home console uses the Microsoft logo below the screen", async () => {
 test("home closes with an inclusive community invitation", async () => {
   const response = await renderHome();
   const html = await response.text();
-  assert.match(html, /class="join join-v2 section-pad"/);
-  assert.match(html, /호기심과 열정만 있다면/);
-  assert.match(html, /누구나 함께할 수 있어요/);
-  assert.match(html, /처음이어도 환영/);
-  assert.match(html, /전공·직무 무관/);
-  assert.match(html, /AI놀이터 커뮤니티 참여/);
+  const join = html.slice(html.indexOf('class="join join-v2 section-pad"'), html.indexOf("<footer"));
+  assert.match(join, /class="join join-v2 section-pad"/);
+  assert.match(join, /호기심과 열정만 있다면/);
+  assert.match(join, /누구나 함께할 수 있어요/);
+  assert.match(join, /AI놀이터 커뮤니티 참여/);
+  assert.doesNotMatch(join, /class="join-tags"/);
+  assert.doesNotMatch(join, /class="join-play-card"/);
 });
 
 test("site footer echoes the bright hero palette", async () => {

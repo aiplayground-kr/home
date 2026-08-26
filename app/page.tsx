@@ -64,19 +64,10 @@ export default function Home() {
     </section>
 
     <section className="join join-v2 section-pad">
-      <div className="join-orbit" aria-hidden="true"><i /><i /><i /><i /></div>
       <div className="join-copy">
-        <p className="eyebrow">JOIN THE PLAYGROUND</p>
-        <h2>호기심과 열정만 있다면,<br /><em>누구나 함께할 수 있어요.</em></h2>
-        <p>AI가 처음인 분부터 현업에서 새로운 가능성을 실험하는 분까지, 배우고 만들고 나누는 일에 열정이 있다면 모두 환영합니다.</p>
-        <div className="join-tags" aria-label="AI놀이터 참여 안내"><span>처음이어도 환영</span><span>전공·직무 무관</span><span>함께 실험하고 성장</span></div>
-        <a className="button join-button" href={communityUrl} target="_blank" rel="noreferrer">AI놀이터 커뮤니티 참여 <span aria-hidden="true">↗</span></a>
+        <div className="join-heading"><p className="eyebrow">JOIN THE PLAYGROUND</p><h2>호기심과 열정만 있다면,<br /><em>누구나 함께할 수 있어요.</em></h2></div>
+        <div className="join-message"><p>AI가 처음인 분부터 현업에서 새로운 가능성을 실험하는 분까지, 배우고 만들고 나누는 일에 열정이 있다면 모두 환영합니다.</p><a className="button join-button" href={communityUrl} target="_blank" rel="noreferrer">AI놀이터 커뮤니티 참여 <span aria-hidden="true">↗</span></a></div>
       </div>
-      <aside className="join-play-card" aria-label="AI놀이터에서 함께하는 방법">
-        <div><span>01 · ASK</span><strong>궁금한 것을<br />편하게 질문해요.</strong></div>
-        <div><span>02 · PLAY</span><strong>직접 만들며<br />가능성을 발견해요.</strong></div>
-        <div><span>03 · SHARE</span><strong>경험을 나누며<br />함께 성장해요.</strong></div>
-      </aside>
     </section>
     <SiteFooter />
   </main>;
