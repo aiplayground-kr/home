@@ -86,6 +86,7 @@
 .hero-screen-event strong { margin-top: 12px; font-size: clamp(19px, 1.9vw, 25px); line-height: 1.15; letter-spacing: -.04em; }
 .hero-screen-event small { margin-top: 24px; color: var(--blue); font-size: 10px; font-weight: 850; }
 .hero-screen-snowflake{grid-template-columns:1.05fr .95fr}.hero-screen-snowflake img{width:100%;height:auto;max-height:205px;border-radius:10px;object-fit:contain;box-shadow:0 10px 24px rgba(7,52,92,.18);filter:none}.hero-screen-snowflake span{color:#087db9}.hero-screen-snowflake small{color:#087db9}
+.hero-screen-snowflake .hero-screen-copy strong { font-size: clamp(14px, 1.4vw, 18px); }
 .hero-screen-small img{border-radius:8px}.hero-screen-placeholder{aspect-ratio:3/4;min-height:215px;padding:14px;border-radius:8px;color:white;display:flex;flex-direction:column;align-items:flex-start;overflow:hidden}.hero-screen-placeholder>span,.hero-screen-placeholder>small{font-size:6px;font-weight:900;letter-spacing:.12em}.hero-screen-placeholder>b{margin:12px 0 auto;font-size:42px;line-height:1}.hero-screen-placeholder>strong{margin-top:8px;font-size:14px;line-height:1.1}.hero-screen-placeholder.cover-1{background:var(--navy)}.hero-screen-placeholder.cover-2{background:var(--blue)}.hero-screen-placeholder.cover-3{background:#0d86b4}.hero-screen-placeholder.cover-4{background:#445d72}
 
 .hero-console-left { position: relative; width: 46px; height: 46px; }

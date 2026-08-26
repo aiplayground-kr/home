@@ -9,6 +9,7 @@ type HomeEvent = {
   label: string;
   title: string;
   subtitle: string;
+  screenTitle?: string;
   number?: string;
   image?: string;
 };
@@ -20,6 +21,7 @@ const officialEvents: HomeEvent[] = [
     label: "SEASON 2",
     title: "Season 2",
     subtitle: "Snowflake × AI Playground",
+    screenTitle: "AI놀이터",
     image: "/events/season-2/snowflake/snowflake-world-tour-poster.png",
   },
 ];
@@ -131,7 +133,7 @@ export function HomeEventStage() {
                   <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
                 </div>
               )}
-              <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
+              <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.screenTitle ?? nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
             </a>
           </div>
           <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>

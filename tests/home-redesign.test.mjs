@@ -129,6 +129,15 @@ test("home console keeps Snowflake as the featured next event", async () => {
   assert.match(component, /return \[featuredEvent, \.\.\.future\.filter\(\(event\) => event !== featuredEvent\)\]\.slice\(0, count\)/);
 });
 
+test("home Snowflake screen uses the smaller AI playground label", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const stage = html.slice(html.indexOf('class="hero-stage"'), html.indexOf('class="hero-now-strip"'));
+  const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
+  assert.match(stage, /class="hero-screen-event hero-screen-snowflake"[\s\S]*<strong>AI놀이터<\/strong>/);
+  assert.match(css, /\.hero-screen-snowflake \.hero-screen-copy strong\s*\{[^}]*font-size:\s*clamp\(14px,\s*1\.4vw,\s*18px\)/);
+});
+
 test("home console uses the Microsoft logo below the screen", async () => {
   const response = await renderHome();
   const html = await response.text();
