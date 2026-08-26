@@ -1,0 +1,142 @@
+.page-intro-v2 {
+  position: relative;
+  min-height: 410px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
+  gap: clamp(36px, 6vw, 90px);
+  align-items: center;
+  overflow: hidden;
+  padding-top: 86px;
+  padding-bottom: 74px;
+  background: linear-gradient(118deg, #f8fcff 0%, #e9f5fd 56%, #d9eefb 100%);
+  border-bottom: 1px solid #cfe3f0;
+}
+
+.page-intro-v2::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  right: -210px;
+  top: -250px;
+  border: 74px solid rgba(20, 92, 197, .045);
+  border-radius: 50%;
+}
+
+.page-intro-copy { position: relative; z-index: 2; }
+.page-intro-copy .eyebrow { margin-bottom: 25px; }
+.page-intro-v2 .page-intro-copy h1 {
+  max-width: 940px;
+  margin: 0;
+  font-size: clamp(44px, 5.5vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -.06em;
+}
+.page-intro-v2 .page-intro-copy > p:last-child {
+  max-width: 680px;
+  margin: 28px 0 0;
+  color: #587188;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.page-intro-visual {
+  position: relative;
+  z-index: 1;
+  min-height: 285px;
+  margin-right: clamp(-150px, -8vw, -70px);
+  overflow: hidden;
+  border-radius: 36px 0 0 36px;
+  isolation: isolate;
+}
+.page-intro-visual > img {
+  position: absolute;
+  width: 155%;
+  height: 155%;
+  inset: -26% auto auto -30%;
+  max-width: none;
+  object-fit: cover;
+  opacity: .72;
+  filter: saturate(.88) contrast(.96);
+}
+.page-intro-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(235,247,254,.18), rgba(160,218,246,.28));
+}
+
+.page-intro-console {
+  position: absolute;
+  width: min(430px, 90%);
+  min-height: 214px;
+  left: 9%;
+  top: 50%;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 70px;
+  gap: 12px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.86);
+  border-radius: 29px;
+  background: rgba(218,245,252,.84);
+  box-shadow: 0 28px 60px rgba(31,91,135,.18);
+  backdrop-filter: blur(12px);
+  transform: translateY(-50%) rotate(-2.5deg);
+}
+.page-intro-dpad {
+  color: var(--navy);
+  font-size: 61px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+}
+.page-intro-screen {
+  position: relative;
+  min-height: 174px;
+  display: flex;
+  padding: 18px;
+  border: 7px solid #204b6c;
+  border-radius: 17px;
+  background: rgba(255,255,255,.88);
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.page-intro-screen::after {
+  content: "";
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  right: -52px;
+  bottom: -57px;
+  border: 25px solid rgba(20,92,197,.10);
+  border-radius: 50%;
+}
+.page-intro-screen small { color: var(--blue); font-size: 7px; font-weight: 900; letter-spacing: .14em; }
+.page-intro-screen strong { position: relative; z-index: 1; color: var(--navy); font-size: 23px; line-height: .9; letter-spacing: -.055em; }
+.page-intro-screen > i { width: 58px; height: 4px; border-radius: 99px; background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--yellow)); }
+.page-intro-buttons { display: grid; grid-template-columns: repeat(2, 18px); gap: 7px; justify-content: center; transform: rotate(-12deg); }
+.page-intro-buttons i { width: 18px; height: 18px; border-radius: 50%; background: var(--yellow); box-shadow: 0 3px 7px rgba(26,70,102,.12); }
+.page-intro-buttons i:nth-child(2) { background: var(--cyan); }
+.page-intro-buttons i:nth-child(3) { background: var(--green); }
+.page-intro-buttons i:nth-child(4) { background: var(--coral); }
+
+@media (max-width: 950px) {
+  .page-intro-v2 { grid-template-columns: minmax(0, 1.15fr) minmax(230px, .55fr); gap: 25px; }
+  .page-intro-console { left: 2%; transform: translateY(-50%) rotate(-2.5deg) scale(.84); transform-origin: left center; }
+}
+
+@media (max-width: 700px) {
+  .page-intro-v2 { min-height: 430px; display: block; padding: 72px 20px 68px; }
+  .page-intro-copy { max-width: 88%; }
+  .page-intro-v2 .page-intro-copy h1 { font-size: 44px; }
+  .page-intro-v2 .page-intro-copy > p:last-child { font-size: 14px; }
+  .page-intro-visual { position: absolute; width: 360px; min-height: 100%; right: -225px; top: 0; margin: 0; border-radius: 0; opacity: .38; }
+  .page-intro-console { left: 0; transform: translateY(-50%) rotate(-3deg) scale(.72); transform-origin: left center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-intro-console { transition: none; }
+}

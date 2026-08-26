@@ -19,5 +19,15 @@ export function SiteFooter() {
 }
 
 export function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
-  return <section className="page-intro"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></section>;
+  return <section className="page-intro page-intro-v2">
+    <div className="page-intro-copy"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></div>
+    <div className="page-intro-visual" aria-hidden="true">
+      <img src="/hero-orbits.png" alt="" />
+      <div className="page-intro-console">
+        <b className="page-intro-dpad">+</b>
+        <div className="page-intro-screen"><small>AI PLAYGROUND</small><strong>PLAY<br />LEARN<br />SHARE</strong><i /></div>
+        <div className="page-intro-buttons"><i /><i /><i /><i /></div>
+      </div>
+    </div>
+  </section>;
 }

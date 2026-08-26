@@ -8,6 +8,7 @@ import "./season-event-shared.css";
 import "./footer.css";
 import "./gallery.css";
 import "./home-refresh.css";
+import "./subpage-intro.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-noriter-season2.youni.chatgpt.site"),
