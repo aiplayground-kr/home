@@ -74,3 +74,10 @@ test("small playground detail hero gives the poster a prominent desktop size", a
   const typography = await readFile(new URL("../app/typography.css", import.meta.url), "utf8");
   assert.match(typography, /\.small-detail-page \.detail-hero > \.program-cover[\s\S]*?width: min\(100%, 360px\);[\s\S]*?max-width: 360px;/);
 });
+
+test("small playground detail actions keep breathing room above the buttons", async () => {
+  const css = await readFile(new URL("../app/typography.css", import.meta.url), "utf8");
+  const rule = css.match(/\.small-detail-page \.detail-actions\s*\{([^}]*)\}/)?.[1] ?? "";
+  const marginTop = Number(rule.match(/margin-top:\s*(\d+)px/)?.[1] ?? 0);
+  assert.ok(marginTop >= 28, `expected at least 28px above detail actions, received ${marginTop}px`);
+});

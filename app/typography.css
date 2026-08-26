@@ -124,6 +124,10 @@
   max-width: 360px;
 }
 
+.small-detail-page .detail-actions {
+  margin-top: 32px;
+}
+
 @media (max-width: 950px) {
   .small-detail-page .detail-hero { grid-template-columns: 1fr; }
   .small-detail-page .detail-poster,
