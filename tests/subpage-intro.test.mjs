@@ -13,7 +13,7 @@ async function render(pathname) {
   );
 }
 
-test("shared subpage banners carry the hero image and play-console motif", async () => {
+test("shared subpage banners use the hero image without the play-console illustration", async () => {
   for (const pathname of ["/seasons", "/seasons/season-1", "/seasons/season-2", "/small-playground", "/organization", "/host"]) {
     const response = await render(pathname);
     const html = await response.text();
@@ -21,7 +21,8 @@ test("shared subpage banners carry the hero image and play-console motif", async
     assert.match(html, /class="page-intro page-intro-v2"/);
     assert.match(html, /class="page-intro-visual" aria-hidden="true"/);
     assert.match(html, /src="\/hero-orbits\.png"/);
-    assert.match(html, /class="page-intro-console"/);
+    assert.doesNotMatch(html, /class="page-intro-console"/);
+    assert.doesNotMatch(html, /page-intro-(?:dpad|screen|buttons)/);
   }
 });
 
