@@ -62,6 +62,17 @@ test("home console keeps poster and placeholder artwork on the same stage", asyn
   assert.match(css, /\.hero-screen-media\s*>\s*\.hero-screen-placeholder\s*\{[^}]*height:\s*100%/);
 });
 
+test("home console exposes all three rolling events as numbered controls", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const stage = html.slice(html.indexOf('class="hero-stage"'), html.indexOf('class="hero-now-strip"'));
+
+  assert.match(stage, /role="tablist" aria-label="롤링 행사 선택"/);
+  assert.equal((stage.match(/role="tab"/g) ?? []).length, 3);
+  assert.equal((stage.match(/aria-selected="true"/g) ?? []).length, 1);
+  for (const number of ["01", "02", "03"]) assert.match(stage, new RegExp(`>${number}<`));
+});
+
 test("home small playground section is poster-led and links to event details", async () => {
   const response = await renderHome();
   const html = await response.text();

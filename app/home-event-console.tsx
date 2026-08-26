@@ -42,8 +42,10 @@ const smallEvents: HomeEvent[] = smallPlaygroundPrograms
 const timelineEvents = [...officialEvents, ...smallEvents].sort((a, b) => a.date.localeCompare(b.date));
 
 type HomeEventContextValue = {
+  activeIndex: number;
   activeEvent?: HomeEvent;
   nextEvents: HomeEvent[];
+  selectEvent: (index: number) => void;
 };
 
 const HomeEventContext = createContext<HomeEventContextValue | null>(null);
@@ -107,11 +109,11 @@ export function HomeEventProvider({ children }: { children: ReactNode }) {
   }, [today, nextEvents.length]);
 
   const activeEvent = nextEvents[activeIndex];
-  return <HomeEventContext.Provider value={{ activeEvent, nextEvents }}>{children}</HomeEventContext.Provider>;
+  return <HomeEventContext.Provider value={{ activeIndex, activeEvent, nextEvents, selectEvent: setActiveIndex }}>{children}</HomeEventContext.Provider>;
 }
 
 export function HomeEventStage() {
-  const { activeEvent: nextEvent } = useHomeEvents();
+  const { activeIndex, activeEvent: nextEvent, nextEvents, selectEvent } = useHomeEvents();
   if (!nextEvent) return null;
 
   const isSmallPlay = Boolean(nextEvent.number);
@@ -125,7 +127,7 @@ export function HomeEventStage() {
           <div className="hero-console-left" aria-hidden="true"><span /><span /></div>
           <div className="hero-console-screen" aria-live="polite">
             <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime={nextEvent.date}>{displayDate(nextEvent.date, true)}</time></div>
-            <a href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
+            <a id="hero-rolling-event" href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
               <div className="hero-screen-media">
                 {nextEvent.image ? (
                   <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
@@ -137,6 +139,17 @@ export function HomeEventStage() {
               </div>
               <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.screenTitle ?? nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
             </a>
+            <div className="hero-rotation-nav" role="tablist" aria-label="롤링 행사 선택">
+              {nextEvents.map((event, index) => <button
+                type="button"
+                role="tab"
+                aria-controls="hero-rolling-event"
+                aria-selected={index === activeIndex}
+                aria-label={`${index + 1}번 ${event.title}`}
+                onClick={() => selectEvent(index)}
+                key={`${event.date}-${event.href}`}
+              >{String(index + 1).padStart(2, "0")}</button>)}
+            </div>
           </div>
           <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
         </div>
