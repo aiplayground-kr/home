@@ -85,3 +85,19 @@ test("Snowflake program cards align labels, titles, and descriptions on shared r
   assert.match(cardRule, /display:grid/);
   assert.match(cardRule, /grid-template-rows:86px 28px 72px auto/);
 });
+
+test("Snowflake program heading stacks eyebrow, title, and description in that order", async () => {
+  const response = await renderSnowflakeDetail();
+  const html = await response.text();
+  const programHeader = html.slice(
+    html.indexOf('class="snowflake-program"'),
+    html.indexOf('class="snowflake-program-grid"'),
+  );
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const headerRule = css.match(/\.snowflake-program>header\{([^}]*)\}/)?.[1] ?? "";
+
+  assert.ok(programHeader.indexOf("PLAY TOGETHER") < programHeader.indexOf("행사 프로그램"));
+  assert.ok(programHeader.indexOf("행사 프로그램") < programHeader.indexOf("짧고 즐거운 체험부터"));
+  assert.match(headerRule, /display:flex/);
+  assert.match(headerRule, /flex-direction:column/);
+});
