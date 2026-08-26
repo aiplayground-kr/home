@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { communityUrl, seasonOneEvents, seasonTwoEvents } from "./content";
-import { HomeEventStage, HomeEventStrip } from "./home-event-console";
+import { HomeEventProvider, HomeEventStage, HomeEventStrip } from "./home-event-console";
 import { smallPlaygroundPrograms } from "./small-playground/data";
 import { SiteFooter, SiteHeader } from "./site-shell";
 
@@ -11,21 +11,23 @@ export default function Home() {
   });
   return <main>
     <SiteHeader />
-    <section className="hero hero-v2">
-      <div className="hero-bg" aria-hidden="true" />
-      <div className="hero-grid">
-        <div className="hero-copy">
-          <p className="live-label"><span /> AI PLAYGROUND · MICROSOFT KOREA COMMUNITY</p>
-          <h1>AI를 배우는 곳보다,<br /><em>AI와 놀아보는 곳.</em></h1>
-          <p>처음이어도 괜찮아요. 직접 만지고, 질문하고, 함께 만들다 보면<br />어느새 나만의 가능성이 하나의 결과가 됩니다.</p>
-          <div className="hero-keywords" aria-label="AI놀이터 활동 방식"><span>PLAY</span><i /> <span>LEARN</span><i /> <span>BUILD</span><i /> <span>SHARE</span></div>
-          <div className="actions"><a className="button primary" href="/seasons/season-2">시즌 2 플레이</a><a className="button ghost" href="/small-playground">작은 놀이터 입장</a></div>
-        </div>
+    <HomeEventProvider>
+      <section className="hero hero-v2">
+        <div className="hero-bg" aria-hidden="true" />
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="live-label"><span /> AI PLAYGROUND · MICROSOFT KOREA COMMUNITY</p>
+            <h1>AI를 배우는 곳보다,<br /><em>AI와 놀아보는 곳.</em></h1>
+            <p>처음이어도 괜찮아요. 직접 만지고, 질문하고, 함께 만들다 보면<br />어느새 나만의 가능성이 하나의 결과가 됩니다.</p>
+            <div className="hero-keywords" aria-label="AI놀이터 활동 방식"><span>PLAY</span><i /> <span>LEARN</span><i /> <span>BUILD</span><i /> <span>SHARE</span></div>
+            <div className="actions"><a className="button primary" href="/seasons/season-2">시즌 2 플레이</a><a className="button ghost" href="/small-playground">작은 놀이터 입장</a></div>
+          </div>
 
-        <HomeEventStage />
-      </div>
-      <HomeEventStrip />
-    </section>
+          <HomeEventStage />
+        </div>
+        <HomeEventStrip />
+      </section>
+    </HomeEventProvider>
 
     <section className="manifesto manifesto-v2 section-pad">
       <div className="manifesto-content">

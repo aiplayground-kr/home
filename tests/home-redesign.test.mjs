@@ -26,7 +26,7 @@ test("home hero presents the AI Playground identity and current plays", async ()
   assert.ok(strip.indexOf("2026.08.27") < strip.indexOf("2026.09.01"));
 });
 
-test("home upcoming rail shows three chronological events in a rolling live region", async () => {
+test("home upcoming rail keeps the three nearest events fixed", async () => {
   const response = await renderHome();
   const html = await response.text();
   const strip = html.slice(html.indexOf('class="hero-now-strip"'), html.indexOf('class="manifesto manifesto-v2'));
@@ -34,7 +34,7 @@ test("home upcoming rail shows three chronological events in a rolling live regi
   assert.equal(dates.length, 3);
   assert.deepEqual(dates, [...dates].sort());
   assert.match(strip, /class="hero-now-track"/);
-  assert.match(strip, /aria-live="polite"/);
+  assert.doesNotMatch(strip, /aria-live="polite"/);
 });
 
 test("home console gives more space to its central screen", async () => {
@@ -116,10 +116,10 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /timeZone: "Asia\/Seoul"/);
   assert.match(component, /event\.date >= today/);
   assert.match(component, /setInterval\([\s\S]*60_000/);
-  assert.match(component, /upcoming\(timelineEvents, today, 1\)/);
-  assert.match(component, /upcoming\(timelineEvents, today, timelineEvents\.length\)/);
-  assert.match(component, /Math\.ceil\(nextEvents\.length \/ 3\)/);
-  assert.match(component, /slice\(rollIndex \* 3, rollIndex \* 3 \+ 3\)/);
+  assert.match(component, /upcoming\(timelineEvents, today, 3\)/);
+  assert.match(component, /setActiveIndex\(\(index\) => \(index \+ 1\) % nextEvents\.length\)/);
+  assert.match(component, /const activeEvent = nextEvents\[activeIndex\]/);
+  assert.doesNotMatch(component, /slice\(rollIndex \* 3, rollIndex \* 3 \+ 3\)/);
   assert.match(component, /4_500/);
 });
 

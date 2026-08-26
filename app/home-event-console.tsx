@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { smallPlaygroundPrograms } from "./small-playground/data";
 
 type HomeEvent = {
@@ -39,6 +39,13 @@ const smallEvents: HomeEvent[] = smallPlaygroundPrograms
 
 const timelineEvents = [...officialEvents, ...smallEvents].sort((a, b) => a.date.localeCompare(b.date));
 
+type HomeEventContextValue = {
+  activeEvent?: HomeEvent;
+  nextEvents: HomeEvent[];
+};
+
+const HomeEventContext = createContext<HomeEventContextValue | null>(null);
+
 function koreaDateKey(now = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Seoul",
@@ -76,9 +83,32 @@ function upcoming(events: HomeEvent[], today: string, count: number) {
   return (future.length ? future : ordered.slice(-count)).slice(0, count);
 }
 
-export function HomeEventStage() {
+function useHomeEvents() {
+  const value = useContext(HomeEventContext);
+  if (!value) throw new Error("Home event components must be wrapped in HomeEventProvider");
+  return value;
+}
+
+export function HomeEventProvider({ children }: { children: ReactNode }) {
   const today = useKoreaToday();
-  const nextEvent = upcoming(timelineEvents, today, 1)[0];
+  const nextEvents = upcoming(timelineEvents, today, 3);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveIndex(0);
+    if (nextEvents.length <= 1) return;
+    const timer = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % nextEvents.length);
+    }, 4_500);
+    return () => window.clearInterval(timer);
+  }, [today, nextEvents.length]);
+
+  const activeEvent = nextEvents[activeIndex];
+  return <HomeEventContext.Provider value={{ activeEvent, nextEvents }}>{children}</HomeEventContext.Provider>;
+}
+
+export function HomeEventStage() {
+  const { activeEvent: nextEvent } = useHomeEvents();
   if (!nextEvent) return null;
 
   const isSmallPlay = Boolean(nextEvent.number);
@@ -90,18 +120,18 @@ export function HomeEventStage() {
         <div className="hero-console-top"><span>AI PLAYGROUND</span><b><i /> PLAY MODE</b></div>
         <div className="hero-console-body">
           <div className="hero-console-left" aria-hidden="true"><span /><span /></div>
-          <div className="hero-console-screen">
-              <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime={nextEvent.date}>{displayDate(nextEvent.date, true)}</time></div>
-              <a href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
-                {nextEvent.image ? (
-                  <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
-                ) : (
-                  <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
-                    <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
-                  </div>
-                )}
-                <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
-              </a>
+          <div className="hero-console-screen" aria-live="polite">
+            <div className="hero-screen-meta"><strong>NEXT PLAY</strong><time dateTime={nextEvent.date}>{displayDate(nextEvent.date, true)}</time></div>
+            <a href={nextEvent.href} className={`hero-screen-event ${isSmallPlay ? "hero-screen-small" : "hero-screen-snowflake"}`}>
+              {nextEvent.image ? (
+                <img src={nextEvent.image} alt={`${nextEvent.title} 공식 포스터`} />
+              ) : (
+                <div className={`hero-screen-placeholder cover-${((coverNumber - 1) % 4) + 1}`} aria-hidden="true">
+                  <span>AI PLAYGROUND</span><b>{nextEvent.number}</b><small>SMALL PLAYGROUND</small><strong>{nextEvent.subtitle}</strong>
+                </div>
+              )}
+              <div className="hero-screen-copy"><span>{nextEvent.label}</span><strong>{nextEvent.subtitle}</strong><small>게임 시작하기 →</small></div>
+            </a>
           </div>
           <div className="hero-console-buttons" aria-hidden="true"><i /><i /><i /><i /></div>
         </div>
@@ -116,26 +146,12 @@ export function HomeEventStage() {
 }
 
 export function HomeEventStrip() {
-  const today = useKoreaToday();
-  const [rollIndex, setRollIndex] = useState(0);
-  const nextEvents = upcoming(timelineEvents, today, timelineEvents.length);
-  const pageCount = Math.ceil(nextEvents.length / 3);
-
-  useEffect(() => {
-    setRollIndex(0);
-    if (pageCount <= 1) return;
-    const timer = window.setInterval(() => {
-      setRollIndex((index) => (index + 1) % pageCount);
-    }, 4_500);
-    return () => window.clearInterval(timer);
-  }, [today, pageCount]);
-
-  const visibleEvents = nextEvents.slice(rollIndex * 3, rollIndex * 3 + 3);
+  const { nextEvents } = useHomeEvents();
   return (
     <div className="hero-now-strip" aria-label="다가오는 AI놀이터 일정">
       <span className="now-strip-label"><i /> UP NEXT</span>
-      <div className="hero-now-track" aria-live="polite" key={`${today}-${rollIndex}`}>
-        {visibleEvents.map((event) => (
+      <div className="hero-now-track">
+        {nextEvents.map((event) => (
           <a href={event.href} key={`${event.date}-${event.href}`}>
             <time dateTime={event.date}>{displayDate(event.date, true)} {weekday(event.date)}</time>
             <strong>{event.title}</strong>
