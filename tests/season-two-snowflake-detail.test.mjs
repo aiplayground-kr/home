@@ -77,3 +77,11 @@ test("Snowflake session table fits desktop without horizontal scrolling", async 
   assert.match(desktop, /\.snowflake-session-table-wrap\s*\{[^}]*overflow-x:\s*visible/s);
   assert.match(desktop, /\.snowflake-session-table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/s);
 });
+
+test("Snowflake program cards align labels, titles, and descriptions on shared rows", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const cardRule = css.match(/\.snowflake-program-grid article\{([^}]*)\}/)?.[1] ?? "";
+
+  assert.match(cardRule, /display:grid/);
+  assert.match(cardRule, /grid-template-rows:86px 28px 72px auto/);
+});
