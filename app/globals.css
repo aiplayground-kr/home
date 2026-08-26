@@ -57,7 +57,6 @@
 .org-person.compact{grid-template-columns:60px minmax(0,1fr) auto;padding:14px}
 .org-person.compact .org-avatar{width:60px;height:60px}
 .team-grid ul{margin-top:auto}
-.org-profile-note{margin:26px 0;padding:18px 20px;border-left:3px solid var(--blue);background:var(--ice);color:var(--muted);font-size:12px;line-height:1.7}
 @media(max-width:950px){.steering-people{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:620px){.org-map .steering{padding:28px}.steering-people{grid-template-columns:1fr}.org-person{grid-template-columns:64px minmax(0,1fr) auto}.org-avatar{width:64px;height:64px}.org-person-copy strong{font-size:17px}.org-person-copy small,.org-person-summary{font-size:13px}}
 

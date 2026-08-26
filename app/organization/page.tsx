@@ -62,7 +62,6 @@ export default function OrganizationPage() {
         <ul>{team.roles.map(role => <li key={role}>{role}</li>)}</ul>
       </article>)}</div>
 
-      <p className="org-profile-note">제공해주신 LinkedIn 프로필을 기준으로 인물과 활동 정보를 연결했습니다. 공개 프로필 사진이 제공되지 않는 계정은 LinkedIn 기본 프로필 이미지로 표시됩니다.</p>
       <aside><strong>PROJECT LAYER · 작은 놀이터</strong><p>프로젝트마다 리더를 세우고 팀 구분 없이 삼삼오오 협력합니다.</p><a href="/small-playground">프로그램 보기</a></aside>
     </section><SiteFooter /></main>;
 }

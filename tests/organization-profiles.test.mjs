@@ -40,6 +40,8 @@ test("organization page shows verified public profile portraits and LinkedIn lin
   assert.match(playSection, /문종훈[\s\S]*서동훈/);
   assert.match(playSection, /서동훈[\s\S]*PLAY Crew/);
   assert.match(html, /윤미영[\s\S]*SHARE Lead · MCT/);
+  assert.doesNotMatch(html, /org-profile-note/);
+  assert.doesNotMatch(html, /제공해주신 LinkedIn 프로필을 기준으로/);
 });
 
 test("steering title and description sit above three equal-width operator profiles", async () => {
