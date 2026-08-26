@@ -46,10 +46,90 @@ const context = { waitUntil() {}, passThroughOnException() {} };
 
 function makeStatic(html, route) {
   const canonicalPath = route === "/" ? "/" : `${route}/`;
-  return html
+  const payloads = [];
+  let firstPushBody = null;
+  const placeholder = "<!--AI_PLAYGROUND_RSC_PAYLOAD-->";
+  const pushPattern = /\.rsc\.push\(("(?:\\.|[^"\\])*")\)/;
+
+  const withoutRscPushes = html.replace(/<script>([\s\S]*?)<\/script>/g, (script, body) => {
+    const push = body.match(pushPattern);
+    if (!push) return script;
+
+    payloads.push(JSON.parse(push[1]));
+    if (firstPushBody === null) {
+      firstPushBody = body;
+      return placeholder;
+    }
+    return "";
+  });
+
+  let staticHtml = rewriteAbsolutePaths(withoutRscPushes);
+
+  if (firstPushBody !== null) {
+    const payload = rewriteRscPayload(payloads.join(""));
+    assertRscTextRecordLengths(payload, route);
+    const pushBody = firstPushBody.replace(pushPattern, `.rsc.push(${JSON.stringify(payload)})`);
+    staticHtml = staticHtml.replace(placeholder, `<script>${pushBody}</script>`);
+  }
+
+  return staticHtml.replace(
+    "</head>",
+    `<link rel="canonical" href="${canonicalOrigin}${canonicalPath}"><meta name="github-pages-base" content="${basePath}"></head>`,
+  );
+}
+
+function rewriteAbsolutePaths(value) {
+  return value
     .replace(/(["'`])\/(?!\/|>)/g, `$1${basePath}/`)
-    .replaceAll("https://ai-noriter-season2.youni.chatgpt.site", canonicalOrigin)
-    .replace("</head>", `<link rel="canonical" href="${canonicalOrigin}${canonicalPath}"><meta name="github-pages-base" content="${basePath}"></head>`);
+    .replaceAll("https://ai-noriter-season2.youni.chatgpt.site", canonicalOrigin);
+}
+
+function utf8EndIndex(value, start, byteLength) {
+  let bytes = 0;
+  let index = start;
+
+  while (index < value.length && bytes < byteLength) {
+    const codePoint = value.codePointAt(index);
+    const character = String.fromCodePoint(codePoint);
+    bytes += Buffer.byteLength(character);
+    index += character.length;
+  }
+
+  if (bytes !== byteLength) {
+    throw new Error(`RSC text record ended in the middle of a UTF-8 character (${bytes}/${byteLength})`);
+  }
+  return index;
+}
+
+function rewriteRscPayload(payload) {
+  const recordPattern = /([0-9a-f]+):T([0-9a-f]+),/g;
+  let cursor = 0;
+  let rewritten = "";
+  let record;
+
+  while ((record = recordPattern.exec(payload)) !== null) {
+    rewritten += rewriteAbsolutePaths(payload.slice(cursor, record.index));
+
+    const contentStart = record.index + record[0].length;
+    const contentEnd = utf8EndIndex(payload, contentStart, Number.parseInt(record[2], 16));
+    const content = rewriteAbsolutePaths(payload.slice(contentStart, contentEnd));
+    rewritten += `${record[1]}:T${Buffer.byteLength(content).toString(16)},${content}`;
+
+    cursor = contentEnd;
+    recordPattern.lastIndex = contentEnd;
+  }
+
+  return rewritten + rewriteAbsolutePaths(payload.slice(cursor));
+}
+
+function assertRscTextRecordLengths(payload, route) {
+  for (const record of payload.matchAll(/[0-9a-f]+:T([0-9a-f]+),/g)) {
+    const contentStart = record.index + record[0].length;
+    const contentEnd = utf8EndIndex(payload, contentStart, Number.parseInt(record[1], 16));
+    if (!/^(?:[0-9a-f]+:|:[A-Z]|$)/.test(payload.slice(contentEnd))) {
+      throw new Error(`Invalid RSC text record while exporting ${route}: ${record[0]}`);
+    }
+  }
 }
 
 for (const route of routes) {
