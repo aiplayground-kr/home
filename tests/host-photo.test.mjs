@@ -34,6 +34,9 @@ test("host page summarizes verified career and community activity", async () => 
   assert.match(html, /AgentCon Seoul 2026/);
   assert.match(html, /Microsoft Certified: Azure AI Fundamentals/);
   assert.match(html, /확인한 공개 기록/);
+  const profileHead = html.slice(html.indexOf('class="host-profile-head"'), html.indexOf('class="host-profile-grid"'));
+  assert.ok(profileHead.indexOf('PROFILE &amp; ACTIVITY') < profileHead.indexOf("<h2>"));
+  assert.ok(profileHead.indexOf("<h2>") < profileHead.indexOf("공개 프로필과 공식 인터뷰"));
 });
 
 test("host portrait styling preserves the face-centered crop", async () => {
@@ -42,4 +45,5 @@ test("host portrait styling preserves the face-centered crop", async () => {
   assert.match(css, /object-fit:\s*cover/);
   assert.match(css, /object-position:\s*50%\s+40%/);
   assert.match(css, /\.host-photo-card blockquote\{[^}]*font-size:clamp\(22px,2\.2vw,34px\)/);
+  assert.match(css, /\.host-profile-head\{[^}]*display:flex;[^}]*flex-direction:column;[^}]*align-items:flex-start/);
 });
