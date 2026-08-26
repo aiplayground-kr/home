@@ -54,6 +54,7 @@ export default function OrganizationPage() {
       <article className="steering">
         <div><span>COMMUNITY LEADER · STEERING</span><h2>하나의 북극성을<br />함께 정합니다.</h2><p>방향 설정 · 연결 · 최종 의사결정</p></div>
         <div className="steering-people">{steering.map(person => <ProfileCard key={person.name} person={person} />)}</div>
+        <div className="north-star-field" aria-hidden="true"><span className="north-star" /><i /><i /><i /><i /><i /></div>
       </article>
 
       <div className="team-grid">{teams.map(team => <article key={team.name}>

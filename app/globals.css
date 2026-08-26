@@ -34,7 +34,17 @@
 @media(max-width:620px){.host-photo-card{min-height:500px}.host-photo-card figcaption{padding:26px}.host-photo-card blockquote{font-size:25px}.host-signature{align-items:flex-start;flex-direction:column;gap:5px}.host-signature span{padding-left:0;border-left:0}.host-profile-grid article{min-height:240px;padding:28px}.host-credentials{padding:28px}.host-sources{align-items:flex-start;flex-direction:column}}
 
 /* Organization profile portraits */
-.org-map .steering{display:flex;flex-direction:column;align-items:stretch;gap:30px;padding:42px}
+.org-map .steering{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:30px;padding:42px;overflow:hidden}
+.steering>div:not(.north-star-field){position:relative;z-index:1}
+.north-star-field{position:absolute;inset:0;z-index:0;pointer-events:none}
+.north-star{position:absolute;right:13%;top:17%;width:12px;height:12px;background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 13px #7bdcff);animation:north-star-pulse 2.8s ease-in-out infinite}
+.north-star::before,.north-star::after{position:absolute;inset:50% auto auto 50%;background:linear-gradient(90deg,transparent,rgba(190,237,255,.9),transparent);content:"";transform:translate(-50%,-50%)}
+.north-star::before{width:86px;height:1px}.north-star::after{width:1px;height:86px;background:linear-gradient(180deg,transparent,rgba(190,237,255,.9),transparent)}
+.north-star-field i{position:absolute;width:3px;height:3px;border-radius:50%;background:#bdeaff;box-shadow:0 0 7px #7bdcff;animation:north-star-twinkle 3.2s ease-in-out infinite}
+.north-star-field i:nth-of-type(1){right:27%;top:13%;animation-delay:-.7s}.north-star-field i:nth-of-type(2){right:7%;top:31%;animation-delay:-1.9s}.north-star-field i:nth-of-type(3){right:35%;top:39%;animation-delay:-2.5s}.north-star-field i:nth-of-type(4){right:19%;top:48%;animation-delay:-1.2s}.north-star-field i:nth-of-type(5){right:5%;top:10%;animation-delay:-.2s}
+@keyframes north-star-pulse{0%,100%{opacity:.58;transform:scale(.78) rotate(0)}45%{opacity:1;transform:scale(1.35) rotate(12deg)}60%{opacity:.86;transform:scale(1) rotate(18deg)}}
+@keyframes north-star-twinkle{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:.9;transform:scale(1.8)}}
+@media(prefers-reduced-motion:reduce){.north-star,.north-star-field i{animation:none}}
 .steering>div:first-child>span{font-size:10px;font-weight:800;letter-spacing:.13em}
 .steering>div:first-child h2{font-size:clamp(32px,4vw,58px);margin:20px 0 10px}
 .steering>div:first-child p{margin:0;color:#c9deed}

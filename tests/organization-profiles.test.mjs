@@ -56,3 +56,17 @@ test("steering title and description sit above three equal-width operator profil
   assert.match(peopleRule, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(peopleRule, /width:\s*100%/);
 });
+
+test("steering card presents an animated north-star field with reduced-motion support", async () => {
+  const response = await renderOrganization();
+  const html = await response.text();
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(html, /class="north-star-field" aria-hidden="true"/);
+  assert.match(html, /class="north-star"/);
+  assert.match(css, /\.north-star\{[^}]*animation:north-star-pulse/);
+  assert.match(css, /\.north-star-field i\{[^}]*animation:north-star-twinkle/);
+  assert.match(css, /@keyframes north-star-pulse/);
+  assert.match(css, /@keyframes north-star-twinkle/);
+  assert.match(css, /@media\(prefers-reduced-motion:reduce\)\{\.north-star,\.north-star-field i\{animation:none\}\}/);
+});
