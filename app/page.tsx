@@ -45,7 +45,7 @@ export default function Home() {
         <span className="now-strip-label"><i /> NOW PLAYING</span>
         <a href="/seasons/season-2/snowflake"><time dateTime="2026-08-27">2026.08.27 THU</time><strong>Season 2</strong><span>Snowflake × AI Playground</span></a>
         <a href="/small-playground/3"><time dateTime="2026-09-01">09.01 TUE</time><strong>작은 놀이터 #03</strong><span>GitHub Copilot Dev Days</span></a>
-        <a href="/small-playground/4"><time dateTime="2026-09-12">09.12 SAT</time><strong>작은 놀이터 #04</strong><span>만들면서 배우는 GitHub</span></a>
+        <a href="/small-playground/4"><time dateTime="2026-09-12">09.12 SAT</time><strong>작은 놀이터 #04</strong><span>만들면서 배우는 GitHub Copilot</span></a>
       </div>
     </section>
 

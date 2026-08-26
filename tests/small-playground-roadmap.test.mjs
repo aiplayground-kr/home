@@ -17,7 +17,7 @@ test("small playground index presents programs 4 through 7", async () => {
   const response = await render("/small-playground");
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /GitHub Copilot으로 만들면서 배우는 GitHub/);
+  assert.match(html, /GitHub Copilot Dev Days: 만들면서 배우는 GitHub Copilot/);
   assert.match(html, /북토크: 언런/);
   assert.match(html, /Women Who Code × GitHub Copilot Dev Days/);
   assert.match(html, /Copilot으로 디자인이 가능하다고\?/);
