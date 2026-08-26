@@ -76,6 +76,16 @@ test("home Season 2 panel uses a brighter Microsoft blue treatment", async () =>
   assert.match(css, /\.season-panel\.current \.mini-events a\s*\{[^}]*rgba\(255,\s*255,\s*255,\s*\.16\)/i);
 });
 
+test("home Season 2 panel links the overview and each event to their own pages", async () => {
+  const response = await renderHome();
+  const html = await response.text();
+  const panel = html.slice(html.indexOf('class="season-panel current"'), html.indexOf('class="season-panel archive"'));
+
+  assert.match(panel, /href="\/seasons\/season-2">시즌 2 자세히 보기/);
+  assert.match(panel, /href="\/seasons\/season-2\/build"/);
+  assert.match(panel, /href="\/seasons\/season-2\/snowflake"/);
+});
+
 test("home manifesto turns the playground philosophy into three experience steps", async () => {
   const response = await renderHome();
   const html = await response.text();
