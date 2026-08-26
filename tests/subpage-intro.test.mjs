@@ -26,9 +26,10 @@ test("shared subpage banners use the hero image without the play-console illustr
   }
 });
 
-test("subpage banner keeps the visual partial and responsive", async () => {
+test("subpage banner uses the hero image as a full background without the decorative ring", async () => {
   const css = await readFile(new URL("../app/subpage-intro.css", import.meta.url), "utf8");
-  assert.match(css, /\.page-intro-v2 \{[\s\S]*grid-template-columns:/);
-  assert.match(css, /\.page-intro-visual \{[\s\S]*overflow: hidden;/);
-  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.page-intro-visual \{ position: absolute;/);
+  assert.doesNotMatch(css, /\.page-intro-v2::before\s*\{/);
+  assert.match(css, /\.page-intro-visual\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?inset:\s*0;/);
+  assert.match(css, /\.page-intro-visual\s*>\s*img\s*\{[\s\S]*?width:\s*100%;[\s\S]*?height:\s*100%;[\s\S]*?object-fit:\s*cover;/);
+  assert.match(css, /\.page-intro-visual::after\s*\{[\s\S]*?linear-gradient\(90deg,/);
 });
