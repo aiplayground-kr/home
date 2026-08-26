@@ -32,4 +32,14 @@ test("small playground 3 detail shows the revised event facts", async () => {
   assert.match(html, /Microsoft Korea 13층/);
   assert.match(html, /전대호 Microsoft MVP/);
   assert.match(html, /small-playground\/03-github-copilot-dev-days\.png/);
+  const hero = html.slice(html.indexOf('class="detail-hero"'), html.indexOf('class="detail-content"'));
+  assert.ok(hero.indexOf('class="detail-status"') < hero.indexOf('class="detail-number"'));
+  assert.ok(hero.indexOf('class="detail-number"') < hero.indexOf("<h1>"));
+  const story = html.indexOf('class="detail-story"');
+  const speakers = html.indexOf('class="small-speakers"');
+  assert.ok(speakers > story);
+  assert.match(html, /class="small-speaker-card"/);
+  assert.match(html, /src="\/team\/daeho-jeon\.jpg"/);
+  assert.match(html, /linkedin\.com\/in\/canrobot/);
+  assert.match(html, /전대호 LinkedIn 프로필 열기/);
 });

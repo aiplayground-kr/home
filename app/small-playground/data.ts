@@ -16,6 +16,15 @@ export type SmallPlaygroundProgram = {
   note: string;
   image?: string;
   externalUrl?: string;
+  speakers?: SmallPlaygroundSpeaker[];
+};
+
+export type SmallPlaygroundSpeaker = {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+  linkedin: string;
 };
 
 export const smallPlaygroundPrograms: SmallPlaygroundProgram[] = [
@@ -74,6 +83,13 @@ export const smallPlaygroundPrograms: SmallPlaygroundProgram[] = [
     topics: ["홈페이지 목적과 구성 정하기", "GitHub Copilot과 페이지 만들기", "직접 열어보고 수정하는 반복 과정"],
     note: "전대호 Microsoft MVP가 진행합니다. 상세 참여 안내는 커뮤니티 공지에서 확인할 수 있습니다.",
     image: "/small-playground/03-github-copilot-dev-days.png",
+    speakers: [{
+      name: "전대호",
+      role: "Microsoft 365 Copilot MVP · MCT",
+      description: "GitHub Copilot과 함께 아이디어를 실제 홈페이지로 완성하는 2시간의 실습을 진행합니다.",
+      image: "/team/daeho-jeon.jpg",
+      linkedin: "https://www.linkedin.com/in/canrobot/",
+    }],
   },
   {
     slug: "4",

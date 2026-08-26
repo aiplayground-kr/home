@@ -46,9 +46,11 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
 
       <section className="detail-hero">
         <div className="detail-title-block">
+          <div className="detail-kicker">
+            <div className="detail-status"><i /> {program.status}</div>
+            <p>SMALL PLAYGROUND · SEASON SERIES</p>
+          </div>
           <div className="detail-number">{program.number}</div>
-          <div className="detail-status"><i /> {program.status}</div>
-          <p>SMALL PLAYGROUND · SEASON SERIES</p>
           <h1>{program.title}</h1>
           <p className="detail-description">{program.description}</p>
         </div>
@@ -80,6 +82,30 @@ export default async function SmallPlaygroundDetail({ params }: DetailPageProps)
             <blockquote>{program.note}</blockquote>
           </aside>
         </div>
+
+        {program.speakers?.length ? (
+          <section className="small-speakers" aria-labelledby="small-speakers-title">
+            <header>
+              <p className="eyebrow">MEET THE SPEAKER</p>
+              <h2 id="small-speakers-title">이번 플레이를<br />함께 만드는 사람</h2>
+              <p>프로필 사진과 LinkedIn에서 연사의 활동과 경험을 더 자세히 만나보세요.</p>
+            </header>
+            <div className="small-speaker-list">
+              {program.speakers.map((speaker) => (
+                <article className="small-speaker-card" key={speaker.linkedin}>
+                  <img src={speaker.image} alt={`${speaker.name} 연사 프로필 사진`} />
+                  <div>
+                    <span>SPEAKER</span>
+                    <h3>{speaker.name}</h3>
+                    <strong>{speaker.role}</strong>
+                    <p>{speaker.description}</p>
+                    <a href={speaker.linkedin} target="_blank" rel="noreferrer" aria-label={`${speaker.name} LinkedIn 프로필 열기`}>LinkedIn 프로필 보기 <b>↗</b></a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <EventGallery
           title={`${program.number} ${program.shortTitle}`}
