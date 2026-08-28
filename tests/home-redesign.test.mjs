@@ -13,7 +13,8 @@ async function renderHome() {
   );
 }
 
-test("home hero presents the AI Playground identity and current plays", async () => {
+test("home hero presents the AI Playground identity and current plays", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-26T00:00:00+09:00") });
   const response = await renderHome();
   const html = await response.text();
   assert.equal(response.status, 200);
@@ -51,7 +52,8 @@ test("home console posters and placeholders share a non-overlapping two-column f
   assert.match(css, /\.hero-screen-placeholder\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*150px;[^}]*min-width:\s*0;[^}]*min-height:\s*0/);
 });
 
-test("home console keeps poster and placeholder artwork on the same stage", async () => {
+test("home console keeps poster and placeholder artwork on the same stage", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-26T00:00:00+09:00") });
   const response = await renderHome();
   const html = await response.text();
   const css = await readFile(new URL("../app/home-refresh.css", import.meta.url), "utf8");
@@ -79,7 +81,7 @@ test("home small playground section is poster-led and links to event details", a
   assert.match(html, /class="small-program-poster/);
   assert.match(html, /small-playground\/03-github-copilot-dev-days\.png/);
   assert.match(html, /href="\/small-playground\/3"/);
-  assert.match(html, /만들면서 배우는 GitHub Copilot/);
+  assert.match(html, /스페이스 인베이더 × GitHub Copilot/);
 });
 
 test("home small playground orders the next programs by date and features the nearest one", async (t) => {
@@ -186,13 +188,19 @@ test("home events advance automatically from the current Korea date", async () =
   assert.match(component, /4_500/);
 });
 
-test("home console keeps Snowflake as the featured next event", async () => {
-  const component = await readFile(new URL("../app/home-event-console.tsx", import.meta.url), "utf8");
-  assert.match(component, /const featuredEvent = officialEvents\[0\]/);
-  assert.match(component, /return \[featuredEvent, \.\.\.future\.filter\(\(event\) => event !== featuredEvent\)\]\.slice\(0, count\)/);
+test("home console drops past official events from the next schedule", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-28T00:00:00+09:00") });
+  const response = await renderHome();
+  const html = await response.text();
+  const stage = html.slice(html.indexOf('class="hero-stage"'), html.indexOf('class="hero-now-strip"'));
+
+  assert.match(stage, /href="\/small-playground\/3"/);
+  assert.match(stage, /2026\.09\.01/);
+  assert.doesNotMatch(stage, /snowflake-world-tour-poster/);
 });
 
-test("home Snowflake screen uses the smaller AI playground and Snowflake label", async () => {
+test("home Snowflake screen uses the smaller AI playground and Snowflake label", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-26T00:00:00+09:00") });
   const response = await renderHome();
   const html = await response.text();
   const stage = html.slice(html.indexOf('class="hero-stage"'), html.indexOf('class="hero-now-strip"'));

@@ -84,8 +84,7 @@ function displayDate(date: string, includeYear = false) {
 function upcoming(events: HomeEvent[], today: string, count: number) {
   const ordered = [...events].sort((a, b) => a.date.localeCompare(b.date));
   const future = ordered.filter((event) => event.date >= today);
-  const featuredEvent = officialEvents[0];
-  return [featuredEvent, ...future.filter((event) => event !== featuredEvent)].slice(0, count);
+  return future.slice(0, count);
 }
 
 function useHomeEvents() {

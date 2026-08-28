@@ -17,7 +17,7 @@ test("small playground index presents programs 4 through 7", async () => {
   const response = await render("/small-playground");
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /GitHub Copilot Dev Days: 만들면서 배우는 GitHub Copilot/);
+  assert.match(html, /GitHub Copilot Dev Days: 스페이스 인베이더 게임 만들며 배우는 GitHub Copilot 앱/);
   assert.match(html, /북토크: 언런/);
   assert.match(html, /Women Who Code × GitHub Copilot Dev Days/);
   assert.match(html, /Copilot으로 디자인이 가능하다고\?/);
@@ -45,8 +45,10 @@ test("program detail pages show the supplied schedule and audience", async () =>
     render("/small-playground/6").then((response) => response.text()),
     render("/small-playground/7").then((response) => response.text()),
   ]);
-  assert.match(four, /스킬/);
-  assert.match(four, /배포/);
+  assert.match(four, /스페이스 인베이더/);
+  assert.match(four, /Instructions/);
+  assert.match(four, /MCP Server/);
+  assert.match(four, /오후 3:00–5:00/);
   assert.match(five, /2026\.10\.04/);
     assert.match(five, /오전 10:00–12:00/);
     assert.match(five, /김연지/);
