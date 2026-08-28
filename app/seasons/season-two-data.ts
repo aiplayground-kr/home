@@ -47,6 +47,24 @@ export const buildGallery: GalleryItem[] = eventMediaByFolder["season-2/build/ar
   return { src, ...(buildGalleryMeta[filename] ?? { alt: `BUILD 행사 기록 ${filename}`, caption: `BUILD 행사 기록 ${filename}` }) };
 });
 
+const snowflakeGalleryMeta: Record<string, Omit<GalleryItem, "src">> = {
+  "01.webp": { alt: "Snowflake World Tour Workato 부스에서 이야기를 나누는 참가자들", caption: "파트너 부스에서 기술과 자동화 경험을 나눈 현장", label: "PARTNER VILLAGE" },
+  "02.webp": { alt: "Snowflake Korea User Group 커뮤니티 빌리지 스탬프 투어", caption: "Snowflake Korea User Group과 함께한 커뮤니티 프로그램", label: "COMMUNITY VILLAGE" },
+  "03.webp": { alt: "Microsoft 머그와 AI놀이터 배지 및 현장 굿즈", caption: "Microsoft와 AI놀이터의 색을 담은 현장 굿즈", label: "PLAYGROUND GOODS" },
+  "04.webp": { alt: "Snowflake World Tour 서울 행사장 전경", caption: "커뮤니티와 데이터·AI 실무자가 모인 Snowflake World Tour 서울", label: "EVENT HALL" },
+  "05.webp": { alt: "Snowflake World Tour AI놀이터 부스 Crew 단체사진", caption: "AI놀이터 부스를 함께 운영한 Crew", label: "AI PLAYGROUND CREW" },
+  "06.webp": { alt: "AI놀이터 부스에서 이벤트에 참여하는 참가자", caption: "퀴즈와 현장 이벤트로 이어진 AI놀이터의 플레이", label: "LIVE PLAY" },
+  "07.webp": { alt: "AI놀이터 부스에서 교류하는 행사 참가자들", caption: "부스에서 질문하고 답하며 새로운 연결을 만든 시간", label: "BOOTH NETWORKING" },
+  "08.webp": { alt: "AI놀이터 부스 안내를 듣는 Snowflake World Tour 참가자들", caption: "AI놀이터 활동을 소개하고 다음 만남을 연결한 현장", label: "COMMUNITY CONNECTION" },
+  "09.webp": { alt: "AI놀이터 부스에서 진행된 Microsoft AI 데모", caption: "현장에서 직접 확인한 Microsoft AI 활용 시연", label: "LIVE DEMO" },
+  "10.webp": { alt: "AI놀이터 부스 테이블에서 대화하는 참가자들", caption: "굿즈와 이야기를 나누며 이어진 편안한 네트워킹", label: "FIELD MOMENT" },
+};
+
+export const snowflakeGallery: GalleryItem[] = eventMediaByFolder["season-2/snowflake/gallery"].map((src) => {
+  const filename = src.slice(src.lastIndexOf("/") + 1);
+  return { src, ...(snowflakeGalleryMeta[filename] ?? { alt: `Snowflake World Tour 현장 스케치 ${filename}`, caption: `Snowflake World Tour 현장 스케치 ${filename}` }) };
+});
+
 export const snowflakeSessions = [
   { no: "01", time: "08:00–09:30", topic: "Copilot", speaker: "전대호", role: "Microsoft MVP", crew: ["주인화", "이종혁"], description: "Copilot 설명과 데모로 하루의 첫 플레이를 엽니다.", image: "/team/daeho-jeon.jpg", linkedin: "https://www.linkedin.com/in/canrobot/" },
   { no: "02", time: "09:30–11:00", topic: "Copilot Studio", speaker: "진미나", role: "Microsoft MVP", crew: ["윤미영", "염선영"], description: "Copilot Studio 기반 업무와 Agent 시나리오를 설명하고 시연합니다.", image: "/team/mina-jin.jpg", linkedin: "https://www.linkedin.com/in/mina-jin-91333493/" },

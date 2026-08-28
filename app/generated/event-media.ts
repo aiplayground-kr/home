@@ -18,5 +18,17 @@ export const eventMediaByFolder = {
     "/events/season-2/build/archive/48.png",
     "/events/season-2/build/archive/49.png",
     "/events/season-2/build/archive/50.png"
+  ],
+  "season-2/snowflake/gallery": [
+    "/events/season-2/snowflake/gallery/01.webp",
+    "/events/season-2/snowflake/gallery/02.webp",
+    "/events/season-2/snowflake/gallery/03.webp",
+    "/events/season-2/snowflake/gallery/04.webp",
+    "/events/season-2/snowflake/gallery/05.webp",
+    "/events/season-2/snowflake/gallery/06.webp",
+    "/events/season-2/snowflake/gallery/07.webp",
+    "/events/season-2/snowflake/gallery/08.webp",
+    "/events/season-2/snowflake/gallery/09.webp",
+    "/events/season-2/snowflake/gallery/10.webp"
   ]
 } as const;

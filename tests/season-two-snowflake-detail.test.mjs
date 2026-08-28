@@ -101,3 +101,20 @@ test("Snowflake program heading stacks eyebrow, title, and description in that o
   assert.match(headerRule, /display:flex/);
   assert.match(headerRule, /flex-direction:column/);
 });
+
+test("Snowflake field sketch shows uploaded photos as thumbnail lightbox gallery", async () => {
+  const response = await renderSnowflakeDetail();
+  const html = await response.text();
+  const galleryIndex = html.indexOf('aria-label="현장 스케치 갤러리"');
+
+  assert.ok(galleryIndex > html.indexOf('class="snowflake-program"'));
+  const gallery = html.slice(galleryIndex);
+  assert.match(gallery, /FIELD SKETCH/);
+  assert.match(gallery, /data-gallery-mode="thumbnail-lightbox"/);
+  assert.ok((gallery.match(/class="gallery-thumbnail"/g) ?? []).length >= 10);
+  assert.match(gallery, /snowflake\/gallery\/01\.webp/);
+  assert.match(gallery, /snowflake\/gallery\/10\.webp/);
+  assert.match(gallery, /aria-label="이전 이미지"/);
+  assert.match(gallery, /aria-label="다음 이미지"/);
+  assert.match(gallery, /aria-label="큰 이미지 닫기"/);
+});

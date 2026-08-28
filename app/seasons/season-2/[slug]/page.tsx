@@ -3,7 +3,7 @@ import { seasonTwoEvents } from "../../../content";
 import { EventGallery } from "../../../event-gallery";
 import { SiteFooter, SiteHeader } from "../../../site-shell";
 import { SeasonEventCover, SpeakerCarousel } from "../../season-event-components";
-import { buildGallery as eventBuildGallery, buildSessions as eventBuildSessions, buildSpeakers, snowflakeSessions as eventSnowflakeSessions } from "../../season-two-data";
+import { buildGallery as eventBuildGallery, buildSessions as eventBuildSessions, buildSpeakers, snowflakeGallery as eventSnowflakeGallery, snowflakeSessions as eventSnowflakeSessions } from "../../season-two-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -95,6 +95,12 @@ export default async function SeasonTwoEventPage({ params }: Props) {
   return <main><SiteHeader /><section className="event-detail-shell">
     <a className="archive-detail-back" href="/seasons/season-2">← 시즌 2 공식 행사</a>
     {event.slug === "snowflake" ? <SnowflakeEventRecord /> : event.slug === "build" ? <BuildEventRecord /> : <div className={`event-detail-hero ${event.accent}`}><span>{event.eyebrow} · {event.state}</span><h1>{event.title}</h1><p>{event.description}</p></div>}
-    <EventGallery title={`${event.title} 갤러리`} items={event.slug === "build" ? eventBuildGallery : []} mode={event.slug === "build" ? "thumbnail-lightbox" : "mosaic"} emptyMessage={event.slug === "snowflake" ? "8월 27일 Snowflake 행사 사진과 발표 자료가 정리되는 대로 이곳에 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."} />
+    <EventGallery
+      title={event.slug === "snowflake" ? "현장 스케치" : `${event.title} 갤러리`}
+      eyebrow={event.slug === "snowflake" ? "FIELD SKETCH" : undefined}
+      items={event.slug === "snowflake" ? eventSnowflakeGallery : eventBuildGallery}
+      mode="thumbnail-lightbox"
+      emptyMessage={event.slug === "snowflake" ? "Snowflake 행사 사진이 추가되면 이곳에 차례로 공개됩니다." : "BUILD 행사의 현장 사진과 결과물을 정리해 이곳에 차례로 추가합니다."}
+    />
   </section><SiteFooter /></main>;
 }

@@ -11,7 +11,7 @@ export type GalleryItem = {
 
 type GalleryMode = "mosaic" | "slider" | "thumbnail-lightbox";
 
-export function EventGallery({ title, items, emptyMessage = "행사 사진은 기록이 정리되는 대로 이곳에 업데이트됩니다.", mode = "mosaic" }: { title: string; items: GalleryItem[]; emptyMessage?: string; mode?: GalleryMode }) {
+export function EventGallery({ title, items, eyebrow = "PHOTO ARCHIVE", emptyMessage = "행사 사진은 기록이 정리되는 대로 이곳에 업데이트됩니다.", mode = "mosaic" }: { title: string; items: GalleryItem[]; eyebrow?: string; emptyMessage?: string; mode?: GalleryMode }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState(0);
   const openerRef = useRef<HTMLButtonElement | null>(null);
@@ -52,7 +52,7 @@ export function EventGallery({ title, items, emptyMessage = "행사 사진은 �
 
   return <section className="event-gallery" aria-label={`${title} 갤러리`} data-gallery-mode={mode}>
     <div className="gallery-heading">
-      <div><span>PHOTO ARCHIVE</span><h2>{title}</h2></div>
+      <div><span>{eyebrow}</span><h2>{title}</h2></div>
       <strong>{String(items.length).padStart(2, "0")} CUTS</strong>
     </div>
     {items.length && mode === "slider" ? <>
